@@ -41,8 +41,17 @@ class Reservation
 
     public static void ListReservations()
     {
-        foreach (var item in Reservations)
-            Console.WriteLine($"{item.Name} at {item.DateTime} with {item.PersonCount} persons.");
+        if(Reservations.Count > 0) 
+        {
+            foreach (var item in Reservations)
+            {
+                Console.WriteLine($"{item.Name} at {item.DateTime} with {item.PersonCount} persons.");
+            }
+        } else
+        {
+            Console.WriteLine("There are no reservations at the moment");
+        }
+        
     }
 
     static int FindReservationIndex(string nameOfRes)
