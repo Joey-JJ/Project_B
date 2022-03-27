@@ -5,12 +5,6 @@ namespace ProjectB
 {
     class StartingScreen
     {
-        static void Main()
-        {
-            StartMenu();
-        }
-
-
         static void  StartMenu()
         {
             Console.Clear();
