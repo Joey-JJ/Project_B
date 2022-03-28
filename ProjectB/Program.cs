@@ -4,7 +4,7 @@
 namespace ProjectB
 {
     class startthemenu{
-        Main(){
+        void Main(){
         StartingScreen.StartMenu();
         }
 }
