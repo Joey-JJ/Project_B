@@ -52,52 +52,59 @@ namespace ProjectB
             int SanitizedPersonCount = 0;
            switch(SanitizedInteger) {
                 case 1:
-                    {
+                    {                     
+                        bool MenuClose = false;
                         int page = 1;
-                        switch (page)
+                        while (!MenuClose)
                         {
-                            case 1:
-                                Console.Clear(); 
-                                Console.WriteLine("What is your name?, \n\n Press 1 to go back to the reservation menu");
-                                RouteBackToReservationMenu(Console.ReadLine());
-                                name = Console.ReadLine();
-                                page++;
-                                break;
-                            case 2:
-                                Console.WriteLine("What is your E-mail address? \n\n Press 1 to go back to the reservation menu");
-                                RouteBackToReservationMenu(Console.ReadLine());
-                                Email = Console.ReadLine();
-                                page++;
-                                break;
+                            Console.WriteLine(page);
+                            switch (page)
+                            {
+                                case 1:
+                                    Console.Clear();
+                                    Console.WriteLine("What is your name?, \n\n Press 1 to go back to the reservation menu");
+                                    RouteBackToReservationMenu(Console.ReadLine());
+                                    name = Console.ReadLine();
+                                    Console.WriteLine(page);
+                                    page++;
+                                    break;
+                                case 2:
+                                    Console.WriteLine("What is your E-mail address? \n\n Press 1 to go back to the reservation menu");
+                                    RouteBackToReservationMenu(Console.ReadLine());
+                                    Email = Console.ReadLine();
+                                    page++;
+                                    break;
 
 
-                            case 3:
-                                Console.WriteLine("How many people do you want to place reservations for?");
-                                SanitizedPersonCount = WithinBounds(1, 30);
-                                page++;
-                                break;
-                            case 4:
-                                Console.WriteLine("At what date would you like to be seated? \n\n Press 1 to go back to the reservation menu");
-                                RouteBackToReservationMenu(Console.ReadLine());
-                                DateTime = Console.ReadLine();
+                                case 3:
+                                    Console.WriteLine("How many people do you want to place reservations for?");
+                                    SanitizedPersonCount = WithinBounds(1, 30);
+                                    page++;
+                                    break;
+                                case 4:
+                                    Console.WriteLine("At what date would you like to be seated? \n\n Press 1 to go back to the reservation menu");
+                                    RouteBackToReservationMenu(Console.ReadLine());
+                                    DateTime = Console.ReadLine();
+                                    break;
+                                case 5:
 
-                                break;
-                            case 5:
-                                
-                                Console.Clear();
-                                Console.WriteLine($"made a reservation for: {SanitizedPersonCount} people registered under the name: {name} at the following date: {DateTime}. \n Thanks for making a reservation!");
-                                Console.WriteLine(" \n if there is anything wrong with the name, press 1" +
-                                    "\n if there is anything wrong with the DateTime, press 2" +
-                                    "\n if there is anything wrong with the amount of people visiting press 3 " +
-                                    "\n if there is anything wrong with the date of visit press 4" +
-                                    "\n To continue press 5 and you will be routed back to the starting screen");
-                                page = WithinBounds(1, 5);
-                                Reservation.AddReservation(name, Email, DateTime, SanitizedPersonCount);
-                                Reservation.SaveReservations();
-                                Console.Clear();
-                                StartMenu();
-                                break;
-                        }  
+                                    Console.Clear();
+                                    Console.WriteLine($"made a reservation for: {SanitizedPersonCount} people registered under the name: {name} at the following date: {DateTime}. \n Thanks for making a reservation!");
+                                    Console.WriteLine(" \n if there is anything wrong with the name, press 1" +
+                                        "\n if there is anything wrong with the DateTime, press 2" +
+                                        "\n if there is anything wrong with the amount of people visiting press 3 " +
+                                        "\n if there is anything wrong with the date of visit press 4" +
+                                        "\n To continue press 5 and you will be routed back to the starting screen");
+                                    page = WithinBounds(1, 5);
+                                    Reservation.AddReservation(name, Email, DateTime, SanitizedPersonCount);
+                                    Reservation.SaveReservations();
+                                    Console.Clear();
+                                    MenuClose = true;
+                                    StartMenu();
+                                    break;
+                            }
+                           
+                        }
                         break;
                     }
 
