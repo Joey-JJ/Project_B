@@ -9,7 +9,7 @@ namespace ProjectB
         {
             Console.Clear();
             // page 1
-            Console.WriteLine("Hello, welcome to Paps Patat \n Press 1 for login and account creation \n Press 2 to see reservations  \n Press 3 to see the menu");
+            Console.WriteLine("Welcome! \n Press 1 for login and account creation \n Press 2 to see reservations  \n Press 3 to see the menu");
             
             var StartingScreenOutput = WithinBounds(1, 3);
 
@@ -17,7 +17,7 @@ namespace ProjectB
             switch (StartingScreenOutput)
             {
                 case 1:
-                    Console.WriteLine($"you picked Login and account creation");
+                    Console.WriteLine("You picked Login and account creation");
                     Console.Clear();
                     AccountMenu();
                     break;
@@ -36,7 +36,7 @@ namespace ProjectB
         static void ReservationMenu()//Helps the user navigate to the reservation functionality
         {
             Console.Clear();
-            Console.WriteLine($"Welcome to the reservation menu,\n press 1 to add a reservation, press 2 to delete a reservation, \n press 3 to edit a reservation, press 4 to list all reservations \n Press 5 to go back to the main menu");
+            Console.WriteLine($"Welcome to the reservation menu,\n Press 1 to add a reservation \n Press 2 to delete a reservation \n Press 3 to edit a reservation \n Press 4 to list all reservations \n Press 5 to go back to the main menu");
             int SanitizedInteger = WithinBounds(1, 5);
             string name = "";
             string Email = "";
@@ -93,6 +93,7 @@ namespace ProjectB
                                     "\n To continue press 5 and you will be routed back to the starting screen");
                                 page = WithinBounds(1, 5);
                                 Reservation.AddReservation(name, Email, DateTime, SanitizedPersonCount);
+                                Reservation.SaveReservations();
                                 Console.Clear();
                                 StartMenu();
                                 break;
@@ -107,6 +108,7 @@ namespace ProjectB
                         RouteBackToReservationMenu(Console.ReadLine());
                         name = Console.ReadLine();
                         Reservation.RemoveReservation(name);
+                        Reservation.SaveReservations();
                         break;
                     }
 
@@ -139,6 +141,7 @@ namespace ProjectB
                                 Console.Clear();
                                 Console.WriteLine("What would you like the name to be?");
                                 Reservation.EditName(ReservationName, Console.ReadLine());
+                                Reservation.SaveReservations();
                                 Console.WriteLine("Alteration completed! Routing you back to the main menu");
                                 Console.Clear();
                                 StartMenu();
@@ -148,6 +151,7 @@ namespace ProjectB
                                 Console.Clear();
                                 Console.WriteLine($"What would you like the email to be?");
                                 Reservation.EditName(ReservationName, Console.ReadLine());
+                                Reservation.SaveReservations();
                                 Console.WriteLine("Alteration completed! Routing you back to the main menu");
                                 Console.Clear();
                                 StartMenu();
@@ -157,6 +161,7 @@ namespace ProjectB
                                 Console.Clear();
                                 Console.WriteLine("What would you like the Date to be? \n Please input the DateTime in the format: (HH/DD/MM/YY).");
                                 Reservation.EditName(ReservationName, Console.ReadLine());
+                                Reservation.SaveReservations();
                                 Console.WriteLine("Alteration completed! Routing you back to the main menu");
                                 Console.Clear();
                                 StartMenu();
@@ -166,6 +171,7 @@ namespace ProjectB
                                 Console.Clear();
                                 Console.WriteLine("What would you like the person count to be instead?");
                                 Reservation.EditName(ReservationName, Console.ReadLine());
+                                Reservation.SaveReservations();
                                 Console.WriteLine("Alteration completed! Routing you back to the main menu");
                                 Console.Clear();
                                 StartMenu();

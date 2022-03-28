@@ -6,7 +6,7 @@ using System.Text.Json;
 class Reservation
 {
     public static List<Reservation> Reservations = new();
-    private static string FileName = "Reservations.json";
+    private static readonly string FileName = "./Reservations.json";
     public string Name { get; set; }
     public string Email { get; set; }
     public string DateTime { get; set; }
@@ -29,14 +29,14 @@ class Reservation
         var options = new JsonSerializerOptions { WriteIndented = true };
         string jsonString = JsonSerializer.Serialize(Reservation.Reservations, options);
         File.WriteAllText(FileName, jsonString);
-        System.Console.WriteLine("Saved Reservations");
+        Console.WriteLine("Saved Reservations");
     }
 
     public static void LoadReservations()
     {
         string jsonString = File.ReadAllText(FileName);
         Reservations = JsonSerializer.Deserialize<List<Reservation>>(jsonString);
-        System.Console.WriteLine("Loaded Reservations");
+        Console.WriteLine("Loaded Reservations");
     }
 
     public static void ListReservations()
@@ -67,10 +67,10 @@ class Reservation
     public static void AddReservation(
         string name,
         string email,
-        string date_time,
-        int person_count)
+        string dateTime,
+        int personCount)
     {
-        var newRes = new Reservation(name, email, date_time, person_count);
+        var newRes = new Reservation(name, email, dateTime, personCount);
         Reservations.Add(newRes);
         Console.WriteLine("Added Reservation");
     }

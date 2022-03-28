@@ -3,8 +3,12 @@
 
 namespace ProjectB
 {
-    class startthemenu{
-        void Main(){
-        StartingScreen.StartMenu();
+    class Program
+    {
+        static void Main()
+        {
+            Reservation.LoadReservations();
+            StartingScreen.StartMenu();
         }
+    }
 }

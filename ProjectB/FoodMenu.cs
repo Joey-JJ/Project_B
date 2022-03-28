@@ -8,7 +8,7 @@ namespace ProjectB
 {
     public static class FullMenu
     {
-        readonly static Dictionary<string, double> Menu = new Dictionary<string, double>
+        readonly static Dictionary<string, double> Menu = new()
         {
                 {"Oeuf en cocotte", 8.00 },
                 { "French Onionsoup", 8.00 },
