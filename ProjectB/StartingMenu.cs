@@ -9,9 +9,9 @@ namespace ProjectB
         {
             Console.Clear();
             // page 1
-            Console.WriteLine("Hello, welcome to Paps Patat \n Press 1 for login and account creation \n Press 2 to see reservations");
+            Console.WriteLine("Hello, welcome to Paps Patat \n Press 1 for login and account creation \n Press 2 to see reservations  \n Press 3 to see the menu");
             
-            var StartingScreenOutput = WithinBounds(1, 2);
+            var StartingScreenOutput = WithinBounds(1, 3);
 
 
             switch (StartingScreenOutput)
@@ -25,6 +25,11 @@ namespace ProjectB
                     Console.WriteLine("You picked: Reservations");
                     Console.Clear();
                     ReservationMenu();
+                    break;
+                case 3:
+                    Console.WriteLine("You picked to see the menu");
+                    Console.Clear();
+                    FullMenu.PrintMenu();
                     break;
             }
         }
