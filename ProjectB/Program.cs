@@ -30,9 +30,9 @@ namespace ProjectB
                         break;
 
                     case 3:
-                            FullMenu.PrintMenu();
-                            pageNumber = 0;
-                            break;
+                        FullMenu.PrintMenu();
+                        pageNumber = 0;
+                        break;
                 }
             }
         }
