@@ -3,10 +3,8 @@
 
 namespace ProjectB
 {
-    class StartingScreen
-    {
-        static void  Main()
-        {
-            StartingScreen.StartMenu();
+    class startthemenu{
+        Main(){
+        StartingScreen.StartMenu();
         }
 }
