@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 
 namespace ProjectB
@@ -9,26 +9,21 @@ namespace ProjectB
         {
             Reservation.LoadReservations();
             Console.Clear();
-            bool keepRunning = true;
             int pageNumber = 0;
-            string userInput;
 
-            while (keepRunning)
+            while (true)
             {
                 switch (pageNumber)
                 {
                     case 0:
-                        MainPage(out pageNumber, out userInput);
+                        pageNumber = MainPage();
                         break;
-
                     case 1:
-                        AccountCreation(out pageNumber, out userInput);
+                        pageNumber = AccountCreation();
                         break;
-
                     case 2:
-                        userInput = ReservationMenu(ref pageNumber);
+                        pageNumber = ReservationMenu();
                         break;
-
                     case 3:
                         FullMenu.PrintMenu();
                         pageNumber = 0;
@@ -37,7 +32,7 @@ namespace ProjectB
             }
         }
 
-        private static string ReservationMenu(ref int pageNumber)
+        private static int ReservationMenu()
         {
             string userInput;
             Console.WriteLine($"\nWelcome to the reservation menu,\n Press 1 to add a reservation \n Press 2 to delete a reservation \n Press 3 to edit a reservation \n Press 4 to list all reservations \n Press 5 to go back to the main menu");
@@ -58,8 +53,7 @@ namespace ProjectB
 
                     Reservation.AddReservation(name, email, datetime, persons);
                     Reservation.SaveReservations();
-                    pageNumber = 0;
-                    break;
+                    return 0;
                 }
                 else if (userInput == "2")
                 {
@@ -117,41 +111,36 @@ namespace ProjectB
                             System.Console.WriteLine("Please enter a valid number");
                         }
                     }
-                    pageNumber = 0;
-                    break;
+                    return 0;
                 }
                 else if (userInput == "4")
                 {
                     Reservation.ListReservations();
-                    pageNumber = 0;
-                    break;
+                    return 0;
                 }
                 else if (userInput == "5")
                 {
-                    pageNumber = 0;
-                    break;
+                    return 0;
                 }
                 else
                 {
                     System.Console.WriteLine("Please enter a valid number");
                 }
             }
-
-            return userInput;
+            return 0;
         }
 
-        private static void AccountCreation(out int pageNumber, out string userInput)
+        private static int AccountCreation()
         {
             // Console.Clear();
             Console.WriteLine("Account Creation. Press 1 to go back");
-
+            string userInput;
             while (true)
             {
                 userInput = Console.ReadLine();
                 if (userInput == "1")
                 {
-                    pageNumber = 0;
-                    break;
+                    return 0;
                 }
                 else
                 {
@@ -160,29 +149,26 @@ namespace ProjectB
             }
         }
 
-        private static void MainPage(out int pageNumber, out string userInput)
+        private static int MainPage()
         {
             // Console.Clear();
             Console.WriteLine("\nWelcome! \n Press 1 for login and account creation \n Press 2 to go to the reservations section \n Press 3 to see the menu");
-
+            string userInput;
             while (true)
             {
                 userInput = Console.ReadLine();
 
                 if (userInput == "1")
                 {
-                    pageNumber = 1;
-                    break;
+                    return 1;
                 }
                 else if (userInput == "2")
                 {
-                    pageNumber = 2;
-                    break;
+                    return 2;
                 }
                 else if (userInput == "3")
                 {
-                    pageNumber = 3;
-                    break;
+                    return 3;
                 }
                 else
                 {
