@@ -6,12 +6,6 @@
     "PersonCount": 4
   },
   {
-    "Name": "Frank",
-    "Email": "frank@gmail.com",
-    "DateTime": "24-03-2022 20:00",
-    "PersonCount": 2
-  },
-  {
     "Name": "Piet",
     "Email": "piet@hotmail.com",
     "DateTime": "23-03-2022 19:30",

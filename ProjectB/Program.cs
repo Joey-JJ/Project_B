@@ -8,7 +8,6 @@ namespace ProjectB
         static void Main(string[] args)
         {
             Reservation.LoadReservations();
-            Console.Clear();
             int pageNumber = 0;
 
             while (true)
@@ -25,23 +24,30 @@ namespace ProjectB
                         pageNumber = ReservationMenu();
                         break;
                     case 3:
+                        Console.Clear();
                         FullMenu.PrintMenu();
+                        Console.WriteLine("\nPress 'Enter' to go back.");
+                        Console.ReadLine();
                         pageNumber = 0;
                         break;
+                    case 99:
+                        return;
+
                 }
             }
         }
 
         private static int ReservationMenu()
         {
+            Console.Clear();
             string userInput;
-            Console.WriteLine($"\nWelcome to the reservation menu,\n Press 1 to add a reservation \n Press 2 to delete a reservation \n Press 3 to edit a reservation \n Press 4 to list all reservations \n Press 5 to go back to the main menu");
+            Console.WriteLine($"Welcome to the reservation menu!\n\nPress 1 to add a reservation \nPress 2 to delete a reservation\n Press 3 to edit a reservation\n Press 4 to list all reservations\n Press 5 to go back to the main menu");
             while (true)
             {
                 userInput = Console.ReadLine();
                 if (userInput == "1")
                 {
-                    // Console.Clear();
+                    Console.Clear();
                     Console.Write("Enter your name: ");
                     string name = Console.ReadLine();
                     Console.Write("Enter your email: ");
@@ -53,21 +59,27 @@ namespace ProjectB
 
                     Reservation.AddReservation(name, email, datetime, persons);
                     Reservation.SaveReservations();
+                    
+                    Console.WriteLine("Press 'Enter' to go back");
+                    Console.ReadLine();
                     return 0;
                 }
                 else if (userInput == "2")
                 {
-                    // Console.Clear();
+                    Console.Clear();
                     Console.Write("Enter the name of the reservation you want to delete");
                     string nameToDelete = Console.ReadLine();
                     Reservation.RemoveReservation(nameToDelete);
                     Reservation.SaveReservations();
+                    System.Console.WriteLine("Press 'Enter' to go back");
+                    System.Console.ReadLine();
                     break;
                 }
                 else if (userInput == "3")
                 {
                     System.Console.Write("Enter the name of the reservation you want to edit: ");
                     string nameToEdit = Console.ReadLine();
+                    Console.Clear();
                     System.Console.WriteLine("What do you want to edit?\nPress 1 to alter the name\nPress 2 to alter the email\nPress 3 to alter the date\nPress 4 to edit the amount of people");
                     string thingToEdit;
                     string editName;
@@ -115,7 +127,10 @@ namespace ProjectB
                 }
                 else if (userInput == "4")
                 {
+                    Console.Clear();
                     Reservation.ListReservations();
+                    System.Console.WriteLine("Press 'Enter' to go back");
+                    Console.ReadLine();
                     return 0;
                 }
                 else if (userInput == "5")
@@ -132,27 +147,16 @@ namespace ProjectB
 
         private static int AccountCreation()
         {
-            // Console.Clear();
-            Console.WriteLine("Account Creation. Press 1 to go back");
-            string userInput;
-            while (true)
-            {
-                userInput = Console.ReadLine();
-                if (userInput == "1")
-                {
-                    return 0;
-                }
-                else
-                {
-                    System.Console.WriteLine("Invalid input, try again");
-                }
-            }
+            Console.Clear();
+            Console.WriteLine("Account Creation. Press 'Enter' to go back");
+            Console.ReadLine();
+            return 0;
         }
 
         private static int MainPage()
         {
-            // Console.Clear();
-            Console.WriteLine("\nWelcome! \n Press 1 for login and account creation \n Press 2 to go to the reservations section \n Press 3 to see the menu");
+            Console.Clear();
+            Console.WriteLine("Welcome! \nPress 1 for login and account creation \nPress 2 to go to the reservations section \nPress 3 to see the menu\nPress 4 to quit the application");
             string userInput;
             while (true)
             {
@@ -169,6 +173,10 @@ namespace ProjectB
                 else if (userInput == "3")
                 {
                     return 3;
+                }
+                else if (userInput == "4")
+                {
+                    return 99;
                 }
                 else
                 {
