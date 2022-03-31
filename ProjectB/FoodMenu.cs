@@ -66,7 +66,7 @@ namespace ProjectB
             foreach (var Item in Appetizers)
             {
                 
-                Console.WriteLine("{0}, price = {1}", Item.Key, Item.Value);
+                Console.WriteLine("{0} = ${1}", Item.Key, Item.Value);
 
             }
         }
@@ -75,7 +75,7 @@ namespace ProjectB
             Console.WriteLine("The Maincourses are:");
             foreach (var Item in MainCourses)
             {                
-                Console.WriteLine("{0}, price = {1}", Item.Key, Item.Value);
+                Console.WriteLine("{0} = ${1}", Item.Key, Item.Value);
 
             }
         }
@@ -84,7 +84,7 @@ namespace ProjectB
             Console.WriteLine("The vegan maincourses are:");
             foreach (var Item in VeganMainCourses)
             {
-                Console.WriteLine("0}, price = {1}", Item.Key, Item.Value);
+                Console.WriteLine("0} = ${1}", Item.Key, Item.Value);
 
             }
         }
@@ -93,7 +93,7 @@ namespace ProjectB
             Console.WriteLine("The Desserts are:");
             foreach (var Item in Desserts)
             {
-                Console.WriteLine("{0}, price = {1}", Item.Key, Item.Value);
+                Console.WriteLine("{0} = ${1}", Item.Key, Item.Value);
 
             }
         }
@@ -102,7 +102,7 @@ namespace ProjectB
             Console.WriteLine("The vegan desserts are:");
             foreach (var Item in VeganDesserts)
             {
-                Console.WriteLine( "{0}, price = {1}", Item.Key, Item.Value);
+                Console.WriteLine( "{0} = ${1}", Item.Key, Item.Value);
 
             }
         }
@@ -112,7 +112,7 @@ namespace ProjectB
             foreach (var Item in Drinks)
             {
 
-                Console.WriteLine("{0}, price = {1}", Item.Key, Item.Value);
+                Console.WriteLine("{0} = ${1}", Item.Key, Item.Value);
 
             }
 
