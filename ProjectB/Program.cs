@@ -25,7 +25,7 @@ namespace ProjectB
                         break;
                     case 3:
                         Console.Clear();
-                        FullMenu.PrintMenu();
+                        FoodMenu.PrintMainCourses();
                         Console.WriteLine("\nPress 'Enter' to go back.");
                         Console.ReadLine();
                         pageNumber = 0;
