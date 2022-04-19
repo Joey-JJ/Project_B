@@ -7,7 +7,7 @@ namespace ProjectB
     {
         static void Main(string[] args)
         {
-            ReservationService.GetReservationDateTime();
+            ReservationService.GetReservationDate();
             // ReservationService.LoadReservations();
             // int pageNumber = 0;
 

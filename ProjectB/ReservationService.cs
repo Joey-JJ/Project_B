@@ -23,17 +23,18 @@ class ReservationService
 
     public static void ListReservations()
     {
-        if(Reservations.Count > 0) 
+        if (Reservations.Count > 0)
         {
             foreach (var item in Reservations)
             {
                 Console.WriteLine($"{item.Name} at {item.StartTime} with {item.PersonCount} persons.");
             }
-        } else
+        }
+        else
         {
             Console.WriteLine("There are no reservations at the moment");
         }
-        
+
     }
 
     static int FindReservationIndex(string nameOfRes)
@@ -47,17 +48,74 @@ class ReservationService
         return index;
     }
 
-    public static void GetReservationDateTime() {
-        var dates = new List<DateTime>();
-        var week = 1;
+    public static DateTime GetReservationDate()
+    {
+        List<DateTime> dates = new();
+        var foundDate = false;
+        var result = new DateTime(1999, 1, 1);
+        var week = 0;
 
-        Console.WriteLine("Which day would you like to come?");
-        for(var i = 0; i < 7; i++) {
-            dates.Add(DateTime.Now.Date.AddDays(i));
-            System.Console.WriteLine($"[{i+1}] {dates[i].Date.ToShortDateString()}");
+        while (!foundDate)
+        {   
+            Console.WriteLine("Which day would you like to come?");
+            for (var i = week * 7; i < (week * 7) + 7; i++)
+            {
+                dates.Add(DateTime.Now.Date.AddDays(i));
+                System.Console.WriteLine($"[{i % 7 + 1}] {dates[i].Date.ToShortDateString()}");
+            }
+
+            Console.WriteLine("[8] Next week ...");
+            Console.Write("Enter your selection: ");
+            var date_number = Console.ReadLine();
+
+            switch (date_number)
+            {
+                case "1":
+                    foundDate = true;
+                    result = dates[0 + (week * 7)];
+                    break;
+                case "2":
+                    foundDate = true;
+                    result = dates[1 + (week * 7)];
+                    break;
+                case "3":
+                    foundDate = true;
+                    result = dates[2 + (week * 7)];
+                    break;
+                case "4":
+                    foundDate = true;
+                    result = dates[3 + (week * 7)];
+                    break;
+                case "5":
+                    foundDate = true;
+                    result = dates[4 + (week * 7)];
+                    break;
+                case "6":
+                    foundDate = true;
+                    result = dates[5 + (week * 7)];
+                    break;
+                case "7":
+                    foundDate = true;
+                    result = dates[6 + (week * 7)];
+                    break;
+                case "8":
+                    week++;
+                    break;
+                default:
+                    System.Console.WriteLine("Invalid input, try again...");
+                    break;
+            }
         }
-        Console.Write("Enter your selection: ");
-        var date_number = Console.ReadLine();
+        System.Console.WriteLine(result);
+        return result;
+    }
+
+    public static DateTime GetReservationTime(DateTime dt) {
+        var res = dt;
+
+        
+
+        return res;
     }
 
     public static void AddReservation(
