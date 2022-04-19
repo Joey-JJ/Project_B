@@ -27,7 +27,7 @@ class ReservationService
         {
             foreach (var item in Reservations)
             {
-                Console.WriteLine($"{item.Name} at {item.DateTime} with {item.PersonCount} persons.");
+                Console.WriteLine($"{item.Name} at {item.StartTime} with {item.PersonCount} persons.");
             }
         } else
         {
@@ -46,10 +46,24 @@ class ReservationService
         }
         return index;
     }
+
+    public static void GetReservationDateTime() {
+        var dates = new List<DateTime>();
+        var week = 1;
+
+        Console.WriteLine("Which day would you like to come?");
+        for(var i = 0; i < 7; i++) {
+            dates.Add(DateTime.Now.Date.AddDays(i));
+            System.Console.WriteLine($"[{i+1}] {dates[i].Date.ToShortDateString()}");
+        }
+        Console.Write("Enter your selection: ");
+        var date_number = Console.ReadLine();
+    }
+
     public static void AddReservation(
         string name,
         string email,
-        string dateTime,
+        DateTime dateTime,
         int personCount)
     {
         var newRes = new Reservation(name, email, dateTime, personCount);
@@ -101,13 +115,14 @@ class ReservationService
             Console.WriteLine("Could not find reservation");
         }
     }
-    public static void EditDateTime(string nameOfRes, string valueToChangeTo)
+    public static void EditDateTime(string nameOfRes, DateTime valueToChangeTo)
     {
         int editIndex = FindReservationIndex(nameOfRes);
 
         if (editIndex != -1)
         {
-            Reservations[editIndex].DateTime = valueToChangeTo;
+            Reservations[editIndex].StartTime = valueToChangeTo;
+            Reservations[editIndex].Endtime = Reservations[editIndex].StartTime.AddHours(2.0);
             Console.WriteLine("Edited DateTime of reservation.");
         }
         else

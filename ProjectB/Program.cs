@@ -7,34 +7,35 @@ namespace ProjectB
     {
         static void Main(string[] args)
         {
-            ReservationService.LoadReservations();
-            int pageNumber = 0;
+            ReservationService.GetReservationDateTime();
+            // ReservationService.LoadReservations();
+            // int pageNumber = 0;
 
-            while (true)
-            {
-                switch (pageNumber)
-                {
-                    case 0:
-                        pageNumber = MainPage();
-                        break;
-                    case 1:
-                        pageNumber = AccountCreation();
-                        break;
-                    case 2:
-                        pageNumber = ReservationMenu();
-                        break;
-                    case 3:
-                        Console.Clear();
-                        FoodMenu.PrintMainCourses();
-                        Console.WriteLine("\nPress 'Enter' to go back.");
-                        Console.ReadLine();
-                        pageNumber = 0;
-                        break;
-                    case 99:
-                        return;
+            // while (true)
+            // {
+            //     switch (pageNumber)
+            //     {
+            //         case 0:
+            //             pageNumber = MainPage();
+            //             break;
+            //         case 1:
+            //             pageNumber = AccountCreation();
+            //             break;
+            //         case 2:
+            //             pageNumber = ReservationMenu();
+            //             break;
+            //         case 3:
+            //             Console.Clear();
+            //             FoodMenu.PrintMainCourses();
+            //             Console.WriteLine("\nPress 'Enter' to go back.");
+            //             Console.ReadLine();
+            //             pageNumber = 0;
+            //             break;
+            //         case 99:
+            //             return;
 
-                }
-            }
+            //     }
+            // }
         }
 
         private static int ReservationMenu()
@@ -53,7 +54,7 @@ namespace ProjectB
                     Console.Write("Enter your email: ");
                     string email = Console.ReadLine();
                     Console.Write("When do you want to come? ");
-                    string datetime = Console.ReadLine();
+                    DateTime datetime = new DateTime(1999, 1, 1);
                     Console.Write("With how many persons are you coming? ");
                     int persons = Convert.ToInt32(Console.ReadLine());
 
@@ -85,7 +86,7 @@ namespace ProjectB
                     string thingToEdit;
                     string editName;
                     string editEmail;
-                    string editDate;
+                    DateTime editDate;
                     int editPersons;
 
                     while (true)
@@ -109,7 +110,8 @@ namespace ProjectB
                         else if (thingToEdit == "3")
                         {
                             System.Console.Write("Enter the date you want to change it into: ");
-                            editDate = Console.ReadLine();
+                            Console.ReadLine();
+                            editDate = new DateTime(1999, 1, 1);
                             ReservationService.EditDateTime(nameToEdit, editDate);
                             break;
                         }
