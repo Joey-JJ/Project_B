@@ -34,7 +34,6 @@ class ReservationService
         {
             Console.WriteLine("There are no reservations at the moment");
         }
-
     }
 
     static int FindReservationIndex(string nameOfRes)
@@ -56,7 +55,8 @@ class ReservationService
         var week = 0;
 
         while (!foundDate)
-        {   
+        {
+            Console.Clear();
             Console.WriteLine("Which day would you like to come?");
             for (var i = week * 7; i < (week * 7) + 7; i++)
             {
@@ -64,7 +64,8 @@ class ReservationService
                 System.Console.WriteLine($"[{i % 7 + 1}] {dates[i].Date.ToShortDateString()}");
             }
 
-            Console.WriteLine("[8] Next week ...");
+            Console.WriteLine("[8] Next week");
+            Console.WriteLine("[9] Previous week");
             Console.Write("Enter your selection: ");
             var date_number = Console.ReadLine();
 
@@ -101,20 +102,26 @@ class ReservationService
                 case "8":
                     week++;
                     break;
+                case "9":
+                    if (week != 0) week--;
+                    break;
                 default:
-                    System.Console.WriteLine("Invalid input, try again...");
                     break;
             }
         }
-        System.Console.WriteLine(result);
         return result;
     }
 
-    public static DateTime GetReservationTime(DateTime dt) {
-        var res = dt;
-
-        
-
+    public static DateTime GetReservationTime(DateTime dt)
+    {
+        var res = new DateTime(dt.Year, dt.Month, dt.Day, 17, 0, 0);
+        System.Console.WriteLine($"Selecting a time for {dt.ToShortDateString()}");
+        System.Console.WriteLine("At what time would you like to come?");
+        for (int i = 0; i < 11; i++)
+        {
+            System.Console.WriteLine(
+                $"[{i + 1}] {res.AddMinutes(30 * i).ToShortTimeString()} untill {res.AddHours(2.0).AddMinutes(30 * i).ToShortTimeString()}");
+        }
         return res;
     }
 
