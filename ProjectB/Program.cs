@@ -7,7 +7,10 @@ namespace ProjectB
     {
         static void Main(string[] args)
         {
-            ReservationService.GetReservationTime(ReservationService.GetReservationDate());
+            DateTime date = new(2000, 1, 1);
+            var rest = new RestaurantDay(date);
+            rest.Tables[0] = new Table(99, 99);
+            System.Console.WriteLine(Restaurant.RestaurantLayout[0].TableNumber);
             // ReservationService.LoadReservations();
             // int pageNumber = 0;
 
@@ -49,18 +52,26 @@ namespace ProjectB
                 if (userInput == "1")
                 {
                     Console.Clear();
-                    Console.Write("Enter your name: ");
-                    string name = Console.ReadLine();
-                    Console.Write("Enter your email: ");
-                    string email = Console.ReadLine();
-                    Console.Write("When do you want to come? ");
-                    DateTime datetime = new DateTime(1999, 1, 1);
-                    Console.Write("With how many persons are you coming? ");
-                    int persons = Convert.ToInt32(Console.ReadLine());
+                    var datetime = ReservationService.GetReservationTime(ReservationService.GetReservationDate());
+                    int persons;
+                    while (true)
+                    {
+                        try
+                        {
+                            Console.Write("With how many persons are you coming? ");
+                            persons = Convert.ToInt32(Console.ReadLine());
+                            break;
+                        }
+                        catch (System.Exception)
+                        {
+                            System.Console.WriteLine("Invalid input, please try again...");
+                            throw;
+                        }
+                    }
 
-                    ReservationService.AddReservation(name, email, datetime, persons);
+                    ReservationService.AddReservation(datetime, persons);
                     ReservationService.SaveReservations();
-                    
+
                     Console.WriteLine("\nPress 'Enter' to go back");
                     Console.ReadLine();
                     return 0;

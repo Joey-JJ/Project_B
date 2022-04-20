@@ -11,14 +11,13 @@ public class Reservation
     public Reservation(
             string name,
             string email,
-            DateTime datetime,
+            DateTime starttime,
             int personcount)
     {
         this.Name = name;
         this.Email = email;
         this.PersonCount = personcount;
-        this.StartTime = datetime;
+        this.StartTime = starttime;
         this.Endtime = this.StartTime.AddHours(2.0);
-        
     }
 }

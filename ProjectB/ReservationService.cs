@@ -187,11 +187,11 @@ class ReservationService
     }
 
     public static void AddReservation(
-        string name,
-        string email,
         DateTime dateTime,
         int personCount)
     {
+        var name = "test"; // Replace with account info
+        var email = "test"; // Replace with account info
         var newRes = new Reservation(name, email, dateTime, personCount);
         Reservations.Add(newRes);
         Console.WriteLine("Added Reservation");
