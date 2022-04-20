@@ -30,6 +30,13 @@ namespace ProjectB
                         Console.ReadLine();
                         pageNumber = 0;
                         break;
+                    case 4:
+                        Console.Clear();
+                        Reviews.WriteReview();
+                        Console.WriteLine("\nPress 'Enter' to go back.");
+                        Console.ReadLine();
+                        pageNumber = 0;
+                        break;
                     case 99:
                         return;
 
@@ -156,7 +163,7 @@ namespace ProjectB
         private static int MainPage()
         {
             Console.Clear();
-            Console.WriteLine("Welcome!\n\nPress 1 for login and account creation \nPress 2 to go to the reservations section \nPress 3 to see the menu\nPress 4 to quit the application\n");
+            Console.WriteLine("Welcome!\n\nPress 1 for login and account creation \nPress 2 to go to the reservations section \nPress 3 to see the menu\nPress 4 to quit the application\nPress 5 to open reviews\n");
             string userInput;
             while (true)
             {
@@ -177,6 +184,10 @@ namespace ProjectB
                 else if (userInput == "4")
                 {
                     return 99;
+                }
+                else if (userInput == "5")
+                {
+                    return 4;
                 }
                 else
                 {
