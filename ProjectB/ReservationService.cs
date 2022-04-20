@@ -115,13 +115,74 @@ class ReservationService
     public static DateTime GetReservationTime(DateTime dt)
     {
         var res = new DateTime(dt.Year, dt.Month, dt.Day, 17, 0, 0);
-        System.Console.WriteLine($"Selecting a time for {dt.ToShortDateString()}");
-        System.Console.WriteLine("At what time would you like to come?");
-        for (int i = 0; i < 11; i++)
+        var times = new List<DateTime>();
+        bool timeFound = false;
+        while (!timeFound)
         {
-            System.Console.WriteLine(
-                $"[{i + 1}] {res.AddMinutes(30 * i).ToShortTimeString()} untill {res.AddHours(2.0).AddMinutes(30 * i).ToShortTimeString()}");
+            Console.Clear();
+            System.Console.WriteLine($"Selecting a time for {dt.ToShortDateString()}");
+            for (int i = 0; i < 11; i++)
+            {
+                times.Add(res.AddMinutes(30 * i));
+                System.Console.WriteLine(
+                    $"[{i + 1}] {res.AddMinutes(30 * i).ToShortTimeString()} untill {res.AddHours(2.0).AddMinutes(30 * i).ToShortTimeString()}");
+            }
+            System.Console.WriteLine($"[12] Go back and select another date");
+            System.Console.WriteLine("At what time would you like to come?");
+            Console.Write("Please enter your selection: ");
+            var input = Console.ReadLine();
+            switch (input)
+            {
+                case "1":
+                    timeFound = true;
+                    res = times[0];
+                    break;
+                case "2":
+                    timeFound = true;
+                    res = times[1];
+                    break;
+                case "3":
+                    timeFound = true;
+                    res = times[2];
+                    break;
+                case "4":
+                    timeFound = true;
+                    res = times[3];
+                    break;
+                case "5":
+                    timeFound = true;
+                    res = times[4];
+                    break;
+                case "6":
+                    timeFound = true;
+                    res = times[5];
+                    break;
+                case "7":
+                    timeFound = true;
+                    res = times[6];
+                    break;
+                case "8":
+                    timeFound = true;
+                    res = times[7];
+                    break;
+                case "9":
+                    timeFound = true;
+                    res = times[8];
+                    break;
+                case "10":
+                    timeFound = true;
+                    res = times[9];
+                    break;
+                case "11":
+                    timeFound = true;
+                    res = times[10];
+                    break;
+                case "12":
+                    // TODO
+                    break;
+            }
         }
+        Console.WriteLine(res);
         return res;
     }
 
