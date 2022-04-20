@@ -1,29 +1,29 @@
 ﻿using System;
 using System.IO;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Collections.Generic;
 
-class ReviewList
+public class ReviewList
 {
-	public static List<ReviewData> Reviews = new();
-    private static readonly string ReviewFile = "./Reviews.json";
+    public static List<ReviewData> Reviews = new List<ReviewData>();
 
-    public static void SaveReviews()
+    public static void SaveReviews(string name, string email, string reviewtext, int rating)
     {
+        var newRes = new ReviewData(name, email, reviewtext, rating);
+        Reviews.Add(newRes);
+
+        string path = @"Reviews.json";
         var indent = new JsonSerializerOptions { WriteIndented = true };
         string reviewString = JsonSerializer.Serialize(Reviews, indent);
-        File.WriteAllText(ReviewFile, reviewString);
+        File.AppendAllText(path, reviewString);
     }
 
-    public static void AddReviews(
-        string name, 
-        string email, 
-        string reviewtext, 
-        int rating)
+    public static void ReviewFile()
     {
-        var newReview = new ReviewData(name, email, reviewtext, rating);
-        Reviews.Add(newReview);
-        Console.WriteLine("Added Review");
+        string file = @"Reviews.json";
+        string fileText = File.ReadAllText(file);
+        Console.WriteLine(fileText);
     }
 
     public static void ListReviews()
@@ -40,4 +40,25 @@ class ReviewList
             Console.WriteLine("There are no reviews written at the moment");
         }
     }
+
+    //public static void DeleteReviews(string ReviewName)
+    //{
+    //    int index = -1;
+    //    for (int a = 0; a < Reviews.Count; a++)
+    //    {
+    //        if (Review[a].Name.ToLower() == ReviewName.ToLower())
+    //            index = a;
+    //    }
+
+    //    if (index != -1)
+    //    {
+    //        Reviews.RemoveAt(index);
+    //        Console.WriteLine("Review removed!");
+    //        ReviewList.ReviewFile();
+    //    }
+    //    else
+    //    {
+    //        Console.WriteLine("Could not find review");
+    //    }
+    //}
 }

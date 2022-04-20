@@ -169,7 +169,7 @@ namespace ProjectB
         {
             Console.Clear();
             string reviewInput;
-            Console.WriteLine($"Welcome to the review menu!\n\nPress 1 to write a review\nPress 2 to list all reviews\nPress 3 to go back to the main menu");
+            Console.WriteLine($"Welcome to the review menu!\n\nPress 1 to write a review\nPress 2 to list all reviews\nPress 3 to print the Json file\nPress 4 to go back to the main menu");
             while (true)
             {
                 reviewInput = Console.ReadLine();
@@ -186,8 +186,7 @@ namespace ProjectB
                     Console.Write("How many stars(1 - 5) would you rate your visit?: ");
                     int rating = Convert.ToInt32(Console.ReadLine());
 
-                    ReviewList.AddReviews(name, email, reviewtext, rating);
-                    ReviewList.SaveReviews();
+                    ReviewList.SaveReviews(name, email, reviewtext, rating);
 
                     Console.WriteLine("\nPress 'Enter' to go back");
                     Console.ReadLine();
@@ -196,12 +195,42 @@ namespace ProjectB
                 else if (reviewInput == "2")
                 {
                     Console.Clear();
+                    Console.WriteLine("Written Reviews:\n");
                     ReviewList.ListReviews();
+
                     Console.WriteLine("\nPress 'Enter' to go back");
                     Console.ReadLine();
                     return 4;
                 }
                 else if (reviewInput == "3")
+                {
+                    Console.WriteLine("Json List:\n");
+                    ReviewList.ReviewFile();
+
+                    //Console.WriteLine("\nPress 1 to delete a review");
+                    //string ReviewtoDelete;
+
+                    //while (true)
+                    //{
+                    //    ReviewtoDelete = Console.ReadLine();
+
+                    //    if (ReviewtoDelete == "1")
+                    //    {
+                    //        Console.Write("Enter the name of the review you want to delete");
+                    //        string nameToDelete = Console.ReadLine();
+                    //        ReviewList.DeleteReviews(nameToDelete);
+                    //        break;
+                    //    }
+                    //    else
+                    //    {
+                    //        Console.WriteLine("Please enter a valid number");
+                    //    }
+                    //}
+                    Console.WriteLine("\nPress 'Enter' to go back");
+                    Console.ReadLine();
+                    return 4;
+                }
+                else if (reviewInput == "4")
                 {
                     return 0;
                 }
