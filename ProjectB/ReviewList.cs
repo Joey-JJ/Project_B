@@ -4,19 +4,26 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Collections.Generic;
 
-public class ReviewList
+class ReviewList
 {
     public static List<ReviewData> Reviews = new();
-    private static readonly string file = @"Reviews.json";
+    private static readonly string file = "Reviews.json";
 
-    public static void SaveReviews(string name, string email, string reviewtext, string rating)
+    public static void WriteReview(string name, string email, string reviewtext, string rating)
     {
-        var newRes = new ReviewData(name, email, reviewtext, rating);
-        Reviews.Add(newRes);
-
+        var newReview = new ReviewData(name, email, reviewtext, rating);
+        Reviews.Add(newReview);
+    }
+    public static void SaveReviews()
+    {
         var indent = new JsonSerializerOptions { WriteIndented = true };
         string reviewString = JsonSerializer.Serialize(Reviews, indent);
-        File.AppendAllText(file, reviewString);
+        File.WriteAllText(file, reviewString);
+    }
+    public static void LoadReviews()
+    {
+        string jsonString = File.ReadAllText(file);
+        Reviews = JsonSerializer.Deserialize<List<ReviewData>>(jsonString);
     }
 
     public static void ReviewFile()

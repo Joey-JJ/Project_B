@@ -1,42 +1,14 @@
 [
   {
-    "Name": "Alana",
-    "Email": "test@gmail.nl",
-    "ReviewText": "super leuk :)",
-    "Rating": 5
-  }
-][
-  {
-    "Name": "Alana",
-    "Email": "try@gmail.nl",
-    "ReviewText": "noice",
-    "Rating": "3"
-  }
-][
-  {
-    "Name": "Alana",
-    "Email": "try@gmail.nl",
-    "ReviewText": "noice",
-    "Rating": "3"
+    "Name": "test2",
+    "Email": "test2@gmail.nl",
+    "ReviewText": "better",
+    "Rating": "4"
   },
   {
-    "Name": "Alana2",
-    "Email": "try2@gmail.nl",
-    "ReviewText": "noice",
-    "Rating": "2"
-  }
-][
-  {
-    "Name": "Test",
-    "Email": "test@gmail.nl",
+    "Name": "test3",
+    "Email": "test3@gmail.nl",
     "ReviewText": "good",
-    "Rating": "2"
-  }
-][
-  {
-    "Name": "urg",
-    "Email": "urg@gmail.nl",
-    "ReviewText": "kut",
-    "Rating": "1"
+    "Rating": "5"
   }
 ]

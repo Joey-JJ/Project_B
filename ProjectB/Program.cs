@@ -8,7 +8,7 @@ namespace ProjectB
         static void Main(string[] args)
         {
             ReservationService.LoadReservations();
-            ReviewList.ReviewFile();
+            ReviewList.LoadReviews();
             int pageNumber = 0;
 
             while (true)
@@ -195,7 +195,8 @@ namespace ProjectB
                         if (rating == "1" | rating == "2" | rating == "3" | rating == "4" | rating == "5")
                         {
                             RatingStatus = true;
-                            ReviewList.SaveReviews(name, email, reviewtext, rating);
+                            ReviewList.WriteReview(name, email, reviewtext, rating);
+                            ReviewList.SaveReviews();
                         }
                         else
                         {
@@ -219,6 +220,7 @@ namespace ProjectB
                 }
                 else if (reviewInput == "3")
                 {
+                    Console.Clear();
                     Console.WriteLine("Json List:\n");
                     ReviewList.ReviewFile();
 
