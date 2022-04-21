@@ -7,38 +7,40 @@ namespace ProjectB
     {
         static void Main(string[] args)
         {
-            DateTime date = new(2000, 1, 1);
-            var rest = new RestaurantDay(date);
-            rest.Tables[0] = new Table(99, 99);
-            System.Console.WriteLine(Restaurant.RestaurantLayout[0].TableNumber);
-            // ReservationService.LoadReservations();
-            // int pageNumber = 0;
+            // DateTime date = new(2000, 1, 1);
+            // var rest = new RestaurantDay(date);
+            // rest.Tables[0] = new Table(99, 99);
+            // System.Console.WriteLine(Restaurant.RestaurantLayout[0].TableNumber);
 
-            // while (true)
-            // {
-            //     switch (pageNumber)
-            //     {
-            //         case 0:
-            //             pageNumber = MainPage();
-            //             break;
-            //         case 1:
-            //             pageNumber = AccountCreation();
-            //             break;
-            //         case 2:
-            //             pageNumber = ReservationMenu();
-            //             break;
-            //         case 3:
-            //             Console.Clear();
-            //             FoodMenu.PrintMainCourses();
-            //             Console.WriteLine("\nPress 'Enter' to go back.");
-            //             Console.ReadLine();
-            //             pageNumber = 0;
-            //             break;
-            //         case 99:
-            //             return;
 
-            //     }
-            // }
+            ReservationService.LoadReservations();
+            int pageNumber = 0;
+
+            while (true)
+            {
+                switch (pageNumber)
+                {
+                    case 0:
+                        pageNumber = MainPage();
+                        break;
+                    case 1:
+                        pageNumber = AccountCreation();
+                        break;
+                    case 2:
+                        pageNumber = ReservationMenu();
+                        break;
+                    case 3:
+                        Console.Clear();
+                        FoodMenu.PrintMainCourses();
+                        Console.WriteLine("\nPress 'Enter' to go back.");
+                        Console.ReadLine();
+                        pageNumber = 0;
+                        break;
+                    case 99:
+                        return;
+
+                }
+            }
         }
 
         private static int ReservationMenu()
