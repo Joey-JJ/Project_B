@@ -8,6 +8,7 @@ namespace ProjectB
         static void Main(string[] args)
         {
             ReservationService.LoadReservations();
+            ReviewList.ReviewFile();
             int pageNumber = 0;
 
             while (true)
@@ -176,18 +177,32 @@ namespace ProjectB
                 if (reviewInput == "1")
                 {
                     Console.Clear();
-
+                    
                     Console.Write("Enter your name: ");
                     string name = Console.ReadLine();
                     Console.Write("Enter your email: ");
                     string email = Console.ReadLine();
                     Console.Write("Write your review: ");
                     string reviewtext = Console.ReadLine();
-                    Console.Write("How many stars(1 - 5) would you rate your visit?: ");
-                    int rating = Convert.ToInt32(Console.ReadLine());
+                    
+                    bool RatingStatus = false;
 
-                    ReviewList.SaveReviews(name, email, reviewtext, rating);
+                    while (RatingStatus == false)
+                    {
+                        Console.Write("How many stars(1 - 5) would you rate your visit?: ");
+                        string rating = Console.ReadLine();
 
+                        if (rating == "1" | rating == "2" | rating == "3" | rating == "4" | rating == "5")
+                        {
+                            RatingStatus = true;
+                            ReviewList.SaveReviews(name, email, reviewtext, rating);
+                        }
+                        else
+                        {
+                            RatingStatus = false;
+                            Console.WriteLine("Please enter a valid rating, between 1 and 5");
+                        }
+                    }
                     Console.WriteLine("\nPress 'Enter' to go back");
                     Console.ReadLine();
                     return 4;
@@ -207,25 +222,6 @@ namespace ProjectB
                     Console.WriteLine("Json List:\n");
                     ReviewList.ReviewFile();
 
-                    //Console.WriteLine("\nPress 1 to delete a review");
-                    //string ReviewtoDelete;
-
-                    //while (true)
-                    //{
-                    //    ReviewtoDelete = Console.ReadLine();
-
-                    //    if (ReviewtoDelete == "1")
-                    //    {
-                    //        Console.Write("Enter the name of the review you want to delete");
-                    //        string nameToDelete = Console.ReadLine();
-                    //        ReviewList.DeleteReviews(nameToDelete);
-                    //        break;
-                    //    }
-                    //    else
-                    //    {
-                    //        Console.WriteLine("Please enter a valid number");
-                    //    }
-                    //}
                     Console.WriteLine("\nPress 'Enter' to go back");
                     Console.ReadLine();
                     return 4;

@@ -6,22 +6,21 @@ using System.Collections.Generic;
 
 public class ReviewList
 {
-    public static List<ReviewData> Reviews = new List<ReviewData>();
+    public static List<ReviewData> Reviews = new();
+    private static readonly string file = @"Reviews.json";
 
-    public static void SaveReviews(string name, string email, string reviewtext, int rating)
+    public static void SaveReviews(string name, string email, string reviewtext, string rating)
     {
         var newRes = new ReviewData(name, email, reviewtext, rating);
         Reviews.Add(newRes);
 
-        string path = @"Reviews.json";
         var indent = new JsonSerializerOptions { WriteIndented = true };
         string reviewString = JsonSerializer.Serialize(Reviews, indent);
-        File.AppendAllText(path, reviewString);
+        File.AppendAllText(file, reviewString);
     }
 
     public static void ReviewFile()
     {
-        string file = @"Reviews.json";
         string fileText = File.ReadAllText(file);
         Console.WriteLine(fileText);
     }
