@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 
 namespace ProjectB
@@ -7,40 +8,52 @@ namespace ProjectB
     {
         static void Main(string[] args)
         {
-            // DateTime date = new(2000, 1, 1);
-            // var rest = new RestaurantDay(date);
-            // rest.Tables[0] = new Table(99, 99);
-            // System.Console.WriteLine(Restaurant.RestaurantLayout[0].TableNumber);
+            var res = new Reservation("test", "test@test.nl", new DateTime(1999, 1, 1), 4);
+            var res2 = new Reservation("test2", "test2@test2.nl", new DateTime(1999, 1, 1), 3);
+            var res3 = new Reservation("test3", "t", new DateTime(2022, 12, 12), 5);
 
-
-            ReservationService.LoadReservations();
-            int pageNumber = 0;
-
-            while (true)
+            TestClass.Reservations.Add(res.StartTime.Date, new List<Reservation>() { res });
+            TestClass.Reservations.Add(res3.StartTime.Date, new List<Reservation>() { res3 });
+            try 
             {
-                switch (pageNumber)
-                {
-                    case 0:
-                        pageNumber = MainPage();
-                        break;
-                    case 1:
-                        pageNumber = AccountCreation();
-                        break;
-                    case 2:
-                        pageNumber = ReservationMenu();
-                        break;
-                    case 3:
-                        Console.Clear();
-                        FoodMenu.PrintMainCourses();
-                        Console.WriteLine("\nPress 'Enter' to go back.");
-                        Console.ReadLine();
-                        pageNumber = 0;
-                        break;
-                    case 99:
-                        return;
-
-                }
+                TestClass.Reservations.Add(res2.StartTime.Date, new List<Reservation>() { res2 });
             }
+            catch (ArgumentException) 
+            {
+                TestClass.Reservations[res2.StartTime.Date].Add(res2);
+            }
+            
+            TestClass.ListReservations();
+
+
+            // ReservationService.LoadReservations();
+            // int pageNumber = 0;
+
+            // while (true)
+            // {
+            //     switch (pageNumber)
+            //     {
+            //         case 0:
+            //             pageNumber = MainPage();
+            //             break;
+            //         case 1:
+            //             pageNumber = AccountCreation();
+            //             break;
+            //         case 2:
+            //             pageNumber = ReservationMenu();
+            //             break;
+            //         case 3:
+            //             Console.Clear();
+            //             FoodMenu.PrintMainCourses();
+            //             Console.WriteLine("\nPress 'Enter' to go back.");
+            //             Console.ReadLine();
+            //             pageNumber = 0;
+            //             break;
+            //         case 99:
+            //             return;
+
+            //     }
+            // }
         }
 
         private static int ReservationMenu()

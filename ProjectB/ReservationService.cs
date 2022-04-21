@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 class ReservationService
 {
-    public static List<Reservation> Reservations = new();
+    public static Dictionary<DateTime, List<Reservation>> Reservations = new();
     private static readonly string FileName = "./Reservations.json";
 
     public static void SaveReservations()
@@ -18,21 +18,18 @@ class ReservationService
     public static void LoadReservations()
     {
         string jsonString = File.ReadAllText(FileName);
-        Reservations = JsonSerializer.Deserialize<List<Reservation>>(jsonString);
+        Reservations = JsonSerializer.Deserialize<Dictionary<DateTime, List<Reservation>>>(jsonString);
     }
 
     public static void ListReservations()
     {
-        if (Reservations.Count > 0)
+        foreach (var item in Reservations)
         {
-            foreach (var item in Reservations)
+            Console.WriteLine($"{item.Key.ToShortDateString()}\n----------------");
+            for (int i = 0; i < item.Value.Count; i++)
             {
-                Console.WriteLine($"{item.Name} at {item.StartTime} with {item.PersonCount} persons.");
+                System.Console.WriteLine($"{i + 1}. {item.Value[i].Name}");
             }
-        }
-        else
-        {
-            Console.WriteLine("There are no reservations at the moment");
         }
     }
 
@@ -41,8 +38,8 @@ class ReservationService
         int index = -1;
         for (int i = 0; i < Reservations.Count; i++)
         {
-            if (Reservations[i].Name.ToLower() == nameOfRes.ToLower())
-                index = i;
+            //if (Reservations[i].Name.ToLower() == nameOfRes.ToLower())
+            //    index = i;
         }
         return index;
     }
@@ -186,40 +183,35 @@ class ReservationService
         return res;
     }
 
-    public static void AddReservation(
-        DateTime dateTime,
-        int personCount)
+    public static void AddReservation(DateTime dateTime, int personCount)
     {
         var name = "test"; // Replace with account info
         var email = "test"; // Replace with account info
         var newRes = new Reservation(name, email, dateTime, personCount);
-        Reservations.Add(newRes);
+        try
+        {
+            TestClass.Reservations.Add(newRes.StartTime.Date, new List<Reservation>() { newRes });
+        }
+        catch (ArgumentException)
+        {
+            TestClass.Reservations[newRes.StartTime.Date].Add(newRes);
+        }
         Console.WriteLine("Added Reservation");
     }
 
     public static void RemoveReservation(string nameOfRes)
     {
-        int removeIndex = FindReservationIndex(nameOfRes);
-
-        if (removeIndex != -1)
-        {
-            Reservations.RemoveAt(removeIndex);
-            Console.WriteLine("Removed reservation.");
-        }
-        else
-        {
-            Console.WriteLine("Could not find reservation");
-        }
-
+        // TODO
     }
 
     public static void EditName(string nameOfRes, string valueToChangeTo)
     {
+        // TODO
         int editIndex = FindReservationIndex(nameOfRes);
 
         if (editIndex != -1)
         {
-            Reservations[editIndex].Name = valueToChangeTo;
+            // Reservations[editIndex].Name = valueToChangeTo;
             Console.WriteLine("Edited name of reservation.");
         }
         else
@@ -227,13 +219,15 @@ class ReservationService
             Console.WriteLine("Could not find reservation");
         }
     }
+
     public static void EditEmail(string nameOfRes, string valueToChangeTo)
     {
+        // TODO
         int editIndex = FindReservationIndex(nameOfRes);
 
         if (editIndex != -1)
         {
-            Reservations[editIndex].Email = valueToChangeTo;
+            // Reservations[editIndex].Email = valueToChangeTo;
             Console.WriteLine("Edited email of reservation.");
         }
         else
@@ -241,14 +235,16 @@ class ReservationService
             Console.WriteLine("Could not find reservation");
         }
     }
+
     public static void EditDateTime(string nameOfRes, DateTime valueToChangeTo)
     {
+        // TODO
         int editIndex = FindReservationIndex(nameOfRes);
 
         if (editIndex != -1)
         {
-            Reservations[editIndex].StartTime = valueToChangeTo;
-            Reservations[editIndex].Endtime = Reservations[editIndex].StartTime.AddHours(2.0);
+            // Reservations[editIndex].StartTime = valueToChangeTo;
+            // Reservations[editIndex].Endtime = Reservations[editIndex].StartTime.AddHours(2.0);
             Console.WriteLine("Edited DateTime of reservation.");
         }
         else
@@ -256,13 +252,15 @@ class ReservationService
             Console.WriteLine("Could not find reservation");
         }
     }
+
     public static void EditPersonCount(string nameOfRes, int valueToChangeTo)
     {
+        // TODO
         int editIndex = FindReservationIndex(nameOfRes);
 
         if (editIndex != -1)
         {
-            Reservations[editIndex].PersonCount = valueToChangeTo;
+            // Reservations[editIndex].PersonCount = valueToChangeTo;
             Console.WriteLine("Edited person count of reservation.");
         }
         else
@@ -270,5 +268,4 @@ class ReservationService
             Console.WriteLine("Could not find reservation");
         }
     }
-
 }

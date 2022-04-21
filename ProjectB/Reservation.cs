@@ -7,6 +7,7 @@ public class Reservation
     public DateTime StartTime { get; set; }
     public DateTime Endtime { get; set; }
     public int PersonCount { get; set; }
+    public int TableNumber {get; set; }
 
     public Reservation(
             string name,

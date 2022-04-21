@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 public static class Restaurant
 {
+    public static List<RestaurantDay> Schedule = new();
     public static List<Table> RestaurantLayout = new List<Table>(){
         new Table(1, 8),
         new Table(2, 8),
