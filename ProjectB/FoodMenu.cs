@@ -82,7 +82,7 @@ class FoodMenu
     {
         var indent = new JsonSerializerOptions { WriteIndented = true };
         string reviewString = JsonSerializer.Serialize(MakeOrder, indent);
-        File.WriteAllText(OrderFile, reviewString);
+        File.AppendAllText(OrderFile, reviewString);
     }
 
     public static int OrderDetails()
