@@ -8,23 +8,9 @@ namespace ProjectB
     {
         static void Main(string[] args)
         {
-            var res = new Reservation("test", "test@test.nl", new DateTime(1999, 1, 1), 4);
-            var res2 = new Reservation("test2", "test2@test2.nl", new DateTime(1999, 1, 1), 3);
-            var res3 = new Reservation("test3", "t", new DateTime(2022, 12, 12), 5);
-
-            TestClass.Reservations.Add(res.StartTime.Date, new List<Reservation>() { res });
-            TestClass.Reservations.Add(res3.StartTime.Date, new List<Reservation>() { res3 });
-            try 
-            {
-                TestClass.Reservations.Add(res2.StartTime.Date, new List<Reservation>() { res2 });
-            }
-            catch (ArgumentException) 
-            {
-                TestClass.Reservations[res2.StartTime.Date].Add(res2);
-            }
-            
-            TestClass.ListReservations();
-
+            Reservation res = new("test", "test", new DateTime(2000, 12, 12, 22, 0, 0), 4);
+            Reservation res2 = new("test2", "test2", new DateTime(2000, 12, 12, 22, 30, 0), 5);
+            Console.WriteLine(res.Day == res2.Day);
 
             // ReservationService.LoadReservations();
             // int pageNumber = 0;

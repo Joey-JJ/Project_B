@@ -32,9 +32,9 @@ public class RestaurantDay
     public List<Table> Tables;
     public DateTime Date;
     public RestaurantDay(DateTime Date) {
-        this.Date = Date;
+        this.Date = Date.Date;
         this.Tables = new();
-        for (var i = 0; i < Restaurant.RestaurantLayout.Count; i++) Tables.Add(Restaurant.RestaurantLayout[0]);
+        for (var i = 0; i < Restaurant.RestaurantLayout.Count; i++) Tables.Add(Restaurant.RestaurantLayout[i]);
     }
 }
 
