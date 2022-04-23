@@ -8,7 +8,7 @@ namespace ProjectB
         static void Main(string[] args)
         {
             ReservationService.LoadReservations();
-            ReviewList.LoadReviews();
+            ReviewStuff.LoadReviews();
             int pageNumber = 0;
 
             while (true)
@@ -170,7 +170,7 @@ namespace ProjectB
         {
             Console.Clear();
             string reviewInput;
-            Console.WriteLine($"Welcome to the review menu!\n\nPress 1 to write a review\nPress 2 to list all reviews\nPress 3 to print the Json file\nPress 4 to go back to the main menu");
+            Console.WriteLine($"Welcome to the review menu!\n\nPress 1 to write a review\nPress 2 to read all reviews\nPress 3 to delete a review\nPress 4 to go back to the main menu");
             while (true)
             {
                 reviewInput = Console.ReadLine();
@@ -195,8 +195,8 @@ namespace ProjectB
                         if (rating == "1" | rating == "2" | rating == "3" | rating == "4" | rating == "5")
                         {
                             RatingStatus = true;
-                            ReviewList.WriteReview(name, email, reviewtext, rating);
-                            ReviewList.SaveReviews();
+                            ReviewStuff.WriteReview(name, email, reviewtext, rating);
+                            ReviewStuff.SaveReviews();
                         }
                         else
                         {
@@ -212,7 +212,7 @@ namespace ProjectB
                 {
                     Console.Clear();
                     Console.WriteLine("Written Reviews:\n");
-                    ReviewList.ListReviews();
+                    ReviewStuff.ListReviews();
 
                     Console.WriteLine("\nPress 'Enter' to go back");
                     Console.ReadLine();
@@ -221,9 +221,11 @@ namespace ProjectB
                 else if (reviewInput == "3")
                 {
                     Console.Clear();
-                    Console.WriteLine("Json List:\n");
-                    ReviewList.ReviewFile();
-
+                    ReviewStuff.ListReviews();
+                    Console.Write("\nWhat is the name that wrote the review you wish to delete?: ");
+                    string ReviewToDelete = Console.ReadLine();
+                    ReviewStuff.DeleteReviews(ReviewToDelete);
+                    ReviewStuff.SaveReviews();
                     Console.WriteLine("\nPress 'Enter' to go back");
                     Console.ReadLine();
                     return 4;

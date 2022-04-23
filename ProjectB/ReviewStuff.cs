@@ -4,7 +4,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Collections.Generic;
 
-class ReviewList
+class ReviewStuff
 {
     public static List<ReviewData> Reviews = new();
     private static readonly string file = "Reviews.json";
@@ -38,33 +38,34 @@ class ReviewList
         {
             foreach (var item in Reviews)
             {
-                Console.WriteLine($"{item.Name} gave a rating of {item.Rating}\n{item.ReviewText}");
+                Console.WriteLine($"{item.Name} gave a rating of {item.Rating}:\n{item.ReviewText}\n");
             }
         }
         else
         {
-            Console.WriteLine("There are no reviews written at the moment");
+            Console.WriteLine("No reviews have been written yet");
         }
     }
 
-    //public static void DeleteReviews(string ReviewName)
-    //{
-    //    int index = -1;
-    //    for (int a = 0; a < Reviews.Count; a++)
-    //    {
-    //        if (Review[a].Name.ToLower() == ReviewName.ToLower())
-    //            index = a;
-    //    }
+    public static void DeleteReviews(string ReviewName)
+    {
+        int index = -1;
+        for (int a = 0; a < Reviews.Count; a++)
+        {
+            if (Reviews[a].Name.ToLower() == ReviewName.ToLower())
+                index = a;
+        }
 
-    //    if (index != -1)
-    //    {
-    //        Reviews.RemoveAt(index);
-    //        Console.WriteLine("Review removed!");
-    //        ReviewList.ReviewFile();
-    //    }
-    //    else
-    //    {
-    //        Console.WriteLine("Could not find review");
-    //    }
-    //}
+        if (index != -1)
+        {
+            Reviews.RemoveAt(index);
+            Console.Clear();
+            Console.WriteLine("Review removed");
+            ListReviews();
+        }
+        else
+        {
+            Console.WriteLine("No review has been written by this name");
+        }
+    }
 }

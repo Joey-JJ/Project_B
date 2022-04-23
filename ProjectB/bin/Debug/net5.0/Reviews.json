@@ -1,14 +1,20 @@
 [
   {
-    "Name": "test2",
-    "Email": "test2@gmail.nl",
-    "ReviewText": "better",
+    "Name": "Alana",
+    "Email": "alana@gmail.nl",
+    "ReviewText": "lekker eten! :)",
     "Rating": "4"
   },
   {
-    "Name": "test3",
-    "Email": "test3@gmail.nl",
-    "ReviewText": "good",
-    "Rating": "5"
+    "Name": "Karel",
+    "Email": "karel@gmail.nl",
+    "ReviewText": "goede service",
+    "Rating": "3"
+  },
+  {
+    "Name": "Josephine",
+    "Email": "joesephine@gmail.nl",
+    "ReviewText": "lang wachten en geen lekkere stoelen",
+    "Rating": "1"
   }
 ]
