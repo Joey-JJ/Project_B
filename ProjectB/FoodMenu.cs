@@ -48,6 +48,7 @@ public static class FoodMenu
         { "Vegan Vanille Cake", 8.00},
         { "Vegan Aplle Pie", 8.00 }
     };
+
     readonly static Dictionary<string, double> Drinks = new Dictionary<string,double>
     {
         { "Coca Cola", 2.50},
@@ -63,59 +64,104 @@ public static class FoodMenu
     };
     public static void PrintAppetizers()
     {
-        Console.WriteLine("The appetizers are:");
-        foreach (var Item in Appetizers)
+        int index = 0;
+        if (Appetizers.Count > 0)
         {
-                
-            Console.WriteLine("{0} = ${1}", Item.Key, Item.Value);
-
+            Console.WriteLine("The appetizers are:");
+            foreach (var Item in Appetizers)
+            {
+                Console.WriteLine($"[{index}] {Item.Key} = ${Item.Value}");
+                index++;
+            }
+        }
+        else
+        {
+            Console.WriteLine("There are no appetizers on the menu");
         }
     }
     public static void PrintMainCourses()
     {
-        Console.WriteLine("The Maincourses are:");
-        foreach (var Item in MainCourses)
-        {                
-            Console.WriteLine("{0} = ${1}", Item.Key, Item.Value);
-
+        int index = 0;
+        if (MainCourses.Count > 0)
+        {
+            Console.WriteLine("The maincourses are:");
+            foreach(var Item in MainCourses)
+        {
+                Console.WriteLine($"[{index}] {Item.Key} = ${Item.Value}");
+                index++;
+            }
+        }
+        else
+        {
+            Console.WriteLine("There are no maincourses on the menu");
         }
     }
     public static void PrintVeganMainCourses()
     {
-        Console.WriteLine("The vegan maincourses are:");
-        foreach (var Item in VeganMainCourses)
+        int index = 0;
+        if (VeganMainCourses.Count > 0)
         {
-            Console.WriteLine("0} = ${1}", Item.Key, Item.Value);
-
+            Console.WriteLine("The vegan maincourses are:");
+            foreach (var Item in VeganMainCourses)
+            {
+                Console.WriteLine($"[{index}] {Item.Key} = ${Item.Value}");
+                index++;
+            }
+        }
+        else
+        {
+            Console.WriteLine("There are no vegan maincourses on the menu");
         }
     }
     public static void PrintDesserts()
     {
-        Console.WriteLine("The Desserts are:");
-        foreach (var Item in Desserts)
+        int index = 0;
+        if (Desserts.Count > 0)
         {
-            Console.WriteLine("{0} = ${1}", Item.Key, Item.Value);
-
+            Console.WriteLine("The Desserts are:");
+            foreach (var Item in Desserts)
+            {
+                Console.WriteLine($"[{index}] {Item.Key} = ${Item.Value}");
+                index++;
+            }
+        }
+        else
+        {
+            Console.WriteLine("There are no desserts on the menu");
         }
     }
     public static void PrintVeganDesserts()
     {
-        Console.WriteLine("The vegan desserts are:");
-        foreach (var Item in VeganDesserts)
+        int index = 0;
+        if (VeganDesserts.Count > 0)
         {
-            Console.WriteLine( "{0} = ${1}", Item.Key, Item.Value);
-
+            Console.WriteLine("The vegan desserts are:");
+            foreach (var Item in VeganDesserts)
+            {
+                Console.WriteLine($"[{index}] {Item.Key} = ${Item.Value}");
+                index++;
+            }
+        }
+        else
+        {
+            Console.WriteLine("There are no vegan desserts on the menu");
         }
     }
     public static void PrintDrinks()
     {
-        Console.WriteLine("The Drinks are:");
-        foreach (var Item in Drinks)
+        int index = 0;
+        if (Drinks.Count > 0)
         {
-
-            Console.WriteLine("{0} = ${1}", Item.Key, Item.Value);
-
+            Console.WriteLine("The Drinks are:");
+            foreach (var Item in Drinks)
+            {
+                Console.WriteLine($"[{index}] {Item.Key} = ${Item.Value}");
+                index++;
+            }
         }
-
+        else
+        {
+            Console.WriteLine("There are no drinks on the menu");
+        }
     }
 }
