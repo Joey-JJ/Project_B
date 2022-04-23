@@ -25,14 +25,17 @@ namespace ProjectB
                         pageNumber = ReservationMenu();
                         break;
                     case 3:
+                        pageNumber = ReviewMenu();
+                        break;
+                    case 4:
+                        pageNumber = OrderMenu();
+                        break;
+                    case 5:
                         Console.Clear();
                         FoodMenu.PrintMainCourses();
                         Console.WriteLine("\nPress 'Enter' to go back.");
                         Console.ReadLine();
                         pageNumber = 0;
-                        break;
-                    case 4:
-                        pageNumber = ReviewMenu();
                         break;
                     case 99:
                         return;
@@ -41,6 +44,22 @@ namespace ProjectB
             }
         }
 
+        private static int OrderMenu()
+        {
+            Console.Clear();
+            string orderOptions;
+            Console.WriteLine("Welcome to the order emnu!\n\nPress 1 to place an order\nPress 2 to list the orders");
+            while (true)
+            {
+                orderOptions = Console.ReadLine();
+                if (orderOptions == "1")
+                {
+                    Console.Clear();
+
+                }
+            }
+
+        }
         private static int ReservationMenu()
         {
             Console.Clear();
@@ -267,6 +286,10 @@ namespace ProjectB
                     return 4;
                 }
                 else if (userInput == "5")
+                {
+                    return 5;
+                }
+                else if (userInput == "6")
                 {
                     return 99;
                 }
