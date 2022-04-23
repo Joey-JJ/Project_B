@@ -185,18 +185,18 @@ class ReservationService
 
     public static void AddReservation(DateTime dateTime, int personCount)
     {
-        var name = "test"; // Replace with account info
-        var email = "test"; // Replace with account info
-        var newRes = new Reservation(name, email, dateTime, personCount);
-        try
-        {
-            TestClass.Reservations.Add(newRes.StartTime.Date, new List<Reservation>() { newRes });
-        }
-        catch (ArgumentException)
-        {
-            TestClass.Reservations[newRes.StartTime.Date].Add(newRes);
-        }
-        Console.WriteLine("Added Reservation");
+        // var name = "test"; // Replace with account info
+        // var email = "test"; // Replace with account info
+        // var newRes = new Reservation(name, email, dateTime, personCount);
+        // try
+        // {
+        //     TestClass.Reservations.Add(newRes.StartTime.Date, new List<Reservation>() { newRes });
+        // }
+        // catch (ArgumentException)
+        // {
+        //     TestClass.Reservations[newRes.StartTime.Date].Add(newRes);
+        // }
+        // Console.WriteLine("Added Reservation");
     }
 
     public static void RemoveReservation(string nameOfRes)
