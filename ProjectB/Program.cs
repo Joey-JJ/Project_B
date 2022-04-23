@@ -48,7 +48,7 @@ namespace ProjectB
         {
             Console.Clear();
             string menuOptions;
-            Console.WriteLine("Press 1 for the appetizers\nPress 2 for the main course\nPress 3 for the vegan main course\nPress 4 for the desserts\nPress 5 for the vegan deserts\nPress 6 for the drinks\nPress 7 to go back");
+            Console.WriteLine("Press 1 for the appetizers\nPress 2 for the main course\nPress 3 for the vegan main course\nPress 4 for the desserts\nPress 5 for the vegan deserts\nPress 6 for the drinks\nPress 7 to end order and go back");
             while (true)
             {
                 menuOptions = Console.ReadLine();
@@ -320,7 +320,7 @@ namespace ProjectB
         private static int MainPage()
         {
             Console.Clear();
-            Console.WriteLine("Welcome!\n\nPress 1 for login and account creation \nPress 2 to go to the reservations section \nPress 3 to open the review section\nPress 4 to see the order menu\nPress 5 to look at the menu\nPress 6 exit the application\n");
+            Console.WriteLine("Welcome!\n\nPress 1 for login and account creation \nPress 2 to go to the reservations section \nPress 3 to open the review section\nPress 4 to place an order\nPress 5 to look at the menu\nPress 6 exit the application\n");
             string userInput;
             while (true)
             {
