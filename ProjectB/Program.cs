@@ -8,6 +8,7 @@ namespace ProjectB
         static void Main(string[] args)
         {
             ReservationService.LoadReservations();
+            ReviewStuff.LoadReviews();
             int pageNumber = 0;
 
             while (true)
@@ -30,6 +31,9 @@ namespace ProjectB
                         Console.ReadLine();
                         pageNumber = 0;
                         break;
+                    case 4:
+                        pageNumber = ReviewMenu();
+                        break;
                     case 99:
                         return;
 
@@ -48,18 +52,26 @@ namespace ProjectB
                 if (userInput == "1")
                 {
                     Console.Clear();
-                    Console.Write("Enter your name: ");
-                    string name = Console.ReadLine();
-                    Console.Write("Enter your email: ");
-                    string email = Console.ReadLine();
-                    Console.Write("When do you want to come? ");
-                    string datetime = Console.ReadLine();
-                    Console.Write("With how many persons are you coming? ");
-                    int persons = Convert.ToInt32(Console.ReadLine());
+                    var datetime = ReservationService.GetReservationTime(ReservationService.GetReservationDate());
+                    int persons;
+                    while (true)
+                    {
+                        try
+                        {
+                            Console.Write("With how many persons are you coming? ");
+                            persons = Convert.ToInt32(Console.ReadLine());
+                            break;
+                        }
+                        catch (System.Exception)
+                        {
+                            System.Console.WriteLine("Invalid input, please try again...");
+                            throw;
+                        }
+                    }
 
-                    ReservationService.AddReservation(name, email, datetime, persons);
+                    ReservationService.AddReservation(datetime, persons);
                     ReservationService.SaveReservations();
-                    
+
                     Console.WriteLine("\nPress 'Enter' to go back");
                     Console.ReadLine();
                     return 0;
@@ -85,7 +97,7 @@ namespace ProjectB
                     string thingToEdit;
                     string editName;
                     string editEmail;
-                    string editDate;
+                    DateTime editDate;
                     int editPersons;
 
                     while (true)
@@ -109,7 +121,8 @@ namespace ProjectB
                         else if (thingToEdit == "3")
                         {
                             System.Console.Write("Enter the date you want to change it into: ");
-                            editDate = Console.ReadLine();
+                            Console.ReadLine();
+                            editDate = new DateTime(1999, 1, 1);
                             ReservationService.EditDateTime(nameToEdit, editDate);
                             break;
                         }
@@ -153,10 +166,85 @@ namespace ProjectB
             return 0;
         }
 
+        private static int ReviewMenu()
+        {
+            Console.Clear();
+            string reviewInput;
+            Console.WriteLine($"Welcome to the review menu!\n\nPress 1 to write a review\nPress 2 to read all reviews\nPress 3 to delete a review\nPress 4 to go back to the main menu");
+            while (true)
+            {
+                reviewInput = Console.ReadLine();
+                if (reviewInput == "1")
+                {
+                    Console.Clear();
+                    
+                    Console.Write("Enter your name: ");
+                    string name = Console.ReadLine();
+                    Console.Write("Enter your email: ");
+                    string email = Console.ReadLine();
+                    Console.Write("Write your review: ");
+                    string reviewtext = Console.ReadLine();
+                    
+                    bool RatingStatus = false;
+
+                    while (RatingStatus == false)
+                    {
+                        Console.Write("How many stars(1 - 5) would you rate your visit?: ");
+                        string rating = Console.ReadLine();
+
+                        if (rating == "1" | rating == "2" | rating == "3" | rating == "4" | rating == "5")
+                        {
+                            RatingStatus = true;
+                            ReviewStuff.WriteReview(name, email, reviewtext, rating);
+                            ReviewStuff.SaveReviews();
+                        }
+                        else
+                        {
+                            RatingStatus = false;
+                            Console.WriteLine("Please enter a valid rating, between 1 and 5");
+                        }
+                    }
+                    Console.WriteLine("\nPress 'Enter' to go back");
+                    Console.ReadLine();
+                    return 4;
+                }
+                else if (reviewInput == "2")
+                {
+                    Console.Clear();
+                    Console.WriteLine("Written Reviews:\n");
+                    ReviewStuff.ListReviews();
+
+                    Console.WriteLine("\nPress 'Enter' to go back");
+                    Console.ReadLine();
+                    return 4;
+                }
+                else if (reviewInput == "3")
+                {
+                    Console.Clear();
+                    ReviewStuff.ListReviews();
+                    Console.Write("\nWhat is the name that wrote the review you wish to delete?: ");
+                    string ReviewToDelete = Console.ReadLine();
+                    ReviewStuff.DeleteReviews(ReviewToDelete);
+                    ReviewStuff.SaveReviews();
+                    Console.WriteLine("\nPress 'Enter' to go back");
+                    Console.ReadLine();
+                    return 4;
+                }
+                else if (reviewInput == "4")
+                {
+                    return 0;
+                }
+                else
+                {
+                    System.Console.WriteLine("Please enter a valid number");
+                }
+            }
+        }
+    
         private static int MainPage()
         {
             Console.Clear();
-            Console.WriteLine("Welcome!\n\nPress 1 for login and account creation \nPress 2 to go to the reservations section \nPress 3 to see the menu\nPress 4 to quit the application\n");
+            Console.WriteLine("Welcome!\n\nPress 1 for login and account creation \nPress 2 to go to the reservations section \nPress 3 to see the menu\nPress 4 to open the review section\nPress 5 exit the application\n");
             string userInput;
             while (true)
             {
@@ -175,6 +263,10 @@ namespace ProjectB
                     return 3;
                 }
                 else if (userInput == "4")
+                {
+                    return 4;
+                }
+                else if (userInput == "5")
                 {
                     return 99;
                 }
