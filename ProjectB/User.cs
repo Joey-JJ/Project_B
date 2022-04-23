@@ -4,7 +4,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace DevTest
+namespace ProjectB
 {
     public class User
     {
@@ -24,15 +24,12 @@ namespace DevTest
         }
     }
 
-    public class Program
-    {
-
         public class UserHandler
         {
             public static List<User> users = new();
             public static string filename = "Userdata.json";
 
-            public static void LoadAllUsers()
+            public static void LoadAllUsers() // loads all users, can be accessed manually but you shouldn't have to.
             {
                 List<User> unsanitizedusers = JsonSerializer.Deserialize<List<User>>(File.ReadAllText(filename));
                 foreach (User user in unsanitizedusers)
@@ -41,7 +38,7 @@ namespace DevTest
                 }
 
             }
-            public static void ListAllUsers()
+            public static void ListAllUsers()   //lists only the username of each user
             {
                 bool endreached = false;
                 while (!endreached)
@@ -67,15 +64,17 @@ namespace DevTest
 
             public static void SaveChanges() // saves all user changes made 
             {
-                File.WriteAllText(filename, JsonSerializer.Serialize(users));
+                string jsonstring = JsonSerializer.Serialize(users);
+                File.WriteAllText(filename, jsonstring);
             }
 
-            public static void searchUser(string username)
+            public static void searchUser(string username) // searches user by username, confirms wether user exists
             {
                 bool repeat = true;
+                bool userfound = false;
                 while (repeat)
                 {
-
+                   
                     if (users.Count < 0)
                     {
                         LoadAllUsers();
@@ -88,13 +87,18 @@ namespace DevTest
                             {
                                 Console.WriteLine("user found!");
                                 repeat = false;
+                                userfound = true;
                             }
-                        }
-                        Console.WriteLine("user not found");
+                        }                        
+                    }
+                    if (!userfound)
+                    {
+
+                        Console.WriteLine("User could not be found!");
                     }
                 }
             }
-            public static int UserIndexSearch(string username) // returns index or -1 if not found
+            public static int UserIndexSearch(string username) // returns index of user starting at 0 or -1 if not found
             {
                 for (int i = 0; i < users.Count; i++)
                 {
@@ -105,7 +109,7 @@ namespace DevTest
                 }
                 return -1;
             }
-            public static void editUsername(string username, string newUsername)
+            public static void editUsername(string username, string newUsername) // takes old username and lets you change it
             {
 
                 int index = UserIndexSearch(username);
@@ -119,7 +123,7 @@ namespace DevTest
                     SaveChanges();
                 }
             }
-            public static void editemail(string username, string NewEmail)
+            public static void editemail(string username, string NewEmail) // edits email of the user with that username
             {
                 int index = UserIndexSearch(username);
                 if (index == -1)
@@ -132,7 +136,7 @@ namespace DevTest
                     SaveChanges();
                 }
             }
-            public static void editPassword(string username, string email, string Password, string NewPassword)
+            public static void editPassword(string username, string email, string Password, string NewPassword) 
             {
                 int index = UserIndexSearch(username);
                 if (index == -1)
@@ -162,7 +166,7 @@ namespace DevTest
                     }
                 }
             }
-            public static void addUser(User user)
+            public static void addUser(User user) // adds user and saves change
             {
                 users.Add(user);
                 SaveChanges();
@@ -176,11 +180,23 @@ namespace DevTest
             }
         }
 
-
+        /* very primitive debugging
         public static void Main()
         {
-            UserHandler.LoadAllUsers();
+            User user = new User("Mees", "Meeszelst@hotmail","password");
+            UserHandler.addUser(user);
+            UserHandler.searchUser(user.Username);
+            Console.WriteLine("searchUser executed");
+            UserHandler.editemail(user.Username, "newemail");
 
-        }
+            Console.WriteLine("editEmail executed");
+            UserHandler.ListAllUsers();
+
+            Console.WriteLine("listallusers executed ");
+            Console.WriteLine(UserHandler.UserIndexSearch(user.Username));
+
+            Console.WriteLine("UserIndexSearch executed");
+
+        }*/
     }
-}
+
