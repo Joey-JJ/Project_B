@@ -8,9 +8,14 @@ namespace ProjectB
     {
         static void Main(string[] args)
         {
-            Reservation res = new("test", "test", new DateTime(2000, 12, 12, 22, 0, 0), 4);
-            Reservation res2 = new("test2", "test2", new DateTime(2000, 12, 12, 22, 30, 0), 5);
-            Console.WriteLine(res.Day == res2.Day);
+            Reservation res1 = new("test1", "test", new DateTime(2000, 12, 12, 22, 0, 0), 2);
+            Reservation res2 = new("test2", "test", new DateTime(2000, 12, 11, 22, 0, 0), 3);
+            Reservation res3 = new("test3", "test", new DateTime(2000, 12, 11, 22, 0, 0), 5);
+            Reservation res4 = new("test4", "test", new DateTime(2000, 12, 11, 22, 0, 0), 4);
+            Reservation res5 = new("test5", "test", new DateTime(2000, 12, 11, 22, 0, 0), 2);
+            Reservation res6 = new("test6", "test", new DateTime(2000, 12, 11, 22, 0, 0), 3);
+
+            ReservationService.ListReservations();
 
             // ReservationService.LoadReservations();
             // int pageNumber = 0;
@@ -42,122 +47,122 @@ namespace ProjectB
             // }
         }
 
-        private static int ReservationMenu()
-        {
-            Console.Clear();
-            string userInput;
-            Console.WriteLine($"Welcome to the reservation menu!\n\nPress 1 to add a reservation \nPress 2 to delete a reservation\nPress 3 to edit a reservation\nPress 4 to list all reservations\nPress 5 to go back to the main menu");
-            while (true)
-            {
-                userInput = Console.ReadLine();
-                if (userInput == "1")
-                {
-                    Console.Clear();
-                    var datetime = ReservationService.GetReservationTime(ReservationService.GetReservationDate());
-                    int persons;
-                    while (true)
-                    {
-                        try
-                        {
-                            Console.Write("With how many persons are you coming? ");
-                            persons = Convert.ToInt32(Console.ReadLine());
-                            break;
-                        }
-                        catch (System.Exception)
-                        {
-                            System.Console.WriteLine("Invalid input, please try again...");
-                            throw;
-                        }
-                    }
+        // private static int ReservationMenu()
+        // {
+        //     Console.Clear();
+        //     string userInput;
+        //     Console.WriteLine($"Welcome to the reservation menu!\n\nPress 1 to add a reservation \nPress 2 to delete a reservation\nPress 3 to edit a reservation\nPress 4 to list all reservations\nPress 5 to go back to the main menu");
+        //     while (true)
+        //     {
+        //         userInput = Console.ReadLine();
+        //         if (userInput == "1")
+        //         {
+        //             Console.Clear();
+        //             var datetime = ReservationService.GetReservationTime(ReservationService.GetReservationDate());
+        //             int persons;
+        //             while (true)
+        //             {
+        //                 try
+        //                 {
+        //                     Console.Write("With how many persons are you coming? ");
+        //                     persons = Convert.ToInt32(Console.ReadLine());
+        //                     break;
+        //                 }
+        //                 catch (System.Exception)
+        //                 {
+        //                     System.Console.WriteLine("Invalid input, please try again...");
+        //                     throw;
+        //                 }
+        //             }
 
-                    ReservationService.AddReservation(datetime, persons);
-                    ReservationService.SaveReservations();
+        //             ReservationService.AddReservation(datetime, persons);
+        //             ReservationService.SaveReservations();
 
-                    Console.WriteLine("\nPress 'Enter' to go back");
-                    Console.ReadLine();
-                    return 0;
-                }
-                else if (userInput == "2")
-                {
-                    Console.Clear();
-                    ReservationService.ListReservations();
-                    Console.Write("\nEnter the name of the reservation you want to delete: ");
-                    string nameToDelete = Console.ReadLine();
-                    ReservationService.RemoveReservation(nameToDelete);
-                    ReservationService.SaveReservations();
-                    System.Console.WriteLine("\nPress 'Enter' to go back");
-                    System.Console.ReadLine();
-                    return 2;
-                }
-                else if (userInput == "3")
-                {
-                    System.Console.Write("Enter the name of the reservation you want to edit: ");
-                    string nameToEdit = Console.ReadLine();
-                    Console.Clear();
-                    System.Console.WriteLine("What do you want to edit?\nPress 1 to alter the name\nPress 2 to alter the email\nPress 3 to alter the date\nPress 4 to edit the amount of people");
-                    string thingToEdit;
-                    string editName;
-                    string editEmail;
-                    DateTime editDate;
-                    int editPersons;
+        //             Console.WriteLine("\nPress 'Enter' to go back");
+        //             Console.ReadLine();
+        //             return 0;
+        //         }
+        //         else if (userInput == "2")
+        //         {
+        //             Console.Clear();
+        //             ReservationService.ListReservations();
+        //             Console.Write("\nEnter the name of the reservation you want to delete: ");
+        //             string nameToDelete = Console.ReadLine();
+        //             ReservationService.RemoveReservation(nameToDelete);
+        //             ReservationService.SaveReservations();
+        //             System.Console.WriteLine("\nPress 'Enter' to go back");
+        //             System.Console.ReadLine();
+        //             return 2;
+        //         }
+        //         else if (userInput == "3")
+        //         {
+        //             System.Console.Write("Enter the name of the reservation you want to edit: ");
+        //             string nameToEdit = Console.ReadLine();
+        //             Console.Clear();
+        //             System.Console.WriteLine("What do you want to edit?\nPress 1 to alter the name\nPress 2 to alter the email\nPress 3 to alter the date\nPress 4 to edit the amount of people");
+        //             string thingToEdit;
+        //             string editName;
+        //             string editEmail;
+        //             DateTime editDate;
+        //             int editPersons;
 
-                    while (true)
-                    {
-                        thingToEdit = Console.ReadLine();
+        //             while (true)
+        //             {
+        //                 thingToEdit = Console.ReadLine();
 
-                        if (thingToEdit == "1")
-                        {
-                            System.Console.Write("Enter the name you want to change it into: ");
-                            editName = Console.ReadLine();
-                            ReservationService.EditName(nameToEdit, editName);
-                            break;
-                        }
-                        else if (thingToEdit == "2")
-                        {
-                            System.Console.Write("Enter the email you want to change it into: ");
-                            editEmail = Console.ReadLine();
-                            ReservationService.EditEmail(nameToEdit, editEmail);
-                            break;
-                        }
-                        else if (thingToEdit == "3")
-                        {
-                            System.Console.Write("Enter the date you want to change it into: ");
-                            Console.ReadLine();
-                            editDate = new DateTime(1999, 1, 1);
-                            ReservationService.EditDateTime(nameToEdit, editDate);
-                            break;
-                        }
-                        else if (thingToEdit == "4")
-                        {
-                            System.Console.Write("How many persons are you coming with? ");
-                            editPersons = Convert.ToInt32(Console.ReadLine());
-                            break;
-                        }
-                        else
-                        {
-                            System.Console.WriteLine("Please enter a valid number");
-                        }
-                    }
-                    return 2;
-                }
-                else if (userInput == "4")
-                {
-                    Console.Clear();
-                    ReservationService.ListReservations();
-                    System.Console.WriteLine("\nPress 'Enter' to go back");
-                    Console.ReadLine();
-                    return 2;
-                }
-                else if (userInput == "5")
-                {
-                    return 0;
-                }
-                else
-                {
-                    System.Console.WriteLine("Please enter a valid number");
-                }
-            }
-        }
+        //                 if (thingToEdit == "1")
+        //                 {
+        //                     System.Console.Write("Enter the name you want to change it into: ");
+        //                     editName = Console.ReadLine();
+
+        //                     break;
+        //                 }
+        //                 else if (thingToEdit == "2")
+        //                 {
+        //                     System.Console.Write("Enter the email you want to change it into: ");
+        //                     editEmail = Console.ReadLine();
+
+        //                     break;
+        //                 }
+        //                 else if (thingToEdit == "3")
+        //                 {
+        //                     System.Console.Write("Enter the date you want to change it into: ");
+        //                     Console.ReadLine();
+        //                     editDate = new DateTime(1999, 1, 1);
+        //                     ReservationService.EditDateTime(nameToEdit, editDate);
+        //                     break;
+        //                 }
+        //                 else if (thingToEdit == "4")
+        //                 {
+        //                     System.Console.Write("How many persons are you coming with? ");
+        //                     editPersons = Convert.ToInt32(Console.ReadLine());
+        //                     break;
+        //                 }
+        //                 else
+        //                 {
+        //                     System.Console.WriteLine("Please enter a valid number");
+        //                 }
+        //             }
+        //             return 2;
+        //         }
+        //         else if (userInput == "4")
+        //         {
+        //             Console.Clear();
+        //             ReservationService.ListReservations();
+        //             System.Console.WriteLine("\nPress 'Enter' to go back");
+        //             Console.ReadLine();
+        //             return 2;
+        //         }
+        //         else if (userInput == "5")
+        //         {
+        //             return 0;
+        //         }
+        //         else
+        //         {
+        //             System.Console.WriteLine("Please enter a valid number");
+        //         }
+        //     }
+        // }
 
         private static int AccountCreation()
         {

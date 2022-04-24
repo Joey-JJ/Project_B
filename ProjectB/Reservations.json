@@ -1,1 +1,60 @@
-{}
+{
+  "2000-12-12T00:00:00": [
+    {
+      "Name": "test1",
+      "Email": "test",
+      "StartTime": "2000-12-12T22:00:00",
+      "Endtime": "2000-12-13T00:00:00",
+      "PersonCount": 2,
+      "TableNumber": 18,
+      "Day": {}
+    }
+  ],
+  "2000-12-11T00:00:00": [
+    {
+      "Name": "test2",
+      "Email": "test",
+      "StartTime": "2000-12-11T22:00:00",
+      "Endtime": "2000-12-12T00:00:00",
+      "PersonCount": 3,
+      "TableNumber": 12,
+      "Day": {}
+    },
+    {
+      "Name": "test3",
+      "Email": "test",
+      "StartTime": "2000-12-11T22:00:00",
+      "Endtime": "2000-12-12T00:00:00",
+      "PersonCount": 5,
+      "TableNumber": 6,
+      "Day": {}
+    },
+    {
+      "Name": "test4",
+      "Email": "test",
+      "StartTime": "2000-12-11T22:00:00",
+      "Endtime": "2000-12-12T00:00:00",
+      "PersonCount": 4,
+      "TableNumber": 10,
+      "Day": {}
+    },
+    {
+      "Name": "test5",
+      "Email": "test",
+      "StartTime": "2000-12-11T22:00:00",
+      "Endtime": "2000-12-12T00:00:00",
+      "PersonCount": 2,
+      "TableNumber": 18,
+      "Day": {}
+    },
+    {
+      "Name": "test6",
+      "Email": "test",
+      "StartTime": "2000-12-11T22:00:00",
+      "Endtime": "2000-12-12T00:00:00",
+      "PersonCount": 3,
+      "TableNumber": 11,
+      "Day": {}
+    }
+  ]
+}

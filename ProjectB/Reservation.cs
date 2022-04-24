@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 public class Reservation
 {
@@ -25,9 +26,12 @@ public class Reservation
         int? table = this.AssignTableNumber();
         if (table != null) this.TableNumber = table;
         else Console.WriteLine("No tables available, please choose another date");
+
+        try { ReservationService.Reservations[this.StartTime.Date].Add(this); }
+        catch (KeyNotFoundException) { ReservationService.Reservations.Add(this.StartTime.Date, new List<Reservation>() { this }); }
     }
 
-    public RestaurantDay AssignRestaurantDay()
+    private RestaurantDay AssignRestaurantDay()
     {
         for (int i = 0; i < Restaurant.Schedule.Count; i++)
         {
@@ -41,11 +45,11 @@ public class Reservation
         return day;
     }
 
-    public int? AssignTableNumber()
+    private int? AssignTableNumber()
     {
         for (int i = this.Day.Tables.Count - 1; i >= 0; i--)
         {
-            if ((this.Day.Tables[i].NumberOfSeats <= this.PersonCount) && (!this.Day.Tables[i].Taken))
+            if ((this.PersonCount <= this.Day.Tables[i].NumberOfSeats ) && (!this.Day.Tables[i].Taken))
             {
                 this.Day.Tables[i].Taken = true;
                 return this.Day.Tables[i].TableNumber;

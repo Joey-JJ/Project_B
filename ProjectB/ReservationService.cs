@@ -25,11 +25,12 @@ class ReservationService
     {
         foreach (var item in Reservations)
         {
-            Console.WriteLine($"{item.Key.ToShortDateString()}\n----------------");
+            Console.WriteLine($"{item.Key.ToShortDateString()}");
             for (int i = 0; i < item.Value.Count; i++)
             {
-                System.Console.WriteLine($"{i + 1}. {item.Value[i].Name}");
+                System.Console.WriteLine($"{i + 1}. {item.Value[i].Name} at table {item.Value[i].TableNumber}");
             }
+            Console.Write("\n");
         }
     }
 
@@ -202,38 +203,6 @@ class ReservationService
     public static void RemoveReservation(string nameOfRes)
     {
         // TODO
-    }
-
-    public static void EditName(string nameOfRes, string valueToChangeTo)
-    {
-        // TODO
-        int editIndex = FindReservationIndex(nameOfRes);
-
-        if (editIndex != -1)
-        {
-            // Reservations[editIndex].Name = valueToChangeTo;
-            Console.WriteLine("Edited name of reservation.");
-        }
-        else
-        {
-            Console.WriteLine("Could not find reservation");
-        }
-    }
-
-    public static void EditEmail(string nameOfRes, string valueToChangeTo)
-    {
-        // TODO
-        int editIndex = FindReservationIndex(nameOfRes);
-
-        if (editIndex != -1)
-        {
-            // Reservations[editIndex].Email = valueToChangeTo;
-            Console.WriteLine("Edited email of reservation.");
-        }
-        else
-        {
-            Console.WriteLine("Could not find reservation");
-        }
     }
 
     public static void EditDateTime(string nameOfRes, DateTime valueToChangeTo)

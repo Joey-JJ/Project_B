@@ -1,1 +1,24 @@
-{}
+{
+  "2000-12-12T00:00:00": [
+    {
+      "Name": "test",
+      "Email": "test",
+      "StartTime": "2000-12-12T22:00:00",
+      "Endtime": "2000-12-13T00:00:00",
+      "PersonCount": 4,
+      "TableNumber": 18,
+      "Day": {}
+    }
+  ],
+  "2000-12-13T00:00:00": [
+    {
+      "Name": "test2",
+      "Email": "test2",
+      "StartTime": "2000-12-13T22:30:00",
+      "Endtime": "2000-12-14T00:30:00",
+      "PersonCount": 10,
+      "TableNumber": 17,
+      "Day": {}
+    }
+  ]
+}

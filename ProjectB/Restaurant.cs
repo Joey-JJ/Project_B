@@ -34,7 +34,10 @@ public class RestaurantDay
     public RestaurantDay(DateTime Date) {
         this.Date = Date.Date;
         this.Tables = new();
-        for (var i = 0; i < Restaurant.RestaurantLayout.Count; i++) Tables.Add(Restaurant.RestaurantLayout[i]);
+        for (var i = 0; i < Restaurant.RestaurantLayout.Count; i++) 
+        {
+            Tables.Add(new Table(Restaurant.RestaurantLayout[i].TableNumber, Restaurant.RestaurantLayout[i].NumberOfSeats));
+        }
     }
 }
 
