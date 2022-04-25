@@ -216,12 +216,16 @@ namespace ProjectB
             this.Email = Email;
             this.Password = Password;
         }
-        public static string filename = "AdminData.json";
+        public static string filename = "/AdminData.json";
         public static List<Admin> allAdmins = new();
 
         public static void LoadAllAdmins()
         {
-            allAdmins = JsonSerializer.Deserialize<List<Admin>>(File.ReadAllText(filename));
+            List<Admin> unsanitizedusers = JsonSerializer.Deserialize<List<Admin>>(File.ReadAllText(filename));
+            foreach (Admin user in unsanitizedusers)
+            {
+                allAdmins.Add(user);
+            }
         }
         public static void saveChanges()
         {
@@ -231,7 +235,6 @@ namespace ProjectB
 
         public static void addAdmin(Admin admin)
         {
-            LoadAllAdmins();
             allAdmins.Add(admin);
             saveChanges();
         }
@@ -242,7 +245,7 @@ namespace ProjectB
             {
                 LoadAllAdmins();
                 if (allAdmins[i].Username == usernameofadmin)
-                {
+                { 
                     Console.WriteLine("Admin deleted!");
                     allAdmins.RemoveAt(i);
                 }
@@ -296,6 +299,22 @@ namespace ProjectB
             }
 
         }
+        public static void listadmins()
+        {
+            LoadAllAdmins();
+            foreach(Admin admin in allAdmins)
+            {
+                Console.WriteLine(admin.Username);
+            }
+        }/*
+        public static void Main()
+        {
+            Admin admin = new Admin("admin", "adminsemail", "12342");
+            Admin.addAdmin(admin);
+            Admin.listadmins();
+            Admin.deleteAdmin(admin.Username);
+            Admin.listadmins();
+        }*/
     }
     public class Worker
     {
@@ -399,13 +418,17 @@ namespace ProjectB
                         saveChanges();
                     }
                     break;
-                case "4":  // dont delete this exits
+                case "4":  // dont delete, this exits
                     break;
-                 
+
             }
-        }        
+        }
+        static void Main()
+        {
+            Worker.loadAllWorkers();
+        }
     }
-    
+
 }
 
 
