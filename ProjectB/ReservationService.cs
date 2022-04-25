@@ -6,6 +6,7 @@ using System.Collections.Generic;
 class ReservationService
 {
     public static Dictionary<DateTime, List<Reservation>> Reservations = new();
+    public static List<RestaurantDay> Schedule = new();
     private static readonly string FileName = "./Reservations.json";
 
     public static void SaveReservations()
@@ -32,17 +33,6 @@ class ReservationService
             }
             Console.Write("\n");
         }
-    }
-
-    static int FindReservationIndex(string nameOfRes)
-    {
-        int index = -1;
-        for (int i = 0; i < Reservations.Count; i++)
-        {
-            //if (Reservations[i].Name.ToLower() == nameOfRes.ToLower())
-            //    index = i;
-        }
-        return index;
     }
 
     public static DateTime GetReservationDate()
@@ -186,20 +176,12 @@ class ReservationService
 
     public static void AddReservation(DateTime dateTime, int personCount)
     {
-        // var name = "test"; // Replace with account info
-        // var email = "test"; // Replace with account info
-        // var newRes = new Reservation(name, email, dateTime, personCount);
-        // try
-        // {
-        //     TestClass.Reservations.Add(newRes.StartTime.Date, new List<Reservation>() { newRes });
-        // }
-        // catch (ArgumentException)
-        // {
-        //     TestClass.Reservations[newRes.StartTime.Date].Add(newRes);
-        // }
-        // Console.WriteLine("Added Reservation");
+        var name = "test"; // Replace with account info
+        var email = "test"; // Replace with account info
+        var newRes = new Reservation(name, email, dateTime, personCount);
+        Console.WriteLine("Added Reservation");
     }
-
+    
     public static void RemoveReservation(string nameOfRes)
     {
         // TODO
@@ -208,33 +190,10 @@ class ReservationService
     public static void EditDateTime(string nameOfRes, DateTime valueToChangeTo)
     {
         // TODO
-        int editIndex = FindReservationIndex(nameOfRes);
-
-        if (editIndex != -1)
-        {
-            // Reservations[editIndex].StartTime = valueToChangeTo;
-            // Reservations[editIndex].Endtime = Reservations[editIndex].StartTime.AddHours(2.0);
-            Console.WriteLine("Edited DateTime of reservation.");
-        }
-        else
-        {
-            Console.WriteLine("Could not find reservation");
-        }
     }
 
     public static void EditPersonCount(string nameOfRes, int valueToChangeTo)
     {
         // TODO
-        int editIndex = FindReservationIndex(nameOfRes);
-
-        if (editIndex != -1)
-        {
-            // Reservations[editIndex].PersonCount = valueToChangeTo;
-            Console.WriteLine("Edited person count of reservation.");
-        }
-        else
-        {
-            Console.WriteLine("Could not find reservation");
-        }
     }
 }

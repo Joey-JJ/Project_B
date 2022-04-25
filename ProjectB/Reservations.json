@@ -7,7 +7,101 @@
       "Endtime": "2000-12-13T00:00:00",
       "PersonCount": 2,
       "TableNumber": 18,
-      "Day": {}
+      "Day": {
+        "Tables": [
+          {
+            "TableNumber": 1,
+            "NumberOfSeats": 8,
+            "Taken": false
+          },
+          {
+            "TableNumber": 2,
+            "NumberOfSeats": 8,
+            "Taken": false
+          },
+          {
+            "TableNumber": 3,
+            "NumberOfSeats": 6,
+            "Taken": false
+          },
+          {
+            "TableNumber": 4,
+            "NumberOfSeats": 6,
+            "Taken": false
+          },
+          {
+            "TableNumber": 5,
+            "NumberOfSeats": 6,
+            "Taken": false
+          },
+          {
+            "TableNumber": 6,
+            "NumberOfSeats": 6,
+            "Taken": false
+          },
+          {
+            "TableNumber": 7,
+            "NumberOfSeats": 4,
+            "Taken": false
+          },
+          {
+            "TableNumber": 8,
+            "NumberOfSeats": 4,
+            "Taken": false
+          },
+          {
+            "TableNumber": 9,
+            "NumberOfSeats": 4,
+            "Taken": false
+          },
+          {
+            "TableNumber": 10,
+            "NumberOfSeats": 4,
+            "Taken": false
+          },
+          {
+            "TableNumber": 11,
+            "NumberOfSeats": 3,
+            "Taken": false
+          },
+          {
+            "TableNumber": 12,
+            "NumberOfSeats": 3,
+            "Taken": false
+          },
+          {
+            "TableNumber": 13,
+            "NumberOfSeats": 2,
+            "Taken": false
+          },
+          {
+            "TableNumber": 14,
+            "NumberOfSeats": 2,
+            "Taken": false
+          },
+          {
+            "TableNumber": 15,
+            "NumberOfSeats": 2,
+            "Taken": false
+          },
+          {
+            "TableNumber": 16,
+            "NumberOfSeats": 2,
+            "Taken": false
+          },
+          {
+            "TableNumber": 17,
+            "NumberOfSeats": 2,
+            "Taken": false
+          },
+          {
+            "TableNumber": 18,
+            "NumberOfSeats": 2,
+            "Taken": true
+          }
+        ],
+        "Date": "2000-12-12T00:00:00"
+      }
     }
   ],
   "2000-12-11T00:00:00": [
@@ -18,7 +112,101 @@
       "Endtime": "2000-12-12T00:00:00",
       "PersonCount": 3,
       "TableNumber": 12,
-      "Day": {}
+      "Day": {
+        "Tables": [
+          {
+            "TableNumber": 1,
+            "NumberOfSeats": 8,
+            "Taken": false
+          },
+          {
+            "TableNumber": 2,
+            "NumberOfSeats": 8,
+            "Taken": false
+          },
+          {
+            "TableNumber": 3,
+            "NumberOfSeats": 6,
+            "Taken": false
+          },
+          {
+            "TableNumber": 4,
+            "NumberOfSeats": 6,
+            "Taken": false
+          },
+          {
+            "TableNumber": 5,
+            "NumberOfSeats": 6,
+            "Taken": false
+          },
+          {
+            "TableNumber": 6,
+            "NumberOfSeats": 6,
+            "Taken": true
+          },
+          {
+            "TableNumber": 7,
+            "NumberOfSeats": 4,
+            "Taken": false
+          },
+          {
+            "TableNumber": 8,
+            "NumberOfSeats": 4,
+            "Taken": false
+          },
+          {
+            "TableNumber": 9,
+            "NumberOfSeats": 4,
+            "Taken": false
+          },
+          {
+            "TableNumber": 10,
+            "NumberOfSeats": 4,
+            "Taken": true
+          },
+          {
+            "TableNumber": 11,
+            "NumberOfSeats": 3,
+            "Taken": true
+          },
+          {
+            "TableNumber": 12,
+            "NumberOfSeats": 3,
+            "Taken": true
+          },
+          {
+            "TableNumber": 13,
+            "NumberOfSeats": 2,
+            "Taken": false
+          },
+          {
+            "TableNumber": 14,
+            "NumberOfSeats": 2,
+            "Taken": false
+          },
+          {
+            "TableNumber": 15,
+            "NumberOfSeats": 2,
+            "Taken": false
+          },
+          {
+            "TableNumber": 16,
+            "NumberOfSeats": 2,
+            "Taken": false
+          },
+          {
+            "TableNumber": 17,
+            "NumberOfSeats": 2,
+            "Taken": false
+          },
+          {
+            "TableNumber": 18,
+            "NumberOfSeats": 2,
+            "Taken": true
+          }
+        ],
+        "Date": "2000-12-11T00:00:00"
+      }
     },
     {
       "Name": "test3",
@@ -27,7 +215,101 @@
       "Endtime": "2000-12-12T00:00:00",
       "PersonCount": 5,
       "TableNumber": 6,
-      "Day": {}
+      "Day": {
+        "Tables": [
+          {
+            "TableNumber": 1,
+            "NumberOfSeats": 8,
+            "Taken": false
+          },
+          {
+            "TableNumber": 2,
+            "NumberOfSeats": 8,
+            "Taken": false
+          },
+          {
+            "TableNumber": 3,
+            "NumberOfSeats": 6,
+            "Taken": false
+          },
+          {
+            "TableNumber": 4,
+            "NumberOfSeats": 6,
+            "Taken": false
+          },
+          {
+            "TableNumber": 5,
+            "NumberOfSeats": 6,
+            "Taken": false
+          },
+          {
+            "TableNumber": 6,
+            "NumberOfSeats": 6,
+            "Taken": true
+          },
+          {
+            "TableNumber": 7,
+            "NumberOfSeats": 4,
+            "Taken": false
+          },
+          {
+            "TableNumber": 8,
+            "NumberOfSeats": 4,
+            "Taken": false
+          },
+          {
+            "TableNumber": 9,
+            "NumberOfSeats": 4,
+            "Taken": false
+          },
+          {
+            "TableNumber": 10,
+            "NumberOfSeats": 4,
+            "Taken": true
+          },
+          {
+            "TableNumber": 11,
+            "NumberOfSeats": 3,
+            "Taken": true
+          },
+          {
+            "TableNumber": 12,
+            "NumberOfSeats": 3,
+            "Taken": true
+          },
+          {
+            "TableNumber": 13,
+            "NumberOfSeats": 2,
+            "Taken": false
+          },
+          {
+            "TableNumber": 14,
+            "NumberOfSeats": 2,
+            "Taken": false
+          },
+          {
+            "TableNumber": 15,
+            "NumberOfSeats": 2,
+            "Taken": false
+          },
+          {
+            "TableNumber": 16,
+            "NumberOfSeats": 2,
+            "Taken": false
+          },
+          {
+            "TableNumber": 17,
+            "NumberOfSeats": 2,
+            "Taken": false
+          },
+          {
+            "TableNumber": 18,
+            "NumberOfSeats": 2,
+            "Taken": true
+          }
+        ],
+        "Date": "2000-12-11T00:00:00"
+      }
     },
     {
       "Name": "test4",
@@ -36,7 +318,101 @@
       "Endtime": "2000-12-12T00:00:00",
       "PersonCount": 4,
       "TableNumber": 10,
-      "Day": {}
+      "Day": {
+        "Tables": [
+          {
+            "TableNumber": 1,
+            "NumberOfSeats": 8,
+            "Taken": false
+          },
+          {
+            "TableNumber": 2,
+            "NumberOfSeats": 8,
+            "Taken": false
+          },
+          {
+            "TableNumber": 3,
+            "NumberOfSeats": 6,
+            "Taken": false
+          },
+          {
+            "TableNumber": 4,
+            "NumberOfSeats": 6,
+            "Taken": false
+          },
+          {
+            "TableNumber": 5,
+            "NumberOfSeats": 6,
+            "Taken": false
+          },
+          {
+            "TableNumber": 6,
+            "NumberOfSeats": 6,
+            "Taken": true
+          },
+          {
+            "TableNumber": 7,
+            "NumberOfSeats": 4,
+            "Taken": false
+          },
+          {
+            "TableNumber": 8,
+            "NumberOfSeats": 4,
+            "Taken": false
+          },
+          {
+            "TableNumber": 9,
+            "NumberOfSeats": 4,
+            "Taken": false
+          },
+          {
+            "TableNumber": 10,
+            "NumberOfSeats": 4,
+            "Taken": true
+          },
+          {
+            "TableNumber": 11,
+            "NumberOfSeats": 3,
+            "Taken": true
+          },
+          {
+            "TableNumber": 12,
+            "NumberOfSeats": 3,
+            "Taken": true
+          },
+          {
+            "TableNumber": 13,
+            "NumberOfSeats": 2,
+            "Taken": false
+          },
+          {
+            "TableNumber": 14,
+            "NumberOfSeats": 2,
+            "Taken": false
+          },
+          {
+            "TableNumber": 15,
+            "NumberOfSeats": 2,
+            "Taken": false
+          },
+          {
+            "TableNumber": 16,
+            "NumberOfSeats": 2,
+            "Taken": false
+          },
+          {
+            "TableNumber": 17,
+            "NumberOfSeats": 2,
+            "Taken": false
+          },
+          {
+            "TableNumber": 18,
+            "NumberOfSeats": 2,
+            "Taken": true
+          }
+        ],
+        "Date": "2000-12-11T00:00:00"
+      }
     },
     {
       "Name": "test5",
@@ -45,7 +421,101 @@
       "Endtime": "2000-12-12T00:00:00",
       "PersonCount": 2,
       "TableNumber": 18,
-      "Day": {}
+      "Day": {
+        "Tables": [
+          {
+            "TableNumber": 1,
+            "NumberOfSeats": 8,
+            "Taken": false
+          },
+          {
+            "TableNumber": 2,
+            "NumberOfSeats": 8,
+            "Taken": false
+          },
+          {
+            "TableNumber": 3,
+            "NumberOfSeats": 6,
+            "Taken": false
+          },
+          {
+            "TableNumber": 4,
+            "NumberOfSeats": 6,
+            "Taken": false
+          },
+          {
+            "TableNumber": 5,
+            "NumberOfSeats": 6,
+            "Taken": false
+          },
+          {
+            "TableNumber": 6,
+            "NumberOfSeats": 6,
+            "Taken": true
+          },
+          {
+            "TableNumber": 7,
+            "NumberOfSeats": 4,
+            "Taken": false
+          },
+          {
+            "TableNumber": 8,
+            "NumberOfSeats": 4,
+            "Taken": false
+          },
+          {
+            "TableNumber": 9,
+            "NumberOfSeats": 4,
+            "Taken": false
+          },
+          {
+            "TableNumber": 10,
+            "NumberOfSeats": 4,
+            "Taken": true
+          },
+          {
+            "TableNumber": 11,
+            "NumberOfSeats": 3,
+            "Taken": true
+          },
+          {
+            "TableNumber": 12,
+            "NumberOfSeats": 3,
+            "Taken": true
+          },
+          {
+            "TableNumber": 13,
+            "NumberOfSeats": 2,
+            "Taken": false
+          },
+          {
+            "TableNumber": 14,
+            "NumberOfSeats": 2,
+            "Taken": false
+          },
+          {
+            "TableNumber": 15,
+            "NumberOfSeats": 2,
+            "Taken": false
+          },
+          {
+            "TableNumber": 16,
+            "NumberOfSeats": 2,
+            "Taken": false
+          },
+          {
+            "TableNumber": 17,
+            "NumberOfSeats": 2,
+            "Taken": false
+          },
+          {
+            "TableNumber": 18,
+            "NumberOfSeats": 2,
+            "Taken": true
+          }
+        ],
+        "Date": "2000-12-11T00:00:00"
+      }
     },
     {
       "Name": "test6",
@@ -54,7 +524,101 @@
       "Endtime": "2000-12-12T00:00:00",
       "PersonCount": 3,
       "TableNumber": 11,
-      "Day": {}
+      "Day": {
+        "Tables": [
+          {
+            "TableNumber": 1,
+            "NumberOfSeats": 8,
+            "Taken": false
+          },
+          {
+            "TableNumber": 2,
+            "NumberOfSeats": 8,
+            "Taken": false
+          },
+          {
+            "TableNumber": 3,
+            "NumberOfSeats": 6,
+            "Taken": false
+          },
+          {
+            "TableNumber": 4,
+            "NumberOfSeats": 6,
+            "Taken": false
+          },
+          {
+            "TableNumber": 5,
+            "NumberOfSeats": 6,
+            "Taken": false
+          },
+          {
+            "TableNumber": 6,
+            "NumberOfSeats": 6,
+            "Taken": true
+          },
+          {
+            "TableNumber": 7,
+            "NumberOfSeats": 4,
+            "Taken": false
+          },
+          {
+            "TableNumber": 8,
+            "NumberOfSeats": 4,
+            "Taken": false
+          },
+          {
+            "TableNumber": 9,
+            "NumberOfSeats": 4,
+            "Taken": false
+          },
+          {
+            "TableNumber": 10,
+            "NumberOfSeats": 4,
+            "Taken": true
+          },
+          {
+            "TableNumber": 11,
+            "NumberOfSeats": 3,
+            "Taken": true
+          },
+          {
+            "TableNumber": 12,
+            "NumberOfSeats": 3,
+            "Taken": true
+          },
+          {
+            "TableNumber": 13,
+            "NumberOfSeats": 2,
+            "Taken": false
+          },
+          {
+            "TableNumber": 14,
+            "NumberOfSeats": 2,
+            "Taken": false
+          },
+          {
+            "TableNumber": 15,
+            "NumberOfSeats": 2,
+            "Taken": false
+          },
+          {
+            "TableNumber": 16,
+            "NumberOfSeats": 2,
+            "Taken": false
+          },
+          {
+            "TableNumber": 17,
+            "NumberOfSeats": 2,
+            "Taken": false
+          },
+          {
+            "TableNumber": 18,
+            "NumberOfSeats": 2,
+            "Taken": true
+          }
+        ],
+        "Date": "2000-12-11T00:00:00"
+      }
     }
   ]
 }

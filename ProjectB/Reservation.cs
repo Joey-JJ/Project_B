@@ -26,26 +26,28 @@ public class Reservation
         int? table = this.AssignTableNumber();
         if (table != null) this.TableNumber = table;
         else Console.WriteLine("No tables available, please choose another date");
-
-        try { ReservationService.Reservations[this.StartTime.Date].Add(this); }
-        catch (KeyNotFoundException) { ReservationService.Reservations.Add(this.StartTime.Date, new List<Reservation>() { this }); }
+        if (this.TableNumber != null) 
+        {
+            try { ReservationService.Reservations[this.StartTime.Date].Add(this); }
+            catch (KeyNotFoundException) { ReservationService.Reservations.Add(this.StartTime.Date, new List<Reservation>() { this }); }
+        }
     }
 
-    private RestaurantDay AssignRestaurantDay()
+    public RestaurantDay AssignRestaurantDay()
     {
-        for (int i = 0; i < Restaurant.Schedule.Count; i++)
+        for (int i = 0; i < ReservationService.Schedule.Count; i++)
         {
-            if (Restaurant.Schedule[i].Date == this.StartTime.Date)
+            if (ReservationService.Schedule[i].Date == this.StartTime.Date)
             {
-                return Restaurant.Schedule[i];
+                return ReservationService.Schedule[i];
             }
         }
         RestaurantDay day = new(this.StartTime.Date);
-        Restaurant.Schedule.Add(day);
+        ReservationService.Schedule.Add(day);
         return day;
     }
 
-    private int? AssignTableNumber()
+    public int? AssignTableNumber()
     {
         for (int i = this.Day.Tables.Count - 1; i >= 0; i--)
         {

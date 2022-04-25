@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text.Json; 
 
 
 namespace ProjectB
@@ -8,44 +9,39 @@ namespace ProjectB
     {
         static void Main(string[] args)
         {
-            Reservation res1 = new("test1", "test", new DateTime(2000, 12, 12, 22, 0, 0), 2);
-            Reservation res2 = new("test2", "test", new DateTime(2000, 12, 11, 22, 0, 0), 3);
-            Reservation res3 = new("test3", "test", new DateTime(2000, 12, 11, 22, 0, 0), 5);
-            Reservation res4 = new("test4", "test", new DateTime(2000, 12, 11, 22, 0, 0), 4);
-            Reservation res5 = new("test5", "test", new DateTime(2000, 12, 11, 22, 0, 0), 2);
-            Reservation res6 = new("test6", "test", new DateTime(2000, 12, 11, 22, 0, 0), 3);
-
+            
+            ReservationService.LoadReservations();
             ReservationService.ListReservations();
 
-            // ReservationService.LoadReservations();
-            // int pageNumber = 0;
+            
+        //     int pageNumber = 0;
 
-            // while (true)
-            // {
-            //     switch (pageNumber)
-            //     {
-            //         case 0:
-            //             pageNumber = MainPage();
-            //             break;
-            //         case 1:
-            //             pageNumber = AccountCreation();
-            //             break;
-            //         case 2:
-            //             pageNumber = ReservationMenu();
-            //             break;
-            //         case 3:
-            //             Console.Clear();
-            //             FoodMenu.PrintMainCourses();
-            //             Console.WriteLine("\nPress 'Enter' to go back.");
-            //             Console.ReadLine();
-            //             pageNumber = 0;
-            //             break;
-            //         case 99:
-            //             return;
+        //     while (true)
+        //     {
+        //         switch (pageNumber)
+        //         {
+        //             case 0:
+        //                 pageNumber = MainPage();
+        //                 break;
+        //             case 1:
+        //                 pageNumber = AccountCreation();
+        //                 break;
+        //             case 2:
+        //                 pageNumber = ReservationMenu();
+        //                 break;
+        //             case 3:
+        //                 Console.Clear();
+        //                 FoodMenu.PrintMainCourses();
+        //                 Console.WriteLine("\nPress 'Enter' to go back.");
+        //                 Console.ReadLine();
+        //                 pageNumber = 0;
+        //                 break;
+        //             case 99:
+        //                 return;
 
-            //     }
-            // }
-        }
+        //         }
+        //     }
+        // }
 
         // private static int ReservationMenu()
         // {
@@ -71,12 +67,11 @@ namespace ProjectB
         //                 catch (System.Exception)
         //                 {
         //                     System.Console.WriteLine("Invalid input, please try again...");
-        //                     throw;
         //                 }
         //             }
 
         //             ReservationService.AddReservation(datetime, persons);
-        //             ReservationService.SaveReservations();
+        //             // ReservationService.SaveReservations();
 
         //             Console.WriteLine("\nPress 'Enter' to go back");
         //             Console.ReadLine();
@@ -164,44 +159,44 @@ namespace ProjectB
         //     }
         // }
 
-        private static int AccountCreation()
-        {
-            Console.Clear();
-            Console.WriteLine("Account Creation. Press 'Enter' to go back");
-            Console.ReadLine();
-            return 0;
-        }
+        // private static int AccountCreation()
+        // {
+        //     Console.Clear();
+        //     Console.WriteLine("Account Creation. Press 'Enter' to go back");
+        //     Console.ReadLine();
+        //     return 0;
+        // }
 
-        private static int MainPage()
-        {
-            Console.Clear();
-            Console.WriteLine("Welcome!\n\nPress 1 for login and account creation \nPress 2 to go to the reservations section \nPress 3 to see the menu\nPress 4 to quit the application\n");
-            string userInput;
-            while (true)
-            {
-                userInput = Console.ReadLine();
+        // private static int MainPage()
+        // {
+        //     Console.Clear();
+        //     Console.WriteLine("Welcome!\n\nPress 1 for login and account creation \nPress 2 to go to the reservations section \nPress 3 to see the menu\nPress 4 to quit the application\n");
+        //     string userInput;
+        //     while (true)
+        //     {
+        //         userInput = Console.ReadLine();
 
-                if (userInput == "1")
-                {
-                    return 1;
-                }
-                else if (userInput == "2")
-                {
-                    return 2;
-                }
-                else if (userInput == "3")
-                {
-                    return 3;
-                }
-                else if (userInput == "4")
-                {
-                    return 99;
-                }
-                else
-                {
-                    System.Console.WriteLine("Please enter a valid number");
-                }
-            }
+        //         if (userInput == "1")
+        //         {
+        //             return 1;
+        //         }
+        //         else if (userInput == "2")
+        //         {
+        //             return 2;
+        //         }
+        //         else if (userInput == "3")
+        //         {
+        //             return 3;
+        //         }
+        //         else if (userInput == "4")
+        //         {
+        //             return 99;
+        //         }
+        //         else
+        //         {
+        //             System.Console.WriteLine("Please enter a valid number");
+        //         }
+        //     }
         }
     }
 }

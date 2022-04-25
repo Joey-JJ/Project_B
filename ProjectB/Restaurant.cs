@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 public static class Restaurant
 {
-    public static List<RestaurantDay> Schedule = new();
     public static List<Table> RestaurantLayout = new List<Table>(){
         new Table(1, 8),
         new Table(2, 8),
@@ -29,8 +28,8 @@ public static class Restaurant
 
 public class RestaurantDay
 {
-    public List<Table> Tables;
-    public DateTime Date;
+    public List<Table> Tables { get; set; }
+    public DateTime Date { get; set; }
     public RestaurantDay(DateTime Date) {
         this.Date = Date.Date;
         this.Tables = new();
@@ -39,13 +38,15 @@ public class RestaurantDay
             Tables.Add(new Table(Restaurant.RestaurantLayout[i].TableNumber, Restaurant.RestaurantLayout[i].NumberOfSeats));
         }
     }
+
+    public RestaurantDay() { }
 }
 
 
 public class Table {
-    public int TableNumber;
-    public int NumberOfSeats;
-    public bool Taken;
+    public int TableNumber { get; set; }
+    public int NumberOfSeats { get; set; }
+    public bool Taken { get; set; }
 
     public Table(int TableNumber, int NumberOfSeats) {
         this.TableNumber = TableNumber;
