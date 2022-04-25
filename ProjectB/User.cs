@@ -216,7 +216,7 @@ namespace ProjectB
             this.Email = Email;
             this.Password = Password;
         }
-        public static string filename = "/AdminData.json";
+        public static string filename = "AdminData.json";
         public static List<Admin> allAdmins = new();
 
         public static void LoadAllAdmins()
@@ -306,7 +306,7 @@ namespace ProjectB
             {
                 Console.WriteLine(admin.Username);
             }
-        }/*
+        } /*
         public static void Main()
         {
             Admin admin = new Admin("admin", "adminsemail", "12342");
@@ -314,7 +314,7 @@ namespace ProjectB
             Admin.listadmins();
             Admin.deleteAdmin(admin.Username);
             Admin.listadmins();
-        }*/
+        } */
     }
     public class Worker
     {
@@ -339,7 +339,7 @@ namespace ProjectB
 
         public static void loadAllWorkers()
         {
-            allWorkers = JsonSerializer.Deserialize<List<Worker>>(filename);
+            allWorkers = JsonSerializer.Deserialize<List<Worker>>(File.ReadAllText(filename));
         }
         public static void saveChanges()
         {
@@ -350,6 +350,7 @@ namespace ProjectB
         {
             allWorkers.Add(worker);
             Console.WriteLine("Worker succesfully added");
+            saveChanges();
         }
 
         public static void deleteWorker(string usernameofworker)
@@ -422,11 +423,13 @@ namespace ProjectB
                     break;
 
             }
-        }
+        }/*
         static void Main()
         {
+            Worker worker = new("bb", "bb@", "MM");
+            Worker.addWorker(worker);
             Worker.loadAllWorkers();
-        }
+        }*/
     }
 
 }
