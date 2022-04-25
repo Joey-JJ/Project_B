@@ -32,7 +32,7 @@ namespace ProjectB
                         break;
                     case 5:
                         Console.Clear();
-                        FoodMenu.PrintMainCourses();
+                        Console.WriteLine("Not available right now");
                         Console.WriteLine("\nPress 'Enter' to go back.");
                         Console.ReadLine();
                         pageNumber = 0;
