@@ -25,14 +25,17 @@ namespace ProjectB
                         pageNumber = ReservationMenu();
                         break;
                     case 3:
+                        pageNumber = ReviewMenu();
+                        break;
+                    case 4:
+                        pageNumber = OrderMenu();
+                        break;
+                    case 5:
                         Console.Clear();
                         FoodMenu.PrintMainCourses();
                         Console.WriteLine("\nPress 'Enter' to go back.");
                         Console.ReadLine();
                         pageNumber = 0;
-                        break;
-                    case 4:
-                        pageNumber = ReviewMenu();
                         break;
                     case 99:
                         return;
@@ -41,6 +44,84 @@ namespace ProjectB
             }
         }
 
+        private static int OrderMenu()
+        {
+            Console.Clear();
+            string menuOptions;
+            Console.WriteLine("Press 1 for the appetizers\nPress 2 for the main course\nPress 3 for the vegan main course\nPress 4 for the desserts\nPress 5 for the vegan deserts\nPress 6 for the drinks\nPress 7 to end order and go back");
+            while (true)
+            {
+                menuOptions = Console.ReadLine();
+                if (menuOptions == "1")
+                {
+                    Console.Clear();
+                    FoodMenu.PrintAppetizers();
+
+                    Console.WriteLine("\nPress 'Enter' to go back");
+                    Console.ReadLine();
+                    return 4;
+                }
+                else if (menuOptions == "2")
+                {
+                    Console.Clear();
+                    FoodMenu.PrintMainCourses();
+
+                    Console.WriteLine("\nPress 'Enter' to go back");
+                    Console.ReadLine();
+                    return 4;
+                }
+                else if (menuOptions == "3")
+                {
+                    Console.Clear();
+                    FoodMenu.PrintVeganMainCourses();
+
+                    Console.WriteLine("\nPress 'Enter' to go back");
+                    Console.ReadLine();
+                    return 4;
+                }
+                else if (menuOptions == "4")
+                {
+                    Console.Clear();
+                    FoodMenu.PrintDesserts();
+
+                    Console.WriteLine("\nPress 'Enter' to go back");
+                    Console.ReadLine();
+                    return 4;
+                }
+                else if (menuOptions == "5")
+                {
+                    Console.Clear();
+                    FoodMenu.PrintVeganDesserts();
+
+                    Console.WriteLine("\nPress 'Enter' to go back");
+                    Console.ReadLine();
+                    return 4;
+                }
+                else if (menuOptions == "6")
+                {
+                    Console.Clear();
+                    FoodMenu.PrintDrinks();
+
+                    Console.WriteLine("\nPress 'Enter' to go back");
+                    Console.ReadLine();
+                    return 4;
+                }
+                else if (menuOptions == "7")
+                {
+                    Console.Clear();
+                    FoodMenu.SaveOrder();
+
+                    Console.WriteLine("\nPress 'Enter' to go back");
+                    Console.ReadLine();
+                    return 0;
+                }
+                else
+                {
+                    Console.WriteLine("Please enter a valid number");
+                }
+            }
+
+        }
         private static int ReservationMenu()
         {
             Console.Clear();
@@ -206,7 +287,7 @@ namespace ProjectB
                     }
                     Console.WriteLine("\nPress 'Enter' to go back");
                     Console.ReadLine();
-                    return 4;
+                    return 3;
                 }
                 else if (reviewInput == "2")
                 {
@@ -216,7 +297,7 @@ namespace ProjectB
 
                     Console.WriteLine("\nPress 'Enter' to go back");
                     Console.ReadLine();
-                    return 4;
+                    return 3;
                 }
                 else if (reviewInput == "3")
                 {
@@ -228,7 +309,7 @@ namespace ProjectB
                     ReviewStuff.SaveReviews();
                     Console.WriteLine("\nPress 'Enter' to go back");
                     Console.ReadLine();
-                    return 4;
+                    return 3;
                 }
                 else if (reviewInput == "4")
                 {
@@ -236,7 +317,7 @@ namespace ProjectB
                 }
                 else
                 {
-                    System.Console.WriteLine("Please enter a valid number");
+                    Console.WriteLine("Please enter a valid number");
                 }
             }
         }
@@ -244,7 +325,7 @@ namespace ProjectB
         private static int MainPage()
         {
             Console.Clear();
-            Console.WriteLine("Welcome!\n\nPress 1 for login and account creation \nPress 2 to go to the reservations section \nPress 3 to see the menu\nPress 4 to open the review section\nPress 5 exit the application\n");
+            Console.WriteLine("Welcome!\n\nPress 1 for login and account creation \nPress 2 to go to the reservations section \nPress 3 to open the review section\nPress 4 to place an order\nPress 5 to look at the menu\nPress 6 exit the application\n");
             string userInput;
             while (true)
             {
@@ -267,6 +348,10 @@ namespace ProjectB
                     return 4;
                 }
                 else if (userInput == "5")
+                {
+                    return 5;
+                }
+                else if (userInput == "6")
                 {
                     return 99;
                 }
