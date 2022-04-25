@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 class FoodMenu
 {
     private static readonly string OrderFile = "Orders.json";
+    public static Dictionary<string, int> MakeOrder = new() { };
+
 
     public static Dictionary<string, double> Appetizers = new()
     {
@@ -67,22 +69,21 @@ class FoodMenu
         { "Bordeaux red", 8.00 }
     };
 
-    public static Dictionary<string, int> MakeOrder = new() { };
-
     public static void PrintOrder()
     {
         int index = 0;
         foreach (var Item in MakeOrder)
         {
-            Console.WriteLine($"[{index}] {Item.Key} = {Item.Value}");
+            Console.WriteLine($"{Item.Key} = {Item.Value}");
             index++;
         }
     }
     public static void SaveOrder()
     {
         var indent = new JsonSerializerOptions { WriteIndented = true };
-        string reviewString = JsonSerializer.Serialize(MakeOrder, indent);
-        File.AppendAllText(OrderFile, reviewString);
+        string orderString = JsonSerializer.Serialize(MakeOrder, indent);
+        File.AppendAllText(OrderFile, orderString);
+        Console.WriteLine("\nOrder saved!");
     }
 
     public static int OrderDetails()
@@ -114,17 +115,22 @@ class FoodMenu
                     Console.WriteLine($"[{index}] {Item.Key} = ${Item.Value}");
                     index++;
                 }
+                index = 0;
 
                 Console.WriteLine("\nWould you like to make an order?\nPress 1 for yes\nPress 2 for no");
                 string orderAnswer = Console.ReadLine();
                 if (orderAnswer == "1")
                 {
                     int order = OrderDetails();
-                    int amount = AmountDetails();
                     if (order <= (Appetizers.Count - 1))
                     {
+                        int amount = AmountDetails();
                         string dish = Appetizers.ElementAt(order).Key;
                         MakeOrder.Add(dish, amount);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Please enter a valid number");
                     }
                 }
                 else if (orderAnswer == "2")
@@ -159,15 +165,16 @@ class FoodMenu
                     Console.WriteLine($"[{index}] {Item.Key} = ${Item.Value}");
                     index++;
                 }
+                index = 0;
 
                 Console.WriteLine("\nWould you like to make an order?\nPress 1 for yes\nPress 2 for no");
                 string orderAnswer = Console.ReadLine();
                 if (orderAnswer == "1")
                 {
                     int order = OrderDetails();
-                    int amount = AmountDetails();
                     if (order <= (MainCourses.Count - 1))
                     {
+                        int amount = AmountDetails();
                         string dish = MainCourses.ElementAt(order).Key;
                         MakeOrder.Add(dish, amount);
                     }
@@ -204,15 +211,16 @@ class FoodMenu
                     Console.WriteLine($"[{index}] {Item.Key} = ${Item.Value}");
                     index++;
                 }
+                index = 0;
 
                 Console.WriteLine("\nWould you like to make an order?\nPress 1 for yes\nPress 2 for no");
                 string orderAnswer = Console.ReadLine();
                 if (orderAnswer == "1")
                 {
                     int order = OrderDetails();
-                    int amount = AmountDetails();
                     if (order <= (VeganMainCourses.Count - 1))
                     {
+                        int amount = AmountDetails();
                         string dish = VeganMainCourses.ElementAt(order).Key;
                         MakeOrder.Add(dish, amount);
                     }
@@ -249,15 +257,16 @@ class FoodMenu
                     Console.WriteLine($"[{index}] {Item.Key} = ${Item.Value}");
                     index++;
                 }
+                index = 0;
 
                 Console.WriteLine("\nWould you like to make an order?\nPress 1 for yes\nPress 2 for no");
                 string orderAnswer = Console.ReadLine();
                 if (orderAnswer == "1")
                 {
                     int order = OrderDetails();
-                    int amount = AmountDetails();
                     if (order <= (Desserts.Count - 1))
                     {
+                        int amount = AmountDetails();
                         string dish = Desserts.ElementAt(order).Key;
                         MakeOrder.Add(dish, amount);
                     }
@@ -294,15 +303,16 @@ class FoodMenu
                     Console.WriteLine($"[{index}] {Item.Key} = ${Item.Value}");
                     index++;
                 }
+                index = 0;
 
                 Console.WriteLine("\nWould you like to make an order?\nPress 1 for yes\nPress 2 for no");
                 string orderAnswer = Console.ReadLine();
                 if (orderAnswer == "1")
                 {
                     int order = OrderDetails();
-                    int amount = AmountDetails();
                     if (order <= (VeganDesserts.Count - 1))
                     {
+                        int amount = AmountDetails();
                         string dish = VeganDesserts.ElementAt(order).Key;
                         MakeOrder.Add(dish, amount);
                     }
@@ -339,16 +349,16 @@ class FoodMenu
                     Console.WriteLine($"[{index}] {Item.Key} = ${Item.Value}");
                     index++;
                 }
-
                 index = 0;
+
                 Console.WriteLine("\nWould you like to make an order?\nPress 1 for yes\nPress 2 for no");
                 string orderAnswer = Console.ReadLine();
                 if (orderAnswer == "1")
                 {
                     int order = OrderDetails();
-                    int amount = AmountDetails();
                     if (order <= (Drinks.Count - 1))
                     {
+                        int amount = AmountDetails();
                         string dish = Drinks.ElementAt(order).Key;
                         MakeOrder.Add(dish, amount);
                     }

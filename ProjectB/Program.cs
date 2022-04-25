@@ -108,7 +108,9 @@ namespace ProjectB
                 }
                 else if (menuOptions == "7")
                 {
+                    Console.Clear();
                     FoodMenu.SaveOrder();
+
                     Console.WriteLine("\nPress 'Enter' to go back");
                     Console.ReadLine();
                     return 0;
