@@ -150,7 +150,7 @@ namespace ProjectB
                     }
 
                     ReservationService.AddReservation(datetime, persons);
-                    // ReservationService.SaveReservations();
+                    ReservationService.SaveReservations();
 
                     Console.WriteLine("\nPress 'Enter' to go back");
                     Console.ReadLine();
