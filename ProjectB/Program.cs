@@ -146,12 +146,11 @@ namespace ProjectB
                         catch (System.Exception)
                         {
                             System.Console.WriteLine("Invalid input, please try again...");
-                            throw;
                         }
                     }
 
                     ReservationService.AddReservation(datetime, persons);
-                    ReservationService.SaveReservations();
+                    // ReservationService.SaveReservations();
 
                     Console.WriteLine("\nPress 'Enter' to go back");
                     Console.ReadLine();
@@ -189,14 +188,14 @@ namespace ProjectB
                         {
                             System.Console.Write("Enter the name you want to change it into: ");
                             editName = Console.ReadLine();
-                            ReservationService.EditName(nameToEdit, editName);
+
                             break;
                         }
                         else if (thingToEdit == "2")
                         {
                             System.Console.Write("Enter the email you want to change it into: ");
                             editEmail = Console.ReadLine();
-                            ReservationService.EditEmail(nameToEdit, editEmail);
+
                             break;
                         }
                         else if (thingToEdit == "3")
