@@ -8,19 +8,19 @@
     "net5.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Joey\\.nuget\\packages\\": {}
+    "C:\\Users\\meesv\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Joey\\Desktop\\Project_B\\ProjectB\\ProjectB.csproj",
+      "projectUniqueName": "C:\\Users\\meesv\\source\\repos\\Joey-JJ\\Project_B\\ProjectB\\ProjectB.csproj",
       "projectName": "ProjectB",
-      "projectPath": "C:\\Users\\Joey\\Desktop\\Project_B\\ProjectB\\ProjectB.csproj",
-      "packagesPath": "C:\\Users\\Joey\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Joey\\Desktop\\Project_B\\ProjectB\\obj\\",
+      "projectPath": "C:\\Users\\meesv\\source\\repos\\Joey-JJ\\Project_B\\ProjectB\\ProjectB.csproj",
+      "packagesPath": "C:\\Users\\meesv\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\meesv\\source\\repos\\Joey-JJ\\Project_B\\ProjectB\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Joey\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\meesv\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -60,7 +60,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
       }
     }
   }

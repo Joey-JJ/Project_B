@@ -237,12 +237,202 @@ namespace ProjectB
                 }
             }
         }
-
         private static int AccountCreation()
         {
+
             Console.Clear();
-            Console.WriteLine("Account Creation. Press 'Enter' to go back");
-            Console.ReadLine();
+            Console.WriteLine("Press: [1] to log in \n       [2] to make an account ");
+            switch (Console.ReadLine())
+            {
+                case "1": // log in
+
+                    bool wantstotryagain = true;
+                    while (wantstotryagain)
+                    {
+                        Console.WriteLine("What is your e-mail?");
+                        string email = Console.ReadLine();
+                        Console.WriteLine("What is your Username?");
+                        string Username = Console.ReadLine();
+                        Console.WriteLine("What is your password?");
+                        string password = Console.ReadLine();
+                        Console.WriteLine("Press [1] to log in as an admin, [2] to log in as a user \n    [3] to log in as a worker");
+                        switch (Console.ReadLine())
+                        {
+                            case "1":
+
+                                if (Admin.Login(Username, password, email))
+                                {
+                                    Console.WriteLine("press: [1] to see the roster  [2] to alter the menu \n   [3] to alter account information"); // TODO: add roster and menu functionality
+                                    switch (Console.ReadLine())
+                                    {
+                                        case "1": // todo: add roster functionality here
+                                            break;
+                                        case "2": // todo: add menu functionality here
+                                            break;
+                                        case "3":
+                                            Console.WriteLine("Press: [1] to alter account information, [2] to delete your profile "); // todo: add altering functionality
+                                            switch (Console.ReadLine())
+                                            {
+                                                case "1": //alter info
+                                                    Admin.editInformation(Username);
+                                                    break;
+                                                case "2": // delete account
+                                                    Console.WriteLine("are you sure you wish to delete your account?\n  press [1] to delete account, press [2] to stop");
+                                                    switch (Console.ReadLine())
+                                                    {
+                                                        case "1":
+                                                            Console.WriteLine("Account deleted!");
+                                                            Admin.deleteAdmin(Username);
+                                                            Console.Clear();
+                                                            break;
+                                                        case "2":
+                                                            Console.WriteLine("Account deletion cancelled!");
+                                                            break;
+                                                    }
+                                                    break;
+
+                                            }
+                                            break;
+                                    }
+                                    break;
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Do you want to try again?`\n     Press [1] for yes and [2] for no");
+                                    switch (Console.ReadLine())
+                                    {
+                                        case "1":
+                                            Console.Clear();
+                                            break;
+                                        case "2":
+                                            wantstotryagain = false;
+                                            break;
+                                    }
+                                }
+                                break;
+
+                            case "2": // login as a user
+                                if (UserHandler.login(Username, email, password))
+                                {
+                                    Console.WriteLine("press: [1] to place a reservation, [2] to see my reservations \n     [3] to alter my info, [4] to delete account");
+                                    switch (Console.ReadLine())
+                                    {
+                                        case "1":
+                                            Console.WriteLine("this functionality hasn't been added yet");
+                                            break;
+                                        case "2":
+                                            Console.WriteLine("This functionality hasn't been added yet");
+                                            break;
+                                        case "3": // todo: altering info
+                                            Console.WriteLine("What information do you want to alter? \n Press: [1] to alter username, [2] to alter your email address \n [3] to alter your password [4] to delete your account");
+                                            switch (Console.ReadLine())
+                                            {
+                                                case "1": // username altering
+                                                    Console.WriteLine("What do you want your new username to be?");
+
+                                                    UserHandler.editUsername(Username, Console.ReadLine());
+                                                    Console.WriteLine("Your username was successfully changed!");
+                                                    break;
+                                                case "2": // alter email
+                                                    Console.WriteLine("What do you want your new email to be?");
+                                                    UserHandler.editemail(Username, Console.ReadLine());
+                                                    break;
+                                                case "3": // alter password
+                                                    Console.WriteLine("what was your previous password?");
+
+                                                    int c;
+                                                    while (true)
+                                                    {
+                                                        if (Console.ReadLine() == password)
+                                                        {
+                                                            Console.WriteLine("What do you want your new password to be?");
+                                                            UserHandler.editPassword(Username, email, password, Console.ReadLine());
+                                                            Console.WriteLine("Password succesfully changed!");
+                                                            break;
+                                                        }
+                                                        else
+                                                        {
+                                                            Console.WriteLine("you got your password wrong! \n press: [1] to try again [2] to quit");
+                                                            if (Console.ReadLine() != "1")
+                                                            {
+                                                                break;
+                                                            }
+                                                        }
+                                                        break;
+                                                    }
+                                                    break;
+                                                case "4": // delete user
+                                                    Console.WriteLine("Do you know for sure you want to delete this user? \n Press: [1] for yes, delete this user, [2] for no, dont delete this user");
+                                                    switch (Console.ReadLine())
+                                                    {
+                                                        case "1":
+                                                            UserHandler.DeleteUser(Username);
+                                                            Console.WriteLine("User succesfully delted");
+                                                            break;
+                                                        case "2":
+                                                            Console.WriteLine("Succesfully cancelled the deletion of your account");
+                                                            break;
+                                                    }
+
+                                                    break;
+                                            }
+                                            break;
+                                    }
+                                }
+                                break;
+                            case "3": // login as a worker
+                                Console.WriteLine("Press [1] to see your roster, [2] to see your orders  \n [3] to see all orders, [4] to alter account information");
+                                switch (Console.ReadLine())
+                                {
+                                    case "1": // see roster as worker                                
+                                        Console.WriteLine("This functionality has not been added yet, sorry!");
+                                        break;
+                                    case "2": // see orders as worker                                
+                                        Console.WriteLine("This functionality has not been added yet, sorry!");
+                                        break;
+                                    case "3": // see all orders
+                                        Console.WriteLine("This functionality has not been added yet, sorry!");
+                                        break;
+                                    case "4": // alter account information
+                                        Worker.editInformation(Username);
+                                        break;
+                                }
+                                break;
+                        }
+                    }
+                    break;
+                case "2": // account creation
+                    Console.WriteLine("What do you want your username to be?");
+                    string username = Console.ReadLine();
+                    Console.WriteLine("What do you want your email to be?");
+                    string emailaddress = Console.ReadLine();
+                    Console.WriteLine("What do you want your password to be?");
+                    string Password = Console.ReadLine();
+                    Console.WriteLine("Enter your password again to verify please.");
+                    if (Console.ReadLine() == Password)
+                    {
+                        Console.WriteLine("What kind of account do you want to create? \n Press: [1] to make a user account, [2] to make a worker account [3] to make an admin account");
+                        switch (Console.ReadLine())
+                        {
+                            case "1": // user account 
+                                User user = new User(username, emailaddress, Password);
+                                Console.WriteLine("New user account succesfully created!");
+                                UserHandler.addUser(user);
+                                break;
+                            case "2": // worker account
+                                Worker worker = new Worker(username, emailaddress, Password);
+                                Worker.addWorker(worker);
+                                Console.WriteLine("New worker account succesfully created!");
+                                break;
+                            case "3": // admin account 
+                                Admin admin = new Admin(username, emailaddress, Password);
+                                Admin.addAdmin(admin);
+                                Console.WriteLine("New admin account succesfully created!");
+                                break;
+                        }                        
+                    }
+                    break;
+            }
             return 0;
         }
 

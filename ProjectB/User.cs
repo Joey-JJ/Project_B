@@ -37,6 +37,39 @@ namespace ProjectB
                 users.Add(user);
             }
 
+        } 
+        public static bool login(string username, string email, string password)
+        {
+            int userindex = UserIndexSearch(username);
+            if (userindex > -1)
+            {
+                User user = users[userindex];
+                bool loginsuccesfull = user.Password == password && user.Email == email && user.Password == password;
+                if (loginsuccesfull)
+                {
+                    Console.WriteLine("Login Succesfull!");
+                    return true;
+                }
+                else
+                {
+                    bool passwordcheck = password == user.Password;
+                    if (!passwordcheck)
+                    {
+                        Console.WriteLine("the password seems incorrect");
+                        return false;
+                    }
+                    else
+                    {
+                        Console.WriteLine("The email seems incorrect");
+                        return false;
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine("This user does not seem to exist!");
+                return false;
+            }
         }
         public static void ListAllUsers()   //lists only the username of each user
         {
@@ -219,6 +252,46 @@ namespace ProjectB
         public static string filename = "AdminData.json";
         public static List<Admin> allAdmins = new();
 
+        public static bool Login(string username, string password, string email)
+        {
+            int adminindex = AdminIndexSearch(username);
+            if (adminindex >= 0)
+            {
+                bool passwordcheck = allAdmins[adminindex].Password == password;
+                if (!passwordcheck)
+                {
+                    Console.WriteLine("this password seems incorrect!");
+                    return false;
+                }
+                bool emailcheck = allAdmins[adminindex].Email == email;
+                if (!emailcheck)
+                {
+
+                    Console.WriteLine("This email seems incorrect!");
+                    return false;
+                }
+
+                if (passwordcheck && emailcheck)
+                { 
+                    Console.WriteLine("you've succesfully logged in!");
+                    return true;
+                }
+            }
+            Console.WriteLine("This person could not be found");
+            return false;
+        }
+        public static int AdminIndexSearch(string username)
+        {
+            for(int i = 0; i < allAdmins.Count; i++)
+            {
+                var admin = allAdmins[i];
+                if(admin.Username == username)
+                {
+                    return i;
+                }
+            }
+            return -1;
+        }
         public static void LoadAllAdmins()
         {
             List<Admin> unsanitizedusers = JsonSerializer.Deserialize<List<Admin>>(File.ReadAllText(filename));
@@ -271,6 +344,7 @@ namespace ProjectB
                 {
                     Console.WriteLine("no one was found under that username");
                 }
+
             }
             Console.WriteLine("What information would you like to change about the account? \n Press: \n [1] to edit email [2] to edit username \n [3] to edit Password");
             string output = Console.ReadLine();
