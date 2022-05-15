@@ -41,6 +41,13 @@ namespace ProjectB
                     case 3:
                     PageNumber = EmployeeLoginMenu();
                     break;
+
+                    case 4:
+                    // Customer area
+                    Console.WriteLine("Customer area");
+                    Console.ReadLine(); // TODO: REMOVE
+                    PageNumber = 0;
+                    break;
                 }
             }
         }
@@ -72,42 +79,44 @@ namespace ProjectB
 
         static int CostumerLoginMenu()
         {
-            bool LoggedIn = false;
-            while (!LoggedIn)
+            while (true)
             {
                 Console.Clear();
-                Console.WriteLine("Customer log in");
-                
-                // USERNAME - Getting account, searching with username
+                Console.WriteLine("Customer log in\n");
+
                 Console.Write("Please enter your username: ");
-                string username = Console.ReadLine();
-                string option;
-                var account = CustomerAccounts.GetCustomer(username);
-
-                if (account == null)
-                {
-                    Console.WriteLine("Incorrect username. Do you want to try again?\n[1] Yes\n[2]No\n");
-                    Console.Write("Please enter your selection: ");
-                    option = Console.ReadLine();
-                    // TODO : Implement try again option
-                    return 0;
-                }
-
-                // PASSWORD - Checking if password is correct
+                var username = Console.ReadLine();
                 Console.Write("Please enter your password: ");
                 var password = Console.ReadLine();
-                LoggedIn = account.LogIn(username, password);
 
-                Console.WriteLine("Incorrect password. Do you want to try again?\n[1] Yes\n[2]No\n");
+                var account = CustomerAccounts.GetCustomer(username);
+                if (account != null && account.Password == password) 
+                {
+                    account.LogIn(username, password); // Username correct
+                    return 4;
+                } 
+                
+                Console.WriteLine("Incorrect log in details, do you want to try again?\n[1] Yes\n[2] No\n");
                 Console.Write("Please enter your selection: ");
-                option = Console.ReadLine();
-                // TODO : Implement try again option
+                string userInput = Console.ReadLine();
+
+                if (userInput == "1") continue;
+                if (userInput == "2") return 0;
+                else
+                {
+                    Console.WriteLine("Invalid option. Please only enter the number of the option you would like to pick.\nPress 'Enter' to continue.");
+                    Console.ReadLine();
+                }
             }
-            
-            return 1;
         }
 
-        static int CostumerAccountCreationMenu() => 1;
+        static int CostumerAccountCreationMenu()
+        {
+            Console.Clear();
+            Console.WriteLine("Customer Account Creation");
+
+            return 1;
+        }
 
         static int EmployeeLoginMenu() 
         {
@@ -124,11 +133,11 @@ namespace ProjectB
                     break;
 
                     case "2":
-
+                    // TODO
                     break;
 
                     case "3":
-
+                    // TODO
                     break;
 
                     default: 
@@ -141,8 +150,9 @@ namespace ProjectB
             return 1;
         }
 
-
-
+// -------------------------------
+// ------------- OLD -------------
+// -------------------------------
 
 
         private static int OrderMenu()

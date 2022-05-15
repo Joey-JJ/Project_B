@@ -18,4 +18,10 @@ public static class CustomerAccounts
         }
         return null;
     }
+
+    public static Customer GetLoggedInCustomer()
+    {
+        foreach (var user in Users) { if (user.LoggedIn) return user; }
+        return null;
+    }
 }
