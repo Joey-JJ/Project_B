@@ -45,7 +45,7 @@ namespace ProjectB
                     case 4:
                     // Customer area
                     Console.WriteLine("Customer area");
-                    Console.ReadLine(); // TODO: REMOVE
+                    Console.ReadLine();                     // TODO: REMOVE
                     PageNumber = 0;
                     break;
                 }
@@ -112,10 +112,20 @@ namespace ProjectB
 
         static int CostumerAccountCreationMenu()
         {
-            Console.Clear();
-            Console.WriteLine("Customer Account Creation");
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("Customer Account Creation\n");
 
-            return 1;
+                Console.Write("Enter your full name: ");
+                var fullname = Console.ReadLine();
+                Console.Write("Enter your preferred username: ");
+                var username = Console.ReadLine();
+                Console.Write("Enter your password: ");
+                var password = Console.ReadLine();
+
+                
+            }
         }
 
         static int EmployeeLoginMenu() 

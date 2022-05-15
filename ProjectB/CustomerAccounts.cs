@@ -24,4 +24,13 @@ public static class CustomerAccounts
         foreach (var user in Users) { if (user.LoggedIn) return user; }
         return null;
     }
+
+    public static bool CheckIfAccExists(string fullname, string username)
+    {
+        foreach(var acc in Users)
+        {
+            if (fullname == acc.FullName || username == acc.Username) return true;
+        }
+        return false;
+    }
 }
