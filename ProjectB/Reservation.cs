@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class Reservation
 {
     public string Name { get; set; }
-    public string Email { get; set; }
+    public Customer Account { get; set; }
     public DateTime StartTime { get; set; }
     public DateTime Endtime { get; set; }
     public int PersonCount { get; set; }
@@ -13,12 +13,12 @@ public class Reservation
 
     public Reservation(
             string name,
-            string email,
+            Customer account,
             DateTime starttime,
             int personcount)
     {
         this.Name = name;
-        this.Email = email;
+        this.Account = account;
         this.PersonCount = personcount;
         this.StartTime = starttime;
         this.Endtime = this.StartTime.AddHours(2.0);
@@ -28,8 +28,14 @@ public class Reservation
         else Console.WriteLine("No tables available, please choose another date");
         if (this.TableNumber != null) 
         {
-            try { ReservationService.Reservations[this.StartTime.Date].Add(this); }
-            catch (KeyNotFoundException) { ReservationService.Reservations.Add(this.StartTime.Date, new List<Reservation>() { this }); }
+            try 
+            { 
+                ReservationService.Reservations[this.StartTime.Date].Add(this);
+            }
+            catch (KeyNotFoundException) 
+            { 
+                ReservationService.Reservations.Add(this.StartTime.Date, new List<Reservation>() { this });
+            }
         }
     }
 

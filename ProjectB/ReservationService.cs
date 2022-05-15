@@ -170,11 +170,11 @@ class ReservationService
         return res;
     }
 
-    public static void AddReservation(DateTime dateTime, int personCount)
+    public static void AddReservation(DateTime dateTime, int personCount, Customer acc)
     {
-        var name = "test"; // Replace with account info
-        var email = "test"; // Replace with account info
-        var newRes = new Reservation(name, email, dateTime, personCount);
+        var newRes = new Reservation(acc.FullName, acc, dateTime, personCount);
+        try { acc.Reservations.Add(newRes); }
+        catch (System.NullReferenceException) { Console.WriteLine($"{newRes}"); }
         Console.WriteLine("Added Reservation");
     }
     
