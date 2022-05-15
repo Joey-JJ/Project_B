@@ -340,7 +340,6 @@ namespace ProjectB
                                                 case "3": // alter password
                                                     Console.WriteLine("what was your previous password?");
 
-                                                    int c;
                                                     while (true)
                                                     {
                                                         if (Console.ReadLine() == password)
