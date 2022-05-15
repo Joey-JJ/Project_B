@@ -115,7 +115,6 @@ class ReservationService
                 System.Console.WriteLine(
                     $"[{i + 1}] {res.AddMinutes(30 * i).ToShortTimeString()} untill {res.AddHours(2.0).AddMinutes(30 * i).ToShortTimeString()}");
             }
-            System.Console.WriteLine($"[12] Go back and select another date");
             System.Console.WriteLine("At what time would you like to come?");
             Console.Write("Please enter your selection: ");
             var input = Console.ReadLine();
@@ -164,9 +163,6 @@ class ReservationService
                 case "11":
                     timeFound = true;
                     res = times[10];
-                    break;
-                case "12":
-                    // TODO
                     break;
             }
         }

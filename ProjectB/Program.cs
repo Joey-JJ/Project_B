@@ -5,44 +5,145 @@ namespace ProjectB
 {
     class Program
     {
-        static void Main(string[] args)
-        {
+        static void Main()
+        {   
+            // Testing (TODO: REMOVE)
+            CustomerAccounts.AddAccount("test", "test123", "test test");
+            CustomerAccounts.AddAccount("test2", "test123", "test test");
+            CustomerAccounts.AddAccount("test3", "test123", "test test");
+            
+            // Load database files
             ReservationService.LoadReservations();
             ReviewStuff.LoadReviews();
-            int pageNumber = 0;
-
-            while (true)
+            
+            // Welcome message
+            Console.Clear();
+            Console.WriteLine("Welcome!\n");
+            
+            // Page handling
+            int PageNumber = 0;
+            while (PageNumber != -1)
             {
-                switch (pageNumber)
+                switch (PageNumber)
                 {
                     case 0:
-                        pageNumber = MainPage();
-                        break;
-                    case 1:
-                        pageNumber = AccountCreation();
-                        break;
-                    case 2:
-                        pageNumber = ReservationMenu();
-                        break;
-                    case 3:
-                        pageNumber = ReviewMenu();
-                        break;
-                    case 4:
-                        pageNumber = OrderMenu();
-                        break;
-                    case 5:
-                        Console.Clear();
-                        Console.WriteLine("Not available right now");
-                        Console.WriteLine("\nPress 'Enter' to go back.");
-                        Console.ReadLine();
-                        pageNumber = 0;
-                        break;
-                    case 99:
-                        return;
+                    PageNumber = InitialLogInMenu();
+                    break;
 
+                    case 1:
+                    PageNumber = CostumerLoginMenu();
+                    break;
+
+                    case 2:
+                    PageNumber = CostumerAccountCreationMenu();
+                    break;
+
+                    case 3:
+                    PageNumber = EmployeeLoginMenu();
+                    break;
                 }
             }
         }
+
+        static int InitialLogInMenu()
+        {
+            while (true)
+            {
+                Console.WriteLine("You will need to log in to proceed. Select an option from the menu below:\n[1] Log in as a costumer\n[2] Create a costumer account\n[3] Log in as an employee\n[4] Quit the application\n");
+                Console.Write("Please enter your selection: ");
+                var user_input = Console.ReadLine();
+                switch (user_input)
+                {
+                    case "1": return 1;
+                    case "2": return 2;
+                    case "3": return 3;
+                    case "4":
+                    Console.WriteLine("Quitting application ...");
+                    return -1;
+
+                    default:
+                    Console.WriteLine("Invalid option. Please only enter the number of the option you would like to pick.\nPress 'Enter' to continue.");
+                    Console.ReadLine();
+                    break;
+                }
+            }
+            
+        }
+
+        static int CostumerLoginMenu()
+        {
+            bool LoggedIn = false;
+            while (!LoggedIn)
+            {
+                Console.Clear();
+                Console.WriteLine("Customer log in");
+                
+                // USERNAME - Getting account, searching with username
+                Console.Write("Please enter your username: ");
+                string username = Console.ReadLine();
+                string option;
+                var account = CustomerAccounts.GetCustomer(username);
+
+                if (account == null)
+                {
+                    Console.WriteLine("Incorrect username. Do you want to try again?\n[1] Yes\n[2]No\n");
+                    Console.Write("Please enter your selection: ");
+                    option = Console.ReadLine();
+                    // TODO : Implement try again option
+                    return 0;
+                }
+
+                // PASSWORD - Checking if password is correct
+                Console.Write("Please enter your password: ");
+                var password = Console.ReadLine();
+                LoggedIn = account.LogIn(username, password);
+
+                Console.WriteLine("Incorrect password. Do you want to try again?\n[1] Yes\n[2]No\n");
+                Console.Write("Please enter your selection: ");
+                option = Console.ReadLine();
+                // TODO : Implement try again option
+            }
+            
+            return 1;
+        }
+
+        static int CostumerAccountCreationMenu() => 1;
+
+        static int EmployeeLoginMenu() 
+        {
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("Employee log in\n[1] Log in as a regular employee\n[2] Log in as an admin\n[3] Go back\n");
+                Console.Write("Please enter your selection: ");
+                var user_input = Console.ReadLine();
+                switch (user_input)
+                {
+                    case "1":
+                    
+                    break;
+
+                    case "2":
+
+                    break;
+
+                    case "3":
+
+                    break;
+
+                    default: 
+                    Console.WriteLine("Invalid option. Please only enter the number of the option you would like to pick.\nPress 'Enter' to continue.");
+                    Console.ReadLine();
+                    break;
+                }
+                break;
+            }
+            return 1;
+        }
+
+
+
+
 
         private static int OrderMenu()
         {
@@ -241,7 +342,7 @@ namespace ProjectB
         {
 
             Console.Clear();
-            Console.WriteLine("Press: [1] to log in \n       [2] to make an account ");
+            Console.WriteLine("Press: [1] to log in \n[2] to make an account ");
             switch (Console.ReadLine())
             {
                 case "1": // log in
