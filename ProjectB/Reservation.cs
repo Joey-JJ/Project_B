@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class Reservation
 {
     public string Name { get; set; }
-    public Customer Account { get; set; }
+    public string Username { get; set; }
     public DateTime StartTime { get; set; }
     public DateTime Endtime { get; set; }
     public int PersonCount { get; set; }
@@ -13,12 +13,12 @@ public class Reservation
 
     public Reservation(
             string name,
-            Customer account,
+            string username,
             DateTime starttime,
             int personcount)
     {
         this.Name = name;
-        // this.Account = account; --- Causes error because of JSON loop
+        this.Username = username;
         this.PersonCount = personcount;
         this.StartTime = starttime;
         this.Endtime = this.StartTime.AddHours(2.0);

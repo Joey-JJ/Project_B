@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-public class BaseUser
+public abstract class BaseUser
 {
     public string Username { get; set; }
     public string Password { get; set; }
@@ -42,13 +42,13 @@ public class Customer : BaseUser
     public void ListReservations() 
     {
         Console.Clear();
-        if (Reservations.Count < 1)
+        if (Reservations.Count < 1) Console.WriteLine("You don't have any reservations currently");
+        else
         {
-            Console.WriteLine("You don't have any reservations currently");
-            return;
-        }
-        for (var i = 0; i < this.Reservations.Count; i++)
+            for (var i = 0; i < this.Reservations.Count; i++)
             Console.WriteLine($"{i+1}. {Reservations[i].StartTime} with {Reservations[i].PersonCount} people.");
+        }
+        
         Console.Write("Press 'Enter' to continue");
         Console.ReadLine();
     }

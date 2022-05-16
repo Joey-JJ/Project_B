@@ -20,6 +20,16 @@ class ReservationService
     {
         string jsonString = File.ReadAllText(FileName);
         Reservations = JsonSerializer.Deserialize<Dictionary<DateTime, List<Reservation>>>(jsonString);
+        foreach (var date in Reservations)
+        {
+            foreach (var res in date.Value)
+            {
+                foreach (var user in CustomerAccounts.Users)
+                {
+                    if (res.Username == user.Username) user.Reservations.Add(res);
+                }
+            }
+        }
     }
 
     public static void ListReservations()
@@ -172,7 +182,7 @@ class ReservationService
 
     public static void AddReservation(DateTime dateTime, int personCount, Customer acc)
     {
-        var newRes = new Reservation(acc.FullName, acc, dateTime, personCount);
+        var newRes = new Reservation(acc.FullName, acc.Username, dateTime, personCount);
         try { acc.Reservations.Add(newRes); }
         catch (System.NullReferenceException) { Console.WriteLine($"{newRes}"); }
         Console.WriteLine("Added Reservation");

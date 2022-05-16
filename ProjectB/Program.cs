@@ -13,7 +13,7 @@ namespace ProjectB
             CustomerAccounts.AddAccount("test3", "test123", "test test");
             
             // Load database files
-            // ReservationService.LoadReservations();
+            ReservationService.LoadReservations();
             // ReviewStuff.LoadReviews();
             
             // Welcome message
@@ -203,6 +203,25 @@ namespace ProjectB
                     break;
 
                     case "3": // Cancel a reservation
+                    Console.Clear();
+                    if (userAccount.Reservations.Count == 0)
+                    {
+                        Console.WriteLine("You currently don't have any reservations.");
+                        Console.Write("Press 'Enter' to continue");
+                        Console.ReadLine();
+                    }
+                    if (userAccount.Reservations.Count == 1)
+                    {
+                        userAccount.Reservations.Remove(userAccount.Reservations[0]);
+                    }
+                    else
+                    {
+                        userAccount.ListReservations();
+                        Console.WriteLine("\nWhich reservation would you like to cancel?");
+                        Console.Write("Please enter your selection: ");
+                        var resToDelete = Console.ReadLine();
+
+                    }
                     break;
 
                     case "4": // Write a review

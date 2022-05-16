@@ -1,12 +1,12 @@
 {
-  "2022-05-15T00:00:00": [
+  "0001-02-03T00:00:00": [
     {
-      "Name": "test test",
-      "Account": {},
-      "StartTime": "2022-05-15T17:00:00",
-      "Endtime": "2022-05-15T19:00:00",
-      "PersonCount": 1,
-      "TableNumber": 18,
+      "Name": "N",
+      "Username": "test",
+      "StartTime": "0001-02-03T00:00:00",
+      "Endtime": "0001-02-03T02:00:00",
+      "PersonCount": 4,
+      "TableNumber": 10,
       "Day": {
         "Tables": [
           {
@@ -57,7 +57,7 @@
           {
             "TableNumber": 10,
             "NumberOfSeats": 4,
-            "Taken": false
+            "Taken": true
           },
           {
             "TableNumber": 11,
@@ -97,10 +97,10 @@
           {
             "TableNumber": 18,
             "NumberOfSeats": 2,
-            "Taken": true
+            "Taken": false
           }
         ],
-        "Date": "2022-05-15T00:00:00"
+        "Date": "0001-02-03T00:00:00"
       }
     }
   ]
