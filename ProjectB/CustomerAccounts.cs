@@ -33,4 +33,9 @@ public static class CustomerAccounts
         }
         return false;
     }
+
+    public static void LogOutAllCustomers()
+    {
+        foreach (var user in Users) user.LogOut();
+    }
 }

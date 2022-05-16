@@ -18,7 +18,7 @@ public class Reservation
             int personcount)
     {
         this.Name = name;
-        this.Account = account;
+        // this.Account = account; --- Causes error because of JSON loop
         this.PersonCount = personcount;
         this.StartTime = starttime;
         this.Endtime = this.StartTime.AddHours(2.0);

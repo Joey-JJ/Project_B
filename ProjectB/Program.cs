@@ -188,49 +188,65 @@ namespace ProjectB
             {
                 Console.Clear();
                 Console.WriteLine($"Logged in as: {userAccount.FullName}");
-                Console.WriteLine("What would you like to do?\n[1] Make a reservation\n[2] See your current reservations\n[3] Write a review\n");
+                Console.WriteLine("What would you like to do?\n[1] Make a reservation\n[2] See your current reservations\n[3] Cancel a reservation\n[4] Write a review\n[5] List your reviews\n[6] Log out and go back to the main menu\n");
                 Console.Write("Please enter your selection: ");
                 userInput = Console.ReadLine();
 
                 switch (userInput)
                 {
                     case "1": // Adding a reservation
-                    Console.Clear();
-                    var datetime = ReservationService.GetReservationTime(ReservationService.GetReservationDate());
-                    int persons;
-                    while (true)
-                    {
-                        try
-                        {
-                            Console.Write("With how many persons are you coming? ");
-                            persons = Convert.ToInt32(Console.ReadLine());
-                            break;
-                        }
-                        catch (System.Exception)
-                        {
-                            System.Console.WriteLine("Invalid input, please try again...");
-                        }
-                    }
-
-                    ReservationService.AddReservation(datetime, persons, userAccount);
-                    ReservationService.SaveReservations();
-
-                    Console.WriteLine("\nPress 'Enter' to go back");
-                    Console.ReadLine();
+                    AddReservationMenu(userAccount);
                     break;
 
-                    case "2": 
+                    case "2":  // Listing account reservations
+                    userAccount.ListReservations();
                     break;
 
-                    case "3": 
+                    case "3": // Cancel a reservation
                     break;
 
-                    default: 
+                    case "4": // Write a review
+                    break;
+
+                    case "5": // List reviews
+                    break;
+
+                    case "6": // Log out
+                    CustomerAccounts.LogOutAllCustomers();
+                    return 0;
+
+                    default: // Incorrect input
                     Console.WriteLine("Invalid option. Please only enter the number of the option you would like to pick.\nPress 'Enter' to continue.");
                     Console.ReadLine();
                     break;
                 }
             }
+        }
+
+        private static void AddReservationMenu(Customer userAccount) // Located inside customer area
+        {
+            Console.Clear();
+            var datetime = ReservationService.GetReservationTime(ReservationService.GetReservationDate());
+            int persons;
+            while (true)
+            {
+                try
+                {
+                    Console.Write("With how many persons are you coming? ");
+                    persons = Convert.ToInt32(Console.ReadLine());
+                    break;
+                }
+                catch (System.Exception)
+                {
+                    System.Console.WriteLine("Invalid input, please try again...");
+                }
+            }
+
+            ReservationService.AddReservation(datetime, persons, userAccount);
+            ReservationService.SaveReservations();
+
+            Console.WriteLine("\nPress 'Enter' to go back");
+            Console.ReadLine();
         }
     }
 }

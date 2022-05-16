@@ -177,19 +177,4 @@ class ReservationService
         catch (System.NullReferenceException) { Console.WriteLine($"{newRes}"); }
         Console.WriteLine("Added Reservation");
     }
-    
-    public static void RemoveReservation(string nameOfRes)
-    {
-        // TODO
-    }
-
-    public static void EditDateTime(string nameOfRes, DateTime valueToChangeTo)
-    {
-        // TODO
-    }
-
-    public static void EditPersonCount(string nameOfRes, int valueToChangeTo)
-    {
-        // TODO
-    }
 }
