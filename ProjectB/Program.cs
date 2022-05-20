@@ -7,12 +7,8 @@ namespace ProjectB
     {
         static void Main()
         {   
-            // Testing (TODO: REMOVE)
-            CustomerAccounts.AddAccount("test", "test123", "test test");
-            CustomerAccounts.AddAccount("test2", "test123", "test test");
-            CustomerAccounts.AddAccount("test3", "test123", "test test");
-            
             // Load database files
+            UserAccounts.LoadCustomerAccounts();
             ReservationService.LoadReservations();
             // ReviewStuff.LoadReviews();
             
@@ -51,7 +47,7 @@ namespace ProjectB
             {
                 Console.Clear();
                 Console.WriteLine("Welcome!\n");
-                Console.WriteLine("You will need to log in to proceed. Select an option from the menu below:\n[1] Log in as a costumer\n[2] Create a costumer account\n[3] Log in as an employee\n[4] Quit the application\n");
+                Console.WriteLine("You will need to log in to proceed. Select an option from the menu below:\n[1] Log in as a customer\n[2] Create a customer account\n[3] Log in as an employee\n[4] Quit the application\n");
                 Console.Write("Please enter your selection: ");
                 var user_input = Console.ReadLine();
                 switch (user_input)
@@ -84,7 +80,7 @@ namespace ProjectB
                 Console.Write("Please enter your password: ");
                 var password = Console.ReadLine();
 
-                var account = CustomerAccounts.GetCustomer(username);
+                var account = UserAccounts.GetCustomer(username);
                 if (account != null && account.Password == password) 
                 {
                     account.LogIn(username, password); // Username correct
@@ -119,7 +115,7 @@ namespace ProjectB
                 Console.Write("Enter your password: ");
                 var password = Console.ReadLine();
 
-                bool exists = CustomerAccounts.CheckIfAccExists(fullname, username);
+                bool exists = UserAccounts.CheckIfAccExists(fullname, username);
                 if (exists)
                 {
                     Console.WriteLine("There already is an account with that information. Please log in to your account or choose different credentials");
@@ -137,7 +133,8 @@ namespace ProjectB
                 } 
                 else
                 {
-                    CustomerAccounts.AddAccount(username, password, fullname);
+                    UserAccounts.AddAccount(username, password, fullname);
+                    UserAccounts.SaveCustomerAccounts();
                     Console.WriteLine("Account created, routing you to the log in screen.\nPress 'Enter' to go to the log in screen.");
                     Console.ReadLine();
                     return 1;
@@ -180,7 +177,7 @@ namespace ProjectB
         private static int CustomerArea()
         {
             // Getting the account that logged in
-            var userAccount = CustomerAccounts.GetLoggedInCustomer();
+            var userAccount = UserAccounts.GetLoggedInCustomer();
             string userInput;
             while (true)
             {
@@ -205,13 +202,14 @@ namespace ProjectB
                     break;
 
                     case "4": // Write a review
+                    WriteReviewMenu(userAccount);
                     break;
 
                     case "5": // List reviews
                     break;
 
                     case "6": // Log out
-                    CustomerAccounts.LogOutAllCustomers();
+                    UserAccounts.LogOutAllCustomers();
                     return 0;
 
                     default: // Incorrect input
@@ -235,6 +233,7 @@ namespace ProjectB
             {
                 ReservationService.RemoveReservation(0, userAccount);
                 ReservationService.SaveReservations();
+                UserAccounts.SaveCustomerAccounts();
                 Console.WriteLine("Removed reservation");
                 Console.WriteLine("Press 'Enter' to continue");
                 Console.ReadLine();
@@ -252,6 +251,7 @@ namespace ProjectB
                         var index = Convert.ToInt32(resToDelete);
                         ReservationService.RemoveReservation(index - 1, userAccount);
                         ReservationService.SaveReservations();
+                        UserAccounts.SaveCustomerAccounts();
                         Console.WriteLine("Reservation deleted.");
                         Console.WriteLine("Press 'Enter' to continue");
                         Console.ReadLine();
@@ -284,9 +284,16 @@ namespace ProjectB
 
             ReservationService.AddReservation(datetime, persons, userAccount);
             ReservationService.SaveReservations();
+            UserAccounts.SaveCustomerAccounts();
 
             Console.WriteLine("\nPress 'Enter' to go back");
             Console.ReadLine();
+        }
+
+        private static void WriteReviewMenu(Customer userAccount)
+        {
+            Console.Clear();
+            Console.WriteLine("Write a review");
         }
     }
 }

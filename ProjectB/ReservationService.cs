@@ -24,7 +24,7 @@ class ReservationService
         {
             foreach (var res in date.Value)
             {
-                foreach (var user in CustomerAccounts.Users)
+                foreach (var user in UserAccounts.Customers)
                 {
                     if (res.Username == user.Username) user.Reservations.Add(res);
                 }
