@@ -16,10 +16,6 @@ namespace ProjectB
             ReservationService.LoadReservations();
             // ReviewStuff.LoadReviews();
             
-            // Welcome message
-            Console.Clear();
-            Console.WriteLine("Welcome!\n");
-            
             // Page handling
             int PageNumber = 0;
             while (PageNumber != -1)
@@ -53,6 +49,8 @@ namespace ProjectB
         {
             while (true)
             {
+                Console.Clear();
+                Console.WriteLine("Welcome!\n");
                 Console.WriteLine("You will need to log in to proceed. Select an option from the menu below:\n[1] Log in as a costumer\n[2] Create a costumer account\n[3] Log in as an employee\n[4] Quit the application\n");
                 Console.Write("Please enter your selection: ");
                 var user_input = Console.ReadLine();
@@ -204,23 +202,46 @@ namespace ProjectB
 
                     case "3": // Cancel a reservation
                     Console.Clear();
-                    if (userAccount.Reservations.Count == 0)
+                    if (userAccount.Reservations.Count == 0) // User does not have reservations
                     {
                         Console.WriteLine("You currently don't have any reservations.");
                         Console.Write("Press 'Enter' to continue");
                         Console.ReadLine();
+                        // return;
                     }
-                    if (userAccount.Reservations.Count == 1)
+                    else if (userAccount.Reservations.Count == 1) // User has one reservation
                     {
-                        userAccount.Reservations.Remove(userAccount.Reservations[0]);
+                        ReservationService.RemoveReservation(0, userAccount);
+                        ReservationService.SaveReservations();
+                        Console.WriteLine("Removed reservation");
+                        Console.WriteLine("Press 'Enter' to continue");
+                        Console.ReadLine();
+                        // return;
                     }
-                    else
+                    else if (userAccount.Reservations.Count > 1) // User has multiple reservations
                     {
-                        userAccount.ListReservations();
-                        Console.WriteLine("\nWhich reservation would you like to cancel?");
-                        Console.Write("Please enter your selection: ");
-                        var resToDelete = Console.ReadLine();
-
+                        while (true)
+                        {
+                            userAccount.ListReservations();
+                            Console.WriteLine("\nWhich reservation would you like to cancel?");
+                            Console.Write("Please enter your selection: ");
+                            var resToDelete = Console.ReadLine();
+                            try 
+                            {
+                                var index = Convert.ToInt32(resToDelete);
+                                ReservationService.RemoveReservation(index-1, userAccount);
+                                ReservationService.SaveReservations();
+                                Console.WriteLine("Reservation deleted.");
+                                Console.WriteLine("Press 'Enter' to continue");
+                                Console.ReadLine();
+                                break;
+                            } 
+                            catch { Console.WriteLine("Invalid input, please try again."); }
+                            break;
+                        }
+                        
+                        
+                        // return;
                     }
                     break;
 

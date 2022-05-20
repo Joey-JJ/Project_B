@@ -187,4 +187,19 @@ class ReservationService
         catch (System.NullReferenceException) { Console.WriteLine($"{newRes}"); }
         Console.WriteLine("Added Reservation");
     }
+
+    public static void RemoveReservation(int index, Customer user) 
+    {
+        var reservation = user.Reservations[index];
+        user.Reservations.RemoveAt(index);
+        foreach (var date in Reservations)
+        {
+            foreach (var res in date.Value)
+            {
+                if (res.Username == reservation.Username && res.StartTime == reservation.StartTime)
+                    Reservations[date.Key].Remove(reservation);
+                    break;
+            }
+        }
+    }
 }
