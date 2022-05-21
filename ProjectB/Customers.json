@@ -105,7 +105,15 @@
         }
       }
     ],
-    "Reviews": [],
+    "Reviews": [
+      {
+        "FullName": null,
+        "UserName": "test",
+        "ReviewText": "Super lekker broski",
+        "Rating": 4,
+        "Date": "2022-05-21T13:47:15.413123+02:00"
+      }
+    ],
     "Username": "test",
     "Password": "test123",
     "FullName": "test test",

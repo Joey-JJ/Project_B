@@ -32,7 +32,7 @@ public abstract class BaseUser
 public class Customer : BaseUser
 {
     public List<Reservation> Reservations { get; set; }
-    public List<ReviewData> Reviews { get; set; }
+    public List<Review> Reviews { get; set; }
     public Customer(string Username, string Password, string FullName) : base(Username, Password, FullName) 
     {
         this.Reservations = new();
@@ -49,6 +49,19 @@ public class Customer : BaseUser
             Console.WriteLine($"{i+1}. {Reservations[i].StartTime} with {Reservations[i].PersonCount} people.");
         }
         
+        Console.Write("Press 'Enter' to continue");
+        Console.ReadLine();
+    }
+
+    public void ListReviews()
+    {
+        Console.Clear();
+        if (Reviews.Count < 1) Console.WriteLine("You don't have any reviews currently");
+        else
+        {
+            for (var i = 0; i < this.Reviews.Count; i++)
+                Console.WriteLine($"{i+1}. {Reviews[i].Date.ToShortDateString()} at {Reviews[i].Date.ToShortTimeString()}: {Reviews[i].ReviewText} - {Reviews[i].Rating} stars");
+        }
         Console.Write("Press 'Enter' to continue");
         Console.ReadLine();
     }

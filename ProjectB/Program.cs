@@ -10,7 +10,7 @@ namespace ProjectB
             // Load database files
             UserAccounts.LoadCustomerAccounts();
             ReservationService.LoadReservations();
-            // ReviewStuff.LoadReviews();
+            ReviewService.LoadReviews();
             
             // Page handling
             int PageNumber = 0;
@@ -183,7 +183,7 @@ namespace ProjectB
             {
                 Console.Clear();
                 Console.WriteLine($"Logged in as: {userAccount.FullName}");
-                Console.WriteLine("What would you like to do?\n[1] Make a reservation\n[2] See your current reservations\n[3] Cancel a reservation\n[4] Write a review\n[5] List your reviews\n[6] Log out and go back to the main menu\n");
+                Console.WriteLine("What would you like to do?\n[1] Make a reservation\n[2] See your current reservations\n[3] Cancel a reservation\n[4] Write a review\n[5] List your reviews\n[6] Remove a review\n[7] Log out and go back to the main menu\n");
                 Console.Write("Please enter your selection: ");
                 userInput = Console.ReadLine();
 
@@ -206,9 +206,14 @@ namespace ProjectB
                     break;
 
                     case "5": // List reviews
+                    userAccount.ListReviews();
                     break;
 
-                    case "6": // Log out
+                    case "6": // Remove a review
+                    RemoveReviewMenu(userAccount);
+                    break;
+
+                    case "7": // Log out
                     UserAccounts.LogOutAllCustomers();
                     return 0;
 
@@ -220,7 +225,34 @@ namespace ProjectB
             }
         }
 
-        private static void CancelReservationMenu(Customer userAccount)
+        private static void AddReservationMenu(Customer userAccount) // Located inside customer area
+        {
+            Console.Clear();
+            var datetime = ReservationService.GetReservationTime(ReservationService.GetReservationDate());
+            int persons;
+            while (true)
+            {
+                try
+                {
+                    Console.Write("With how many persons are you coming? ");
+                    persons = Convert.ToInt32(Console.ReadLine());
+                    break;
+                }
+                catch (System.Exception)
+                {
+                    System.Console.WriteLine("Invalid input, please try again...");
+                }
+            }
+
+            ReservationService.AddReservation(datetime, persons, userAccount);
+            ReservationService.SaveReservations();
+            UserAccounts.SaveCustomerAccounts();
+
+            Console.WriteLine("\nPress 'Enter' to go back");
+            Console.ReadLine();
+        }
+
+        private static void CancelReservationMenu(Customer userAccount) // Located inside customer area
         {
             Console.Clear();
             if (userAccount.Reservations.Count == 0) // User does not have reservations
@@ -263,37 +295,74 @@ namespace ProjectB
             }
         }
 
-        private static void AddReservationMenu(Customer userAccount) // Located inside customer area
+        private static void WriteReviewMenu(Customer userAccount) // Located inside customer area
         {
-            Console.Clear();
-            var datetime = ReservationService.GetReservationTime(ReservationService.GetReservationDate());
-            int persons;
+            string reviewText;
+            int reviewRating=0;
             while (true)
             {
+                Console.Clear();
+                Console.WriteLine("Write a review");
+                Console.Write("Please enter your review: ");
+                reviewText = Console.ReadLine();
                 try
                 {
-                    Console.Write("With how many persons are you coming? ");
-                    persons = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("Please enter your rating (1-5): ");
+                    reviewRating = Convert.ToInt32(Console.ReadLine());
+                    if (reviewRating > 5) reviewRating = 5;
+                    else if (reviewRating < 1) reviewRating = 1;
+                    // Adding review to account and saving it to JSON
+                    ReviewService.AddReview(userAccount, reviewText, reviewRating);
+                    ReviewService.SaveReviews();
+                    UserAccounts.SaveCustomerAccounts();
+
+                    Console.WriteLine("Review saved! Press 'Enter' to continue.");
+                    Console.ReadLine();
                     break;
-                }
-                catch (System.Exception)
-                {
-                    System.Console.WriteLine("Invalid input, please try again...");
-                }
+                } 
+                catch { Console.WriteLine("Invalid input, please enter a valid rating. Press 'Enter to continue."); }
+                Console.ReadLine();
             }
-
-            ReservationService.AddReservation(datetime, persons, userAccount);
-            ReservationService.SaveReservations();
-            UserAccounts.SaveCustomerAccounts();
-
-            Console.WriteLine("\nPress 'Enter' to go back");
-            Console.ReadLine();
         }
 
-        private static void WriteReviewMenu(Customer userAccount)
+        public static void RemoveReviewMenu(Customer userAccount) // Located inside customer area
         {
             Console.Clear();
-            Console.WriteLine("Write a review");
+            if (userAccount.Reviews.Count == 0) // User does not have reviews
+            {
+                Console.WriteLine("You currently don't have any reviews.");
+                Console.Write("Press 'Enter' to continue");
+                Console.ReadLine();
+            } else if (userAccount.Reviews.Count == 1) // User has one review
+            {
+                ReviewService.RemoveReview(0, userAccount);
+                ReviewService.SaveReviews();
+                UserAccounts.SaveCustomerAccounts();
+                Console.WriteLine("Removed review");
+                Console.WriteLine("Press 'Enter' to continue");
+                Console.ReadLine();
+            } else if (userAccount.Reviews.Count > 1) // User has multiple reviews
+            {
+                while (true)
+                {
+                    userAccount.ListReviews();
+                    Console.WriteLine("\nWhich review would you like to cancel?");
+                    Console.Write("Please enter your selection: ");
+                    var reviewToDelete = Console.ReadLine();
+                    try
+                    {
+                        var index = Convert.ToInt32(reviewToDelete);
+                        ReviewService.RemoveReview(index-1, userAccount);
+                        ReviewService.SaveReviews();
+                        UserAccounts.SaveCustomerAccounts();
+                        Console.WriteLine("Review removed. Press 'Enter' to continue.");
+                        Console.ReadLine();
+                        break;           
+                    }
+                    catch { Console.WriteLine("Invalid input. Please try again."); }
+                }
+                
+            }
         }
     }
 }
