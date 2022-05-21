@@ -20,6 +20,16 @@ class ReservationService
     {
         string jsonString = File.ReadAllText(FileName);
         Reservations = JsonSerializer.Deserialize<Dictionary<DateTime, List<Reservation>>>(jsonString);
+        foreach (var date in Reservations)
+        {
+            foreach (var res in date.Value)
+            {
+                foreach (var user in UserAccounts.Customers)
+                {
+                    if (res.Username == user.Username) user.Reservations.Add(res);
+                }
+            }
+        }
     }
 
     public static void ListReservations()
@@ -115,7 +125,6 @@ class ReservationService
                 System.Console.WriteLine(
                     $"[{i + 1}] {res.AddMinutes(30 * i).ToShortTimeString()} untill {res.AddHours(2.0).AddMinutes(30 * i).ToShortTimeString()}");
             }
-            System.Console.WriteLine($"[12] Go back and select another date");
             System.Console.WriteLine("At what time would you like to come?");
             Console.Write("Please enter your selection: ");
             var input = Console.ReadLine();
@@ -165,35 +174,32 @@ class ReservationService
                     timeFound = true;
                     res = times[10];
                     break;
-                case "12":
-                    // TODO
-                    break;
             }
         }
         Console.WriteLine(res);
         return res;
     }
 
-    public static void AddReservation(DateTime dateTime, int personCount)
+    public static void AddReservation(DateTime dateTime, int personCount, Customer acc)
     {
-        var name = "test"; // Replace with account info
-        var email = "test"; // Replace with account info
-        var newRes = new Reservation(name, email, dateTime, personCount);
+        var newRes = new Reservation(acc.FullName, acc.Username, dateTime, personCount);
+        try { acc.Reservations.Add(newRes); }
+        catch (System.NullReferenceException) { Console.WriteLine($"{newRes}"); }
         Console.WriteLine("Added Reservation");
     }
-    
-    public static void RemoveReservation(string nameOfRes)
-    {
-        // TODO
-    }
 
-    public static void EditDateTime(string nameOfRes, DateTime valueToChangeTo)
+    public static void RemoveReservation(int index, Customer user) 
     {
-        // TODO
-    }
-
-    public static void EditPersonCount(string nameOfRes, int valueToChangeTo)
-    {
-        // TODO
+        var reservation = user.Reservations[index];
+        user.Reservations.RemoveAt(index);
+        foreach (var date in Reservations)
+        {
+            foreach (var res in date.Value)
+            {
+                if (res.Username == reservation.Username && res.StartTime == reservation.StartTime)
+                    Reservations[date.Key].Remove(reservation);
+                    break;
+            }
+        }
     }
 }
