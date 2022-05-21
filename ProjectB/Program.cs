@@ -166,7 +166,7 @@ namespace ProjectB
                         Console.Clear();
                         Console.WriteLine("Employee log in\n");
 
-                        Console.Write("Enter your username: )");
+                        Console.Write("Enter your username: ");
                         var username = Console.ReadLine();
                         Console.Write("Enter your password: ");
                         var password = Console.ReadLine();
@@ -175,7 +175,7 @@ namespace ProjectB
                         if (account != null && account.Password == password) 
                         {
                             account.LogIn(username, password); // Username correct
-                            return 0;
+                            return 5;
                         } 
                         
                         Console.WriteLine("Incorrect log in details, do you want to try again?\n[1] Yes\n[2] No\n");
@@ -395,8 +395,18 @@ namespace ProjectB
     
         public static int EmployeeArea()
         {
-            
-            return 0;
+            var userAccount = UserAccounts.GetLoggedInEmployee();
+            if (userAccount == null) return 0; // In case something goes wrong
+
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine($"Logged in as {2}");
+                Console.WriteLine("What would you like to do?\n[1] opt1\n[2] opt2\n[3] opt3\n");
+                Console.Write("Please enter your selection: ");
+                var input = Console.ReadLine();
+                return 0;
+            }
         }
     }
 }

@@ -52,6 +52,11 @@ public static class UserAccounts
         return null;
     }
 
+    public static Employee GetLoggedInEmployee()
+        {
+            foreach (var user in Employees) { if (user.LoggedIn) return user; }
+            return null;
+        }
     public static bool CheckIfAccExists(string fullname, string username)
     {
         foreach(var acc in Customers)
