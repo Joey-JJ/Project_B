@@ -3,12 +3,12 @@ using System;
 
 namespace ProjectB
 {
-    class Program
+    public static class Program
     {
         static void Main()
         {   
             // Load database files
-            UserAccounts.LoadCustomerAccounts();
+            UserAccounts.LoadAccountData();
             ReservationService.LoadReservations();
             ReviewService.LoadReviews();
             
@@ -37,6 +37,13 @@ namespace ProjectB
                     case 4:
                     PageNumber = CustomerArea();
                     break;
+
+                    case 5: // Employee
+                    PageNumber = EmployeeArea();
+                    break;
+
+                    case 6: // Admin
+                    break;
                 }
             }
         }
@@ -56,7 +63,7 @@ namespace ProjectB
                     case "2": return 2;
                     case "3": return 3;
                     case "4":
-                    Console.WriteLine("Quitting application ...");
+                    Console.WriteLine("Closing the application. See you next time!");
                     return -1;
 
                     default:
@@ -133,8 +140,8 @@ namespace ProjectB
                 } 
                 else
                 {
-                    UserAccounts.AddAccount(username, password, fullname);
-                    UserAccounts.SaveCustomerAccounts();
+                    UserAccounts.AddCustomerAccount(username, password, fullname);
+                    UserAccounts.SaveAccountData();
                     Console.WriteLine("Account created, routing you to the log in screen.\nPress 'Enter' to go to the log in screen.");
                     Console.ReadLine();
                     return 1;
@@ -147,31 +154,52 @@ namespace ProjectB
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("Employee log in\n[1] Log in as a regular employee\n[2] Log in as an admin\n[3] Go back\n");
+                Console.WriteLine("Employee log in\n[1] Log in as an employee\n[2] Log in as an admin\n[3] Go back\n");
                 Console.Write("Please enter your selection: ");
                 var user_input = Console.ReadLine();
+
                 switch (user_input)
                 {
-                    case "1":
-                    
-                    break;
+                    case "1": // Employees
+                    while (true)
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Employee log in\n");
 
-                    case "2":
-                    // TODO
-                    break;
+                        Console.Write("Enter your username: )");
+                        var username = Console.ReadLine();
+                        Console.Write("Enter your password: ");
+                        var password = Console.ReadLine();
 
-                    case "3":
-                    // TODO
-                    break;
+                        var account = UserAccounts.GetEmployee(username);
+                        if (account != null && account.Password == password) 
+                        {
+                            account.LogIn(username, password); // Username correct
+                            return 0;
+                        } 
+                        
+                        Console.WriteLine("Incorrect log in details, do you want to try again?\n[1] Yes\n[2] No\n");
+                        Console.Write("Please enter your selection: ");
+                        string userInput = Console.ReadLine();
+
+                        if (userInput == "1") continue;
+                        else if (userInput == "2") return 0;
+                        else
+                        {
+                            Console.WriteLine("Invalid option. Please only enter the number of the option you would like to pick.\nPress 'Enter' to continue.");
+                            Console.ReadLine();
+                        }  
+                    }
+
+                    case "2": return 6; // Admin
+                    case "3": return 0; 
 
                     default: 
                     Console.WriteLine("Invalid option. Please only enter the number of the option you would like to pick.\nPress 'Enter' to continue.");
                     Console.ReadLine();
                     break;
                 }
-                break;
             }
-            return 1;
         }
 
         private static int CustomerArea()
@@ -214,7 +242,7 @@ namespace ProjectB
                     break;
 
                     case "7": // Log out
-                    UserAccounts.LogOutAllCustomers();
+                    UserAccounts.LogOutAllAccounts();
                     return 0;
 
                     default: // Incorrect input
@@ -246,7 +274,7 @@ namespace ProjectB
 
             ReservationService.AddReservation(datetime, persons, userAccount);
             ReservationService.SaveReservations();
-            UserAccounts.SaveCustomerAccounts();
+            UserAccounts.SaveAccountData();
 
             Console.WriteLine("\nPress 'Enter' to go back");
             Console.ReadLine();
@@ -265,7 +293,7 @@ namespace ProjectB
             {
                 ReservationService.RemoveReservation(0, userAccount);
                 ReservationService.SaveReservations();
-                UserAccounts.SaveCustomerAccounts();
+                UserAccounts.SaveAccountData();
                 Console.WriteLine("Removed reservation");
                 Console.WriteLine("Press 'Enter' to continue");
                 Console.ReadLine();
@@ -283,7 +311,7 @@ namespace ProjectB
                         var index = Convert.ToInt32(resToDelete);
                         ReservationService.RemoveReservation(index - 1, userAccount);
                         ReservationService.SaveReservations();
-                        UserAccounts.SaveCustomerAccounts();
+                        UserAccounts.SaveAccountData();
                         Console.WriteLine("Reservation deleted.");
                         Console.WriteLine("Press 'Enter' to continue");
                         Console.ReadLine();
@@ -314,7 +342,7 @@ namespace ProjectB
                     // Adding review to account and saving it to JSON
                     ReviewService.AddReview(userAccount, reviewText, reviewRating);
                     ReviewService.SaveReviews();
-                    UserAccounts.SaveCustomerAccounts();
+                    UserAccounts.SaveAccountData();
 
                     Console.WriteLine("Review saved! Press 'Enter' to continue.");
                     Console.ReadLine();
@@ -337,7 +365,7 @@ namespace ProjectB
             {
                 ReviewService.RemoveReview(0, userAccount);
                 ReviewService.SaveReviews();
-                UserAccounts.SaveCustomerAccounts();
+                UserAccounts.SaveAccountData();
                 Console.WriteLine("Removed review");
                 Console.WriteLine("Press 'Enter' to continue");
                 Console.ReadLine();
@@ -354,7 +382,7 @@ namespace ProjectB
                         var index = Convert.ToInt32(reviewToDelete);
                         ReviewService.RemoveReview(index-1, userAccount);
                         ReviewService.SaveReviews();
-                        UserAccounts.SaveCustomerAccounts();
+                        UserAccounts.SaveAccountData();
                         Console.WriteLine("Review removed. Press 'Enter' to continue.");
                         Console.ReadLine();
                         break;           
@@ -363,6 +391,12 @@ namespace ProjectB
                 }
                 
             }
+        }
+    
+        public static int EmployeeArea()
+        {
+            
+            return 0;
         }
     }
 }

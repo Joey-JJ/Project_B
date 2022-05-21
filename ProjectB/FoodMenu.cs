@@ -3,10 +3,8 @@ using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
-using System.Text;
-using System.Threading.Tasks;
 
-class FoodMenu
+public static class FoodMenu
 {
     private static readonly string OrderFile = "Orders.json";
     public static Dictionary<string, int> MakeOrder = new() { };
