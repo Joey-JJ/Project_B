@@ -48,9 +48,6 @@ public class Customer : BaseUser
             for (var i = 0; i < this.Reservations.Count; i++)
             Console.WriteLine($"{i+1}. {Reservations[i].StartTime} with {Reservations[i].PersonCount} people.");
         }
-        
-        Console.Write("Press 'Enter' to continue");
-        Console.ReadLine();
     }
 
     public void ListReviews()
@@ -62,8 +59,6 @@ public class Customer : BaseUser
             for (var i = 0; i < this.Reviews.Count; i++)
                 Console.WriteLine($"{i+1}. {Reviews[i].Date.ToShortDateString()} at {Reviews[i].Date.ToShortTimeString()}: {Reviews[i].ReviewText} - {Reviews[i].Rating} stars");
         }
-        Console.Write("Press 'Enter' to continue");
-        Console.ReadLine();
     }
 }
 
