@@ -1,1 +1,212 @@
-{}
+{
+  "2022-05-26T00:00:00": [
+    {
+      "Name": "joey",
+      "Username": "j",
+      "StartTime": "2022-05-26T18:00:00",
+      "Endtime": "2022-05-26T20:00:00",
+      "PersonCount": 2,
+      "TableNumber": 18,
+      "Day": {
+        "Tables": [
+          {
+            "TableNumber": 1,
+            "NumberOfSeats": 8,
+            "Taken": false
+          },
+          {
+            "TableNumber": 2,
+            "NumberOfSeats": 8,
+            "Taken": false
+          },
+          {
+            "TableNumber": 3,
+            "NumberOfSeats": 6,
+            "Taken": false
+          },
+          {
+            "TableNumber": 4,
+            "NumberOfSeats": 6,
+            "Taken": false
+          },
+          {
+            "TableNumber": 5,
+            "NumberOfSeats": 6,
+            "Taken": false
+          },
+          {
+            "TableNumber": 6,
+            "NumberOfSeats": 6,
+            "Taken": false
+          },
+          {
+            "TableNumber": 7,
+            "NumberOfSeats": 4,
+            "Taken": false
+          },
+          {
+            "TableNumber": 8,
+            "NumberOfSeats": 4,
+            "Taken": false
+          },
+          {
+            "TableNumber": 9,
+            "NumberOfSeats": 4,
+            "Taken": false
+          },
+          {
+            "TableNumber": 10,
+            "NumberOfSeats": 4,
+            "Taken": false
+          },
+          {
+            "TableNumber": 11,
+            "NumberOfSeats": 3,
+            "Taken": false
+          },
+          {
+            "TableNumber": 12,
+            "NumberOfSeats": 3,
+            "Taken": false
+          },
+          {
+            "TableNumber": 13,
+            "NumberOfSeats": 2,
+            "Taken": false
+          },
+          {
+            "TableNumber": 14,
+            "NumberOfSeats": 2,
+            "Taken": false
+          },
+          {
+            "TableNumber": 15,
+            "NumberOfSeats": 2,
+            "Taken": false
+          },
+          {
+            "TableNumber": 16,
+            "NumberOfSeats": 2,
+            "Taken": false
+          },
+          {
+            "TableNumber": 17,
+            "NumberOfSeats": 2,
+            "Taken": false
+          },
+          {
+            "TableNumber": 18,
+            "NumberOfSeats": 2,
+            "Taken": true
+          }
+        ],
+        "Date": "2022-05-26T00:00:00"
+      }
+    }
+  ],
+  "2022-05-23T00:00:00": [
+    {
+      "Name": "joey",
+      "Username": "j",
+      "StartTime": "2022-05-23T18:00:00",
+      "Endtime": "2022-05-23T20:00:00",
+      "PersonCount": 2,
+      "TableNumber": 18,
+      "Day": {
+        "Tables": [
+          {
+            "TableNumber": 1,
+            "NumberOfSeats": 8,
+            "Taken": false
+          },
+          {
+            "TableNumber": 2,
+            "NumberOfSeats": 8,
+            "Taken": false
+          },
+          {
+            "TableNumber": 3,
+            "NumberOfSeats": 6,
+            "Taken": false
+          },
+          {
+            "TableNumber": 4,
+            "NumberOfSeats": 6,
+            "Taken": false
+          },
+          {
+            "TableNumber": 5,
+            "NumberOfSeats": 6,
+            "Taken": false
+          },
+          {
+            "TableNumber": 6,
+            "NumberOfSeats": 6,
+            "Taken": false
+          },
+          {
+            "TableNumber": 7,
+            "NumberOfSeats": 4,
+            "Taken": false
+          },
+          {
+            "TableNumber": 8,
+            "NumberOfSeats": 4,
+            "Taken": false
+          },
+          {
+            "TableNumber": 9,
+            "NumberOfSeats": 4,
+            "Taken": false
+          },
+          {
+            "TableNumber": 10,
+            "NumberOfSeats": 4,
+            "Taken": false
+          },
+          {
+            "TableNumber": 11,
+            "NumberOfSeats": 3,
+            "Taken": false
+          },
+          {
+            "TableNumber": 12,
+            "NumberOfSeats": 3,
+            "Taken": false
+          },
+          {
+            "TableNumber": 13,
+            "NumberOfSeats": 2,
+            "Taken": false
+          },
+          {
+            "TableNumber": 14,
+            "NumberOfSeats": 2,
+            "Taken": false
+          },
+          {
+            "TableNumber": 15,
+            "NumberOfSeats": 2,
+            "Taken": false
+          },
+          {
+            "TableNumber": 16,
+            "NumberOfSeats": 2,
+            "Taken": false
+          },
+          {
+            "TableNumber": 17,
+            "NumberOfSeats": 2,
+            "Taken": false
+          },
+          {
+            "TableNumber": 18,
+            "NumberOfSeats": 2,
+            "Taken": true
+          }
+        ],
+        "Date": "2022-05-23T00:00:00"
+      }
+    }
+  ]
+}

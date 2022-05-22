@@ -266,7 +266,7 @@ namespace ProjectB
             {
                 try
                 {
-                    Console.Write("With how many persons are you coming? ");
+                    Console.Write("How many people will be coming? ");
                     persons = Convert.ToInt32(Console.ReadLine());
                     break;
                 }
@@ -411,25 +411,27 @@ namespace ProjectB
                 var input = Console.ReadLine();
                 switch (input)
                 {
-                    case "1":
+                    case "1": // List reservations
                     ReservationService.ListReservations();
                     Console.WriteLine("\nPress 'Enter' to continue.");
                     Console.ReadLine();
                     return 5;
 
-                    case "2":
+                    case "2": // Cancel Reservation
+                    CancelReservationEmployee();
+                    return 5;
+
+                    case "3": // Make a reservation
+                    MakeReservationEmployee();
+                    return 5;
+
+                    case "4": // Place an order
                     break;
 
-                    case "3":
+                    case "5": // Print the bill of an order
                     break;
 
-                    case "4":
-                    break;
-
-                    case "5":
-                    break;
-
-                    case "6":
+                    case "6": // Log out
                     UserAccounts.LogOutAllAccounts();
                     return 0;
 
@@ -438,8 +440,49 @@ namespace ProjectB
                     Console.ReadLine();
                     break;
                 }
-                return 0;
             }
+        }
+
+        public static Customer GetCustomerAccount() // Used inside other methods in Employee area
+        {
+            while (true)
+            {
+                Console.Write("Please enter the username of the customer: ");
+    	        var customer = UserAccounts.GetCustomer(Console.ReadLine());
+                if (customer == null)
+                {
+                    Console.WriteLine("Could not find the user, do you want to try again?\n[1] Yes\n[2] No\n");
+                    Console.Write("Please enter your selection: ");
+                    string userInput = Console.ReadLine();
+
+                    if (userInput == "1") continue;
+                    if (userInput == "2") return null;
+                    else
+                    {
+                        Console.WriteLine("Invalid option. Please only enter the number of the option you would like to pick.\nPress 'Enter' to continue.");
+                        Console.ReadLine();
+                    }
+                } 
+                else return customer;
+            }
+        }
+
+        public static void CancelReservationEmployee() // Located inside Employee area
+        {
+            Console.Clear();
+            Console.WriteLine("Cancelling a reservation\n");
+            var customer = GetCustomerAccount();
+            if (customer == null) return;
+            else CancelReservationMenu(customer);
+        }
+
+        public static void MakeReservationEmployee() // Located inside Employee area
+        {
+            Console.Clear();
+            Console.WriteLine("Making a reservation\n");
+            var customer = GetCustomerAccount();
+            if (customer == null) return;
+            else AddReservationMenu(customer);
         }
     }
 }
