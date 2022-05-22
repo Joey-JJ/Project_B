@@ -34,6 +34,11 @@ class ReservationService
 
     public static void ListReservations()
     {
+        if (Reservations.Count == 0)
+        {
+            Console.WriteLine("There are no reservations currently");
+            return;
+        }
         foreach (var item in Reservations)
         {
             Console.WriteLine($"{item.Key.ToShortDateString()}");
@@ -198,6 +203,7 @@ class ReservationService
             {
                 if (res.Username == reservation.Username && res.StartTime == reservation.StartTime)
                     Reservations[date.Key].Remove(reservation);
+                    if (Reservations[date.Key].Count == 0) Reservations.Remove(date.Key);
                     break;
             }
         }

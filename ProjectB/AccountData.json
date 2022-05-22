@@ -1,11 +1,20 @@
 {
-  "Item1": [],
+  "Item1": [
+    {
+      "Reservations": [],
+      "Reviews": [],
+      "Username": "j",
+      "Password": "j1",
+      "FullName": "joey",
+      "LoggedIn": true
+    }
+  ],
   "Item2": [
     {
       "Username": "e",
       "Password": "e1",
       "FullName": "e",
-      "LoggedIn": false
+      "LoggedIn": true
     }
   ],
   "Item3": []

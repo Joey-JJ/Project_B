@@ -38,7 +38,7 @@ namespace ProjectB
                     PageNumber = CustomerArea();
                     break;
 
-                    case 5: // Employee
+                    case 5:
                     PageNumber = EmployeeArea();
                     break;
 
@@ -223,6 +223,8 @@ namespace ProjectB
 
                     case "2":  // Listing account reservations
                     userAccount.ListReservations();
+                    Console.WriteLine("\nPress 'Enter' to continue.");
+                    Console.ReadLine();
                     break;
 
                     case "3": // Cancel a reservation
@@ -235,6 +237,8 @@ namespace ProjectB
 
                     case "5": // List reviews
                     userAccount.ListReviews();
+                    Console.WriteLine("\nPress 'Enter' to continue.");
+                    Console.ReadLine();
                     break;
 
                     case "6": // Remove a review
@@ -402,9 +406,38 @@ namespace ProjectB
             {
                 Console.Clear();
                 Console.WriteLine($"Logged in as {2}");
-                Console.WriteLine("What would you like to do?\n[1] opt1\n[2] opt2\n[3] opt3\n");
+                Console.WriteLine("What would you like to do?\n[1] See the reservations\n[2] Cancel a reservation\n[3] Make a reservation\n[4] Place an order\n[5] Print the bill for a table\n[6] Log out and go back to the main menu");
                 Console.Write("Please enter your selection: ");
                 var input = Console.ReadLine();
+                switch (input)
+                {
+                    case "1":
+                    ReservationService.ListReservations();
+                    Console.WriteLine("\nPress 'Enter' to continue.");
+                    Console.ReadLine();
+                    return 5;
+
+                    case "2":
+                    break;
+
+                    case "3":
+                    break;
+
+                    case "4":
+                    break;
+
+                    case "5":
+                    break;
+
+                    case "6":
+                    UserAccounts.LogOutAllAccounts();
+                    return 0;
+
+                    default:
+                    Console.WriteLine("Invalid option. Please only enter the number of the option you would like to pick.\nPress 'Enter' to continue.");
+                    Console.ReadLine();
+                    break;
+                }
                 return 0;
             }
         }
