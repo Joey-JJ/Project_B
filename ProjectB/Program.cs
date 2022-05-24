@@ -7,14 +7,13 @@ namespace ProjectB
     {
         static void Main()
         {   
-            // Log out all accounts in case system was closed improperly
-            UserAccounts.LogOutAllAccounts();
-            UserAccounts.SaveAccountData();
-
             // Load database files
             UserAccounts.LoadAccountData();
             ReservationService.LoadReservations();
             ReviewService.LoadReviews();
+
+            // Log out all accounts in case system was closed improperly
+            UserAccounts.LogOutAllAccounts();
             
             // Page handling
             int PageNumber = 0;
@@ -49,6 +48,12 @@ namespace ProjectB
                     case 6:
                     PageNumber = AdminArea();
                     break;
+
+                    case 7: // Food menu
+                    break;
+
+                    case 8: // List reviews
+                    break;
                 }
             }
         }
@@ -59,15 +64,18 @@ namespace ProjectB
             {
                 Console.Clear();
                 Console.WriteLine("Welcome!\n");
-                Console.WriteLine("You will need to log in to proceed. Select an option from the menu below:\n[1] Log in as a customer\n[2] Create a customer account\n[3] Log in as an employee\n[4] Quit the application\n");
+                Console.WriteLine("You will need to log in to proceed. Select an option from the menu below:\n[1] Log in as a customer\n[2] See our menu\n[3] See our reviews\n[4] Create a customer account\n[5] Log in as an employee\n[6] Quit the application\n");
                 Console.Write("Please enter your selection: ");
                 var user_input = Console.ReadLine();
                 switch (user_input)
                 {
-                    case "1": return 1;
-                    case "2": return 2;
-                    case "3": return 3;
-                    case "4":
+                    case "1": return 1; // Log in as customer
+                    case "2": return 7; // See the menu
+                    case "3": return 8; // See the reviews
+                    case "4": return 2; // Create a customer account
+                    case "5": return 3; // Log in as employee
+                    
+                    case "6": // Quit application
                     Console.WriteLine("Closing the application. See you next time!");
                     return -1;
 
