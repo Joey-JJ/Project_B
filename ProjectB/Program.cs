@@ -652,6 +652,7 @@ namespace ProjectB
         public static void DeleteEmployeeMenu()
         {
             Console.Clear();
+            //
         }   
     }
 }
