@@ -7,6 +7,9 @@ namespace ProjectB
     {
         static void Main()
         {   
+            // Log out all accounts in case system was closed improperly
+            UserAccounts.LogOutAllAccounts();
+
             // Load database files
             UserAccounts.LoadAccountData();
             ReservationService.LoadReservations();
@@ -389,7 +392,7 @@ namespace ProjectB
             }
         }
 
-        public static void RemoveReviewMenu(Customer userAccount) // Located inside customer area
+        private static void RemoveReviewMenu(Customer userAccount) // Located inside customer area
         {
             Console.Clear();
             if (userAccount.Reviews.Count == 0) // User does not have reviews
@@ -429,7 +432,7 @@ namespace ProjectB
             }
         }
     
-        public static int EmployeeArea()
+        private static int EmployeeArea()
         {
             var userAccount = UserAccounts.GetLoggedInEmployee();
             if (userAccount == null) return 0; // In case something goes wrong
@@ -475,7 +478,7 @@ namespace ProjectB
             }
         }
 
-        public static Customer GetCustomerAccount() // Used inside other methods in Employee area
+        private static Customer GetCustomerAccount() // Used inside other methods in Employee area
         {
             while (true)
             {
@@ -499,7 +502,7 @@ namespace ProjectB
             }
         }
 
-        public static void CancelReservationEmployee() // Located inside Employee area
+        private static void CancelReservationEmployee() // Used inside Employee and Admin area
         {
             Console.Clear();
             Console.WriteLine("Cancelling a reservation\n");
@@ -508,7 +511,7 @@ namespace ProjectB
             else CancelReservationMenu(customer);
         }
 
-        public static void MakeReservationEmployee() // Located inside Employee area
+        private static void MakeReservationEmployee() // Used inside Employee and Admin area
         {
             Console.Clear();
             Console.WriteLine("Making a reservation\n");
@@ -517,7 +520,7 @@ namespace ProjectB
             else AddReservationMenu(customer);
         }
 
-        public static int AdminArea()
+        private static int AdminArea()
         {
             Admin userAccount = UserAccounts.GetLoggedInAdmin();
             if (userAccount == null) return 0;
@@ -531,60 +534,60 @@ namespace ProjectB
 
                 switch (user_input)
                 {
-                    case "1":
+                    case "1": // List all of the reservations
                     ReservationService.ListReservations();
                     Console.WriteLine("\nPress 'Enter' to continue.");
                     Console.ReadLine();
                     break;
 
-                    case "2":
+                    case "2": // Cancel a reservation
                     CancelReservationEmployee();
                     break;
 
-                    case "3":
+                    case "3": // Make a reservation
                     MakeReservationEmployee();
                     break;
 
-                    case "4":
+                    case "4": // Place an order
                     // TODO : ORDERS
                     break;
 
-                    case "5":
+                    case "5": // Print the bill of an order
                     // TODO : PRINT BILL
                     break;
 
-                    case "6":
+                    case "6": // List all customer accounts
                     UserAccounts.ListCustomerAccounts();
                     Console.WriteLine("\nPress 'Enter' to continue.");
                     Console.ReadLine();
                     break;
 
-                    case "7":
+                    case "7": // Delete a customer account
                     DeleteCustomerMenu();
                     break;
 
-                    case "8":
+                    case "8": // Add an employee account
                     AddEmployeeMenu();
                     break;
 
-                    case "9":
+                    case "9": // Delete an employee account
                     DeleteEmployeeMenu();
                     break;
 
-                    case "10":
-                    // TODO : ADD ADMIN
+                    case "10": // Add an admin account
+                    AddAdminMenu();
                     break;
 
-                    case "11":
-                    // TODO : DELETE ADMIN
+                    case "11": // Delete an admin account
+                    DeleteAdminMenu();
                     break;
 
-                    case "12":
+                    case "12": // Log out and go back to main menu
                     UserAccounts.LogOutAllAccounts();
                     UserAccounts.SaveAccountData();
                     return 0;
 
-                    default:
+                    default: // Invalid input
                     Console.WriteLine("Invalid option. Please only enter the number of the option you would like to pick.\nPress 'Enter' to continue.");
                     Console.ReadLine();
                     break;
@@ -592,7 +595,7 @@ namespace ProjectB
             }
         }
 
-        public static void DeleteCustomerMenu()
+        private static void DeleteCustomerMenu() // Used inside admin area
         {
             Console.Clear();
             var account = GetCustomerAccount();            
@@ -606,7 +609,7 @@ namespace ProjectB
             Console.ReadLine();
         }
 
-        public static void AddEmployeeMenu()
+        private static void AddEmployeeMenu() // Used inside admin area
         {
             while (true)
             {
@@ -645,15 +648,126 @@ namespace ProjectB
                     return;
                 }
             }
-            
-
         }
 
-        public static void DeleteEmployeeMenu()
+        private static Employee GetEmployeeAccount() // Used inside other methods in admin area
+        {
+            while (true)
+            {
+                Console.Write($"Please enter the username of the employee: ");
+    	        var account = UserAccounts.GetEmployee(Console.ReadLine());
+                if (account == null)
+                {
+                    Console.WriteLine("Could not find the user, do you want to try again?\n[1] Yes\n[2] No\n");
+                    Console.Write("Please enter your selection: ");
+                    string userInput = Console.ReadLine();
+
+                    if (userInput == "1") continue;
+                    if (userInput == "2") return null;
+                    else
+                    {
+                        Console.WriteLine("Invalid option. Please only enter the number of the option you would like to pick.\nPress 'Enter' to continue.");
+                        Console.ReadLine();
+                    }
+                } 
+                else return account;
+            }
+        }
+
+        private static void DeleteEmployeeMenu() // Used inside admin area
         {
             Console.Clear();
-            //
+            var account = GetEmployeeAccount();            
+            if (account == null) return; // In case something goes wrong
+
+            UserAccounts.DeleteEmployeeAccount(account);
+
+            Console.WriteLine("Account deleted, changes are saved. Press 'Enter' to continue.");
+            Console.ReadLine();
         }   
+
+        private static Admin GetAdminAccount()
+        {
+            while (true)
+            {
+                Console.Write("Please enter the username of the account: ");
+    	        var account = UserAccounts.GetAdmin(Console.ReadLine());
+                if (account == null)
+                {
+                    Console.WriteLine("Could not find the user, do you want to try again?\n[1] Yes\n[2] No\n");
+                    Console.Write("Please enter your selection: ");
+                    string userInput = Console.ReadLine();
+
+                    if (userInput == "1") continue;
+                    if (userInput == "2") return null;
+                    else
+                    {
+                        Console.WriteLine("Invalid option. Please only enter the number of the option you would like to pick.\nPress 'Enter' to continue.");
+                        Console.ReadLine();
+                    }
+                } 
+                else return account;
+            }
+        }
+        
+        private static void AddAdminMenu()
+        {
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("Admin Account Creation\n");
+
+                Console.Write("Enter the full name: ");
+                var fullname = Console.ReadLine();
+                Console.Write("Enter the preferred username: ");
+                var username = Console.ReadLine();
+                Console.Write("Enter the password: ");
+                var password = Console.ReadLine();
+
+                bool exists = UserAccounts.CheckIfAdminExists(fullname, username);
+                if (exists)
+                {
+                    Console.WriteLine("There already is an account with that information. Please choose different credentials");
+                    Console.WriteLine("Do you want to try again?\n[1] Yes\n[2] No\n");
+                    Console.Write("Please enter your selection: ");
+                    string userInput = Console.ReadLine();
+
+                    if (userInput == "1") continue;
+                    if (userInput == "2") return;
+                    else
+                    {
+                        Console.WriteLine("Invalid option. Please only enter the number of the option you would like to pick.\nPress 'Enter' to continue.");
+                        Console.ReadLine();
+                    }
+                } 
+                else
+                {
+                    UserAccounts.AddAdminAcccount(username, password, fullname);
+                    UserAccounts.SaveAccountData();
+                    Console.WriteLine("Account created, changes have been saved. Press 'Enter' to continue.");
+                    Console.ReadLine();
+                    return;
+                }
+            }
+        }
+
+        private static void DeleteAdminMenu()
+        {
+            if (UserAccounts.Admins.Count <= 1)
+            {
+                Console.WriteLine("You can not delete the only admin account. Press 'Enter' to continue.");
+                Console.ReadLine();
+                return;
+            }
+            Console.Clear();
+            var account = GetAdminAccount();            
+            if (account == null) return; // In case something goes wrong
+
+            UserAccounts.DeleteAdminAccount(account);
+
+            Console.WriteLine("Account deleted, changes are saved. Press 'Enter' to continue.");
+            Console.ReadLine();
+        }
     }
 }
 

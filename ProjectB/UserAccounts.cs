@@ -40,10 +40,28 @@ public static class UserAccounts
         Customers.Remove(account);
     }
 
+    public static void DeleteEmployeeAccount(Employee account)
+    {
+        Employees.Remove(account);
+        UserAccounts.SaveAccountData();
+    }
+
+    public static void DeleteAdminAccount(Admin account)
+    {
+        Admins.Remove(account);
+        UserAccounts.SaveAccountData();
+    }
+
     public static void AddEmployeeAccount(string username, string password, string fullname)
     {
         var account = new Employee(username, password, fullname);
         UserAccounts.Employees.Add(account);
+    }
+
+    public static void AddAdminAcccount(string username, string password, string fullname)
+    {
+        var account = new Admin(username, password, fullname);
+        UserAccounts.Admins.Add(account);
     }
 
     public static Customer GetCustomer(string username)
