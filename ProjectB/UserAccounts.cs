@@ -141,7 +141,27 @@ public static class UserAccounts
         {
             Console.WriteLine($"Name: {user.FullName}, username: {user.Username}");
         }
+    }
 
+    public static void ListEmployeeAccounts()
+    {
+        if (Employees.Count < 1) 
+        {
+            Console.WriteLine("There are no employee accounts at the moment."); 
+            return; 
+        }
+        foreach (var user in Employees)
+        {
+            Console.WriteLine($"Name: {user.FullName}, username: {user.Username}");
+        }
+    }
+
+    public static void ListAdminAccounts()
+    {
+        foreach (var user in Admins)
+        {
+            Console.WriteLine($"Name: {user.FullName}, username: {user.Username}");
+        }
     }
 
     public static void LogOutAllAccounts()
