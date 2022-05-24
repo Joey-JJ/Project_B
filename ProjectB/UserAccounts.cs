@@ -32,6 +32,20 @@ public static class UserAccounts
         UserAccounts.Customers.Add(account);
     }
 
+    public static void DeleteCustomerAccount(Customer account)
+    {
+        for (int i = 0; i < account.Reservations.Count; i++)
+            ReservationService.RemoveReservation(i, account);
+            
+        Customers.Remove(account);
+    }
+
+    public static void AddEmployeeAccount(string username, string password, string fullname)
+    {
+        var account = new Employee(username, password, fullname);
+        UserAccounts.Employees.Add(account);
+    }
+
     public static Customer GetCustomer(string username)
     {
         foreach (var item in Customers) 
@@ -46,6 +60,13 @@ public static class UserAccounts
         return null;
     }
 
+    public static Admin GetAdmin(string username)
+    {
+        foreach (var item in Admins) 
+            if (item.Username == username) return item;
+        return null;
+    }
+
     public static Customer GetLoggedInCustomer()
     {
         foreach (var user in Customers) { if (user.LoggedIn) return user; }
@@ -53,17 +74,56 @@ public static class UserAccounts
     }
 
     public static Employee GetLoggedInEmployee()
-        {
-            foreach (var user in Employees) { if (user.LoggedIn) return user; }
-            return null;
-        }
-    public static bool CheckIfAccExists(string fullname, string username)
+    {
+        foreach (var user in Employees) { if (user.LoggedIn) return user; }
+        return null;
+    }
+
+    public static Admin GetLoggedInAdmin()
+    {
+        foreach (var user in Admins) { if (user.LoggedIn) return user; }
+        return null;
+    }
+    
+    public static bool CheckIfCustomerExists(string fullname, string username)
     {
         foreach(var acc in Customers)
         {
             if (fullname == acc.FullName || username == acc.Username) return true;
         }
         return false;
+    }
+
+    public static bool CheckIfEmployeeExists(string fullname, string username)
+    {
+        foreach(var acc in Employees)
+        {
+            if (fullname == acc.FullName || username == acc.Username) return true;
+        }
+        return false;
+    }
+
+    public static bool CheckIfAdminExists(string fullname, string username)
+    {
+        foreach(var acc in Admins)
+        {
+            if (fullname == acc.FullName || username == acc.Username) return true;
+        }
+        return false;
+    }
+
+    public static void ListCustomerAccounts()
+    {
+        if (Customers.Count < 1) 
+        {
+            Console.WriteLine("There are no customer accounts at the moment."); 
+            return; 
+        }
+        foreach (var user in Customers)
+        {
+            Console.WriteLine($"Name: {user.FullName}, username: {user.Username}");
+        }
+
     }
 
     public static void LogOutAllAccounts()

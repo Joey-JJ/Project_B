@@ -42,7 +42,8 @@ namespace ProjectB
                     PageNumber = EmployeeArea();
                     break;
 
-                    case 6: // Admin
+                    case 6:
+                    PageNumber = AdminArea();
                     break;
                 }
             }
@@ -122,7 +123,7 @@ namespace ProjectB
                 Console.Write("Enter your password: ");
                 var password = Console.ReadLine();
 
-                bool exists = UserAccounts.CheckIfAccExists(fullname, username);
+                bool exists = UserAccounts.CheckIfCustomerExists(fullname, username);
                 if (exists)
                 {
                     Console.WriteLine("There already is an account with that information. Please log in to your account or choose different credentials");
@@ -153,6 +154,14 @@ namespace ProjectB
         {
             while (true)
             {
+                Func<Tuple<string, string>> getLogInDetails = () => {
+                        Console.Write("Enter your username: ");
+                        var username = Console.ReadLine();
+                        Console.Write("Enter your password: ");
+                        var password = Console.ReadLine();
+                        return Tuple.Create(username, password);
+                };
+
                 Console.Clear();
                 Console.WriteLine("Employee log in\n[1] Log in as an employee\n[2] Log in as an admin\n[3] Go back\n");
                 Console.Write("Please enter your selection: ");
@@ -166,15 +175,11 @@ namespace ProjectB
                         Console.Clear();
                         Console.WriteLine("Employee log in\n");
 
-                        Console.Write("Enter your username: ");
-                        var username = Console.ReadLine();
-                        Console.Write("Enter your password: ");
-                        var password = Console.ReadLine();
-
-                        var account = UserAccounts.GetEmployee(username);
-                        if (account != null && account.Password == password) 
+                        var loginDetails = getLogInDetails();
+                        var account = UserAccounts.GetEmployee(loginDetails.Item1);
+                        if (account != null && account.Password == loginDetails.Item2) 
                         {
-                            account.LogIn(username, password); // Username correct
+                            account.LogIn(loginDetails.Item1, loginDetails.Item2); // Username correct
                             return 5;
                         } 
                         
@@ -191,7 +196,34 @@ namespace ProjectB
                         }  
                     }
 
-                    case "2": return 6; // Admin
+                    case "2": // Admin
+                    while (true)
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Admin log in\n");
+
+                        var loginDetails = getLogInDetails();
+
+                        var account = UserAccounts.GetAdmin(loginDetails.Item1);
+                        if (account != null && account.Password == loginDetails.Item2) 
+                        {
+                            account.LogIn(loginDetails.Item1, loginDetails.Item2); // Username correct
+                            return 6;
+                        } 
+                        
+                        Console.WriteLine("Incorrect log in details, do you want to try again?\n[1] Yes\n[2] No\n");
+                        Console.Write("Please enter your selection: ");
+                        string userInput = Console.ReadLine();
+
+                        if (userInput == "1") continue;
+                        else if (userInput == "2") return 0;
+                        else
+                        {
+                            Console.WriteLine("Invalid option. Please only enter the number of the option you would like to pick.\nPress 'Enter' to continue.");
+                            Console.ReadLine();
+                        }  
+                    }
+ 
                     case "3": return 0; 
 
                     default: 
@@ -330,7 +362,7 @@ namespace ProjectB
         private static void WriteReviewMenu(Customer userAccount) // Located inside customer area
         {
             string reviewText;
-            int reviewRating=0;
+            int reviewRating = 0;
             while (true)
             {
                 Console.Clear();
@@ -484,6 +516,143 @@ namespace ProjectB
             if (customer == null) return;
             else AddReservationMenu(customer);
         }
+
+        public static int AdminArea()
+        {
+            Admin userAccount = UserAccounts.GetLoggedInAdmin();
+            if (userAccount == null) return 0;
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine($"Logged in as {userAccount.FullName} (Admin)\n");
+                Console.WriteLine("What would you like to do?\n[1] See the reservations\n[2] Cancel a reservation\n[3] Make a reservation\n[4] Place an order\n[5] Print the bill for a table\n[6] List customer accounts\n[7] Delete customer account\n[8] Add employee account\n[9] Delete employee account\n[10] Add admin account\n[11] Delete admin account\n[12] Log out and go back to the main menu\n");
+                Console.Write("Please enter your selection: ");
+                var user_input = Console.ReadLine();
+
+                switch (user_input)
+                {
+                    case "1":
+                    ReservationService.ListReservations();
+                    Console.WriteLine("\nPress 'Enter' to continue.");
+                    Console.ReadLine();
+                    break;
+
+                    case "2":
+                    CancelReservationEmployee();
+                    break;
+
+                    case "3":
+                    MakeReservationEmployee();
+                    break;
+
+                    case "4":
+                    // TODO : ORDERS
+                    break;
+
+                    case "5":
+                    // TODO : PRINT BILL
+                    break;
+
+                    case "6":
+                    UserAccounts.ListCustomerAccounts();
+                    Console.WriteLine("\nPress 'Enter' to continue.");
+                    Console.ReadLine();
+                    break;
+
+                    case "7":
+                    DeleteCustomerMenu();
+                    break;
+
+                    case "8":
+                    AddEmployeeMenu();
+                    break;
+
+                    case "9":
+                    DeleteEmployeeMenu();
+                    break;
+
+                    case "10":
+                    // TODO : ADD ADMIN
+                    break;
+
+                    case "11":
+                    // TODO : DELETE ADMIN
+                    break;
+
+                    case "12":
+                    UserAccounts.LogOutAllAccounts();
+                    UserAccounts.SaveAccountData();
+                    return 0;
+
+                    default:
+                    Console.WriteLine("Invalid option. Please only enter the number of the option you would like to pick.\nPress 'Enter' to continue.");
+                    Console.ReadLine();
+                    break;
+                }
+            }
+        }
+
+        public static void DeleteCustomerMenu()
+        {
+            Console.Clear();
+            var account = GetCustomerAccount();            
+            if (account == null) return;
+
+            UserAccounts.DeleteCustomerAccount(account);
+            UserAccounts.SaveAccountData();
+            ReservationService.SaveReservations();
+
+            Console.WriteLine("Customer deleted, changes are saved. Press 'Enter' to continue.");
+            Console.ReadLine();
+        }
+
+        public static void AddEmployeeMenu()
+        {
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("Employee Account Creation\n");
+
+                Console.Write("Enter your full name: ");
+                var fullname = Console.ReadLine();
+                Console.Write("Enter your preferred username: ");
+                var username = Console.ReadLine();
+                Console.Write("Enter your password: ");
+                var password = Console.ReadLine();
+
+                bool exists = UserAccounts.CheckIfEmployeeExists(fullname, username);
+                if (exists)
+                {
+                    Console.WriteLine("There already is an account with that information. Please choose different credentials");
+                    Console.WriteLine("Do you want to try again?\n[1] Yes\n[2] No\n");
+                    Console.Write("Please enter your selection: ");
+                    string userInput = Console.ReadLine();
+
+                    if (userInput == "1") continue;
+                    if (userInput == "2") return;
+                    else
+                    {
+                        Console.WriteLine("Invalid option. Please only enter the number of the option you would like to pick.\nPress 'Enter' to continue.");
+                        Console.ReadLine();
+                    }
+                } 
+                else
+                {
+                    UserAccounts.AddEmployeeAccount(username, password, fullname);
+                    UserAccounts.SaveAccountData();
+                    Console.WriteLine("Account created, changes have been saved. Press 'Enter' to continue.");
+                    Console.ReadLine();
+                    return;
+                }
+            }
+            
+
+        }
+
+        public static void DeleteEmployeeMenu()
+        {
+            Console.Clear();
+        }   
     }
 }
 
