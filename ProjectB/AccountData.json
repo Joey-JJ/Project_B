@@ -1,18 +1,11 @@
 {
   "Item1": [],
-  "Item2": [
-    {
-      "Username": "e",
-      "Password": "e1",
-      "FullName": "e",
-      "LoggedIn": false
-    }
-  ],
+  "Item2": [],
   "Item3": [
     {
-      "Username": "a",
-      "Password": "a1",
-      "FullName": "a",
+      "Username": "admin",
+      "Password": "a",
+      "FullName": "admin",
       "LoggedIn": false
     }
   ]

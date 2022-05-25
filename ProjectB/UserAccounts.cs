@@ -40,10 +40,28 @@ public static class UserAccounts
         Customers.Remove(account);
     }
 
+    public static void DeleteEmployeeAccount(Employee account)
+    {
+        Employees.Remove(account);
+        UserAccounts.SaveAccountData();
+    }
+
+    public static void DeleteAdminAccount(Admin account)
+    {
+        Admins.Remove(account);
+        UserAccounts.SaveAccountData();
+    }
+
     public static void AddEmployeeAccount(string username, string password, string fullname)
     {
         var account = new Employee(username, password, fullname);
         UserAccounts.Employees.Add(account);
+    }
+
+    public static void AddAdminAcccount(string username, string password, string fullname)
+    {
+        var account = new Admin(username, password, fullname);
+        UserAccounts.Admins.Add(account);
     }
 
     public static Customer GetCustomer(string username)
@@ -123,7 +141,27 @@ public static class UserAccounts
         {
             Console.WriteLine($"Name: {user.FullName}, username: {user.Username}");
         }
+    }
 
+    public static void ListEmployeeAccounts()
+    {
+        if (Employees.Count < 1) 
+        {
+            Console.WriteLine("There are no employee accounts at the moment."); 
+            return; 
+        }
+        foreach (var user in Employees)
+        {
+            Console.WriteLine($"Name: {user.FullName}, username: {user.Username}");
+        }
+    }
+
+    public static void ListAdminAccounts()
+    {
+        foreach (var user in Admins)
+        {
+            Console.WriteLine($"Name: {user.FullName}, username: {user.Username}");
+        }
     }
 
     public static void LogOutAllAccounts()
