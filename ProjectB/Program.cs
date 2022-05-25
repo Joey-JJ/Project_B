@@ -65,6 +65,10 @@ namespace ProjectB
                     Console.ReadLine();
                     PageNumber = 0;
                     break;
+
+                    case 9:
+                    PageNumber = AddOrderMenu();
+                    break;
                 }
             }
         }
@@ -451,7 +455,87 @@ namespace ProjectB
                 
             }
         }
-    
+        private static int AddOrderMenu()
+        {
+            Console.Clear();
+            string menuOptions;
+            Console.WriteLine("What would you like to order?\n[1] Appetizers\n[2] Main Courses\n[3] Vegan Main Courses\n[4] Desserts\n[5] Vegan Deserts\n[6] Drinks\n[7] Save Order");
+            while (true)
+            {
+                menuOptions = Console.ReadLine();
+                if (menuOptions == "1")
+                {
+                    Console.Clear();
+                    FoodMenu.PrintAppetizers();
+
+                    Console.WriteLine("\nPress 'Enter' to go back");
+                    Console.ReadLine();
+                    return 9;
+                }
+                else if (menuOptions == "2")
+                {
+                    Console.Clear();
+                    FoodMenu.PrintMainCourses();
+
+                    Console.WriteLine("\nPress 'Enter' to go back");
+                    Console.ReadLine();
+                    return 9;
+                }
+                else if (menuOptions == "3")
+                {
+                    Console.Clear();
+                    FoodMenu.PrintVeganMainCourses();
+
+                    Console.WriteLine("\nPress 'Enter' to go back");
+                    Console.ReadLine();
+                    return 9;
+                }
+                else if (menuOptions == "4")
+                {
+                    Console.Clear();
+                    FoodMenu.PrintDesserts();
+
+                    Console.WriteLine("\nPress 'Enter' to go back");
+                    Console.ReadLine();
+                    return 9;
+                }
+                else if (menuOptions == "5")
+                {
+                    Console.Clear();
+                    FoodMenu.PrintVeganDesserts();
+
+                    Console.WriteLine("\nPress 'Enter' to go back");
+                    Console.ReadLine();
+                    return 9;
+                }
+                else if (menuOptions == "6")
+                {
+                    Console.Clear();
+                    FoodMenu.PrintDrinks();
+
+                    Console.WriteLine("\nPress 'Enter' to go back");
+                    Console.ReadLine();
+                    return 9;
+                }
+                else if (menuOptions == "7")
+                {
+                    Console.Clear();
+                    FoodMenu.AddOrder();
+                    FoodMenu.SaveOrder();
+                    FoodMenu.CheckOrders();
+
+                    Console.WriteLine("\nPress 'Enter' to go back");
+                    Console.ReadLine();
+                    return 5;
+                }
+                else
+                {
+                    Console.WriteLine("Please enter a valid number");
+                    return 9;
+                }
+            }
+
+        }
         private static int EmployeeArea()
         {
             var userAccount = UserAccounts.GetLoggedInEmployee();
@@ -480,11 +564,15 @@ namespace ProjectB
                     MakeReservationEmployee();
                     return 5;
 
-                    case "4": // Place an order
-                    break;
+                    case "4": // Place an order;
+                    return 9;
 
-                    case "5": // Print the bill of an order
-                    break;
+                    case "5": // List all orders --> make it print bill
+                    Console.Clear();
+                    FoodMenu.ListOrders();
+                    Console.WriteLine("\nPress 'Enter' to continue.");
+                    Console.ReadLine();
+                    return 5;
 
                     case "6": // Log out
                     UserAccounts.LogOutAllAccounts();
