@@ -50,9 +50,19 @@ namespace ProjectB
                     break;
 
                     case 7: // Food menu
+                    Console.Clear();
+                    FoodMenu.ListMenu();
+                    Console.WriteLine("\nPress 'enter' to go back.");
+                    Console.ReadLine();
+                    PageNumber = 0;
                     break;
 
                     case 8: // List reviews
+                    Console.Clear();
+                    ReviewService.ListReviews();
+                    Console.WriteLine("\nPress 'enter' to go back.");
+                    Console.ReadLine();
+                    PageNumber = 0;
                     break;
                 }
             }

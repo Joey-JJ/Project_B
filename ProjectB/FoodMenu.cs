@@ -8,7 +8,23 @@ public static class FoodMenu
 {
     private static readonly string OrderFile = "Orders.json";
     public static Dictionary<string, int> MakeOrder = new() { };
-
+    
+    public static void ListMenu()
+    {
+        Console.WriteLine("****** Menu ******");
+        Console.WriteLine("\nAppetizers");
+        foreach (var item in Appetizers) Console.WriteLine($"{item.Key} - Price: {item.Value}");
+        Console.WriteLine("\nMain courses");
+        foreach (var item in MainCourses) Console.WriteLine($"{item.Key} - Price: {item.Value}");
+        Console.WriteLine("\nVegan main courses");
+        foreach (var item in VeganMainCourses) Console.WriteLine($"{item.Key} - Price: {item.Value}");
+        Console.WriteLine("\nDesserts");
+        foreach (var item in Desserts) Console.WriteLine($"{item.Key} - Price: {item.Value}");
+        Console.WriteLine("\nVegan desserts");
+        foreach (var item in VeganDesserts) Console.WriteLine($"{item.Key} - Price: {item.Value}");
+        Console.WriteLine("\nDrinks");
+        foreach (var item in Drinks) Console.WriteLine($"{item.Key} - Price: {item.Value}");
+    }
 
     public static Dictionary<string, double> Appetizers = new()
     {
