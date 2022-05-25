@@ -7,8 +7,10 @@ using System.Text.Json;
 public static class FoodMenu
 {
     private static readonly string OrderFile = "Orders.json";
+    public static List<Dictionary<string, int>> Orders = new() { };
     public static Dictionary<string, int> MakeOrder = new() { };
-    
+    public static Dictionary<string, int> OrderList = new() { };
+
     public static void ListMenu()
     {
         Console.WriteLine("****** Menu ******");
@@ -82,24 +84,60 @@ public static class FoodMenu
         { "Chateau Margaux", 8.00 },
         { "Bordeaux red", 8.00 }
     };
-
+    public static void ListOrders()
+    {
+        LoadOrders();
+        int table = 1;
+        if (Orders.Count > 0)
+        {
+            foreach (Dictionary<string, int> AllOrders in Orders)
+            {
+                Console.WriteLine($"\nTable {table} has ordered:");
+                foreach (KeyValuePair<string, int> item in AllOrders)
+                {
+                    Console.WriteLine($"{item.Key} : {item.Value}");
+                }
+                table++;
+            }
+        }
+        else
+        {
+            Console.WriteLine("No orders have been placed yet");
+        }
+    }
     public static void PrintOrder()
     {
-        int index = 0;
         foreach (var Item in MakeOrder)
         {
             Console.WriteLine($"{Item.Key} = {Item.Value}");
-            index++;
         }
+    }
+    public static void LoadOrders()
+    {
+        string jsonString = File.ReadAllText(OrderFile);
+        Orders = JsonSerializer.Deserialize<List<Dictionary<string, int>>>(jsonString);
+    }
+    public static void AddOrder()
+    {
+        foreach (var item in MakeOrder)
+        {
+            OrderList.Add(item.Key, item.Value);
+        }
+        Orders.Add(new Dictionary<string, int>(OrderList));
     }
     public static void SaveOrder()
     {
         var indent = new JsonSerializerOptions { WriteIndented = true };
-        string orderString = JsonSerializer.Serialize(MakeOrder, indent);
-        File.AppendAllText(OrderFile, orderString);
-        Console.WriteLine("\nOrder saved!");
+        string orderString = JsonSerializer.Serialize(Orders, indent);
+        File.WriteAllText(OrderFile, orderString);
     }
-
+    public static void CheckOrders()
+    {
+        foreach (var item in MakeOrder)
+        {
+            Console.WriteLine($"{item.Key} = {item.Value}");
+        }
+    }
     public static int OrderDetails()
     {
         Console.WriteLine("What dish would you like to order?: ");

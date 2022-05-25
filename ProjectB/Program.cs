@@ -11,6 +11,7 @@ namespace ProjectB
             UserAccounts.LoadAccountData();
             ReservationService.LoadReservations();
             ReviewService.LoadReviews();
+            FoodMenu.LoadOrders();
 
             // Log out all accounts in case system was closed improperly
             UserAccounts.LogOutAllAccounts();
