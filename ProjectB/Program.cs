@@ -11,6 +11,7 @@ namespace ProjectB
             UserAccounts.LoadAccountData();
             ReservationService.LoadReservations();
             ReviewService.LoadReviews();
+            FoodMenu.LoadOrders();
 
             // Log out all accounts in case system was closed improperly
             UserAccounts.LogOutAllAccounts();
@@ -63,6 +64,10 @@ namespace ProjectB
                     Console.WriteLine("\nPress 'enter' to go back.");
                     Console.ReadLine();
                     PageNumber = 0;
+                    break;
+
+                    case 9:
+                    PageNumber = AddOrderMenu();
                     break;
                 }
             }
@@ -450,7 +455,76 @@ namespace ProjectB
                 
             }
         }
-    
+        private static int AddOrderMenu()
+        {
+            Console.Clear();
+            Console.WriteLine("What would you like to order?\n[1] Appetizers\n[2] Main Courses\n[3] Vegan Main Courses\n[4] Desserts\n[5] Vegan Deserts\n[6] Drinks\n[7] Save Order\n[8] Exit menu");
+            while (true)
+            {
+                var options = Console.ReadLine();
+                switch (options)
+                {
+                    case "1":
+                    Console.Clear();
+                    FoodMenu.PrintAppetizers();
+                    Console.WriteLine("\nPress 'Enter' to go back");
+                    Console.ReadLine();
+                    return 9;
+
+                    case "2":
+                    Console.Clear();
+                    FoodMenu.PrintMainCourses();
+                    Console.WriteLine("\nPress 'Enter' to go back");
+                    Console.ReadLine();
+                    return 9;
+
+                    case "3":
+                    Console.Clear();
+                    FoodMenu.PrintVeganMainCourses();
+                    Console.WriteLine("\nPress 'Enter' to go back");
+                    Console.ReadLine();
+                    return 9;
+
+                    case "4":
+                    Console.Clear();
+                    FoodMenu.PrintDesserts();
+                    Console.WriteLine("\nPress 'Enter' to go back");
+                    Console.ReadLine();
+                    return 9;
+
+                    case "5":
+                    Console.Clear();
+                    FoodMenu.PrintVeganDesserts();
+                    Console.WriteLine("\nPress 'Enter' to go back");
+                    Console.ReadLine();
+                    return 9;
+
+                    case "6":
+                    Console.Clear();
+                    FoodMenu.PrintDrinks();
+                    Console.WriteLine("\nPress 'Enter' to go back");
+                    Console.ReadLine();
+                    return 9;
+
+                    case "7":
+                    Console.Clear();
+                    FoodMenu.AddOrder();
+                    FoodMenu.SaveOrder();
+                    FoodMenu.CheckOrders();
+                    Console.WriteLine("\nPress 'Enter' to go back");
+                    Console.ReadLine();
+                    return 5;
+
+                    case "8":
+                    return 5;
+
+                    default:
+                    Console.WriteLine("Invalid option. Please only enter the number of the option you would like to pick.\nPress 'Enter' to continue.");
+                    Console.ReadLine();
+                    break;
+                }
+            }
+        }
         private static int EmployeeArea()
         {
             var userAccount = UserAccounts.GetLoggedInEmployee();
@@ -479,11 +553,15 @@ namespace ProjectB
                     MakeReservationEmployee();
                     return 5;
 
-                    case "4": // Place an order
-                    break;
+                    case "4": // Place an order;
+                    return 9;
 
-                    case "5": // Print the bill of an order
-                    break;
+                    case "5": // List all orders --> make it print bill
+                    Console.Clear();
+                    FoodMenu.ListOrders();
+                    Console.WriteLine("\nPress 'Enter' to continue.");
+                    Console.ReadLine();
+                    return 5;
 
                     case "6": // Log out
                     UserAccounts.LogOutAllAccounts();
@@ -568,12 +646,14 @@ namespace ProjectB
                     MakeReservationEmployee();
                     break;
 
-                    case "4": // Place an order
-                    // TODO : ORDERS
-                    break;
+                    case "4": // Place an order;
+                    return 9;
 
-                    case "5": // Print the bill of an order
-                    // TODO : PRINT BILL
+                    case "5": // List all orders --> make it print bill
+                    Console.Clear();
+                    FoodMenu.ListOrders();
+                    Console.WriteLine("\nPress 'Enter' to continue.");
+                    Console.ReadLine();
                     break;
 
                     case "6": // List all customer accounts

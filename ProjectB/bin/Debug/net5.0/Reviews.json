@@ -1,26 +1,16 @@
 [
   {
-    "Name": "Alana",
-    "Email": "alana@gmail.nl",
-    "ReviewText": "lekker eten! :)",
-    "Rating": "4"
+    "FullName": "test test",
+    "UserName": "test",
+    "ReviewText": "Super lekker broski",
+    "Rating": 4,
+    "Date": "2022-05-21T13:47:15.413123+02:00"
   },
   {
-    "Name": "Karel",
-    "Email": "karel@gmail.nl",
-    "ReviewText": "goede service",
-    "Rating": "3"
-  },
-  {
-    "Name": "Josephine",
-    "Email": "joesephine@gmail.nl",
-    "ReviewText": "lang wachten en geen lekkere stoelen",
-    "Rating": "1"
-  },
-  {
-    "Name": "Joey",
-    "Email": "joey@gmail.nl",
-    "ReviewText": "geweldig",
-    "Rating": "5"
+    "FullName": "test test",
+    "UserName": "test",
+    "ReviewText": "aa",
+    "Rating": 2,
+    "Date": "2022-05-21T13:49:08.943546+02:00"
   }
 ]
