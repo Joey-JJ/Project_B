@@ -113,7 +113,7 @@ namespace ProjectB
                 Console.Write("Please enter your username: ");
                 var username = Console.ReadLine();
                 Console.Write("Please enter your password: ");
-                var password = Console.ReadLine();
+                var password = UserAccounts.EncryptOrDecryptPassword(Console.ReadLine(), false);
 
                 var account = UserAccounts.GetCustomer(username);
                 if (account != null && account.Password == password) 
@@ -143,14 +143,6 @@ namespace ProjectB
                     Console.ReadLine();
                     break;
                 }
-
-                // if (userInput == "1") continue;
-                // if (userInput == "2") return 0;
-                // else
-                // {
-                //     Console.WriteLine("Invalid option. Please only enter the number of the option you would like to pick.\nPress 'Enter' to continue.");
-                //     Console.ReadLine();
-                // }
             }
         }
 
@@ -224,6 +216,7 @@ namespace ProjectB
                                 Console.WriteLine("Please enter a longer password.");
                                 continue;
                             }
+                            newPassword = UserAccounts.EncryptOrDecryptPassword(newPassword, false);
                             UserAccounts.ChangeCustomerPassword(account, newPassword);
                             Console.WriteLine("New password changed! You can now log in again.");
                             Console.WriteLine("Press 'enter' to continue.");
@@ -276,6 +269,7 @@ namespace ProjectB
                 } 
                 else
                 {
+                    password = UserAccounts.EncryptOrDecryptPassword(password, false);
                     UserAccounts.AddCustomerAccount(username, password, fullname);
                     UserAccounts.SaveAccountData();
                     Console.WriteLine("Account created, routing you to the log in screen.\nPress 'Enter' to go to the log in screen.");
@@ -294,6 +288,7 @@ namespace ProjectB
                         var username = Console.ReadLine();
                         Console.Write("Enter your password: ");
                         var password = Console.ReadLine();
+                        password = UserAccounts.EncryptOrDecryptPassword(password, false);
                         return Tuple.Create(username, password);
                 };
 
@@ -844,6 +839,7 @@ namespace ProjectB
                 var username = Console.ReadLine();
                 Console.Write("Enter your password: ");
                 var password = Console.ReadLine();
+                password = UserAccounts.EncryptOrDecryptPassword(password, false);
 
                 bool exists = UserAccounts.CheckIfEmployeeExists(fullname, username);
                 if (exists)
@@ -945,6 +941,7 @@ namespace ProjectB
                 var username = Console.ReadLine();
                 Console.Write("Enter the password: ");
                 var password = Console.ReadLine();
+                password = UserAccounts.EncryptOrDecryptPassword(password, false);
 
                 bool exists = UserAccounts.CheckIfAdminExists(fullname, username);
                 if (exists)
