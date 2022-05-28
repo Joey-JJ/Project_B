@@ -122,19 +122,49 @@ namespace ProjectB
                     return 4;
                 } 
                 
-                Console.WriteLine("Incorrect log in details, do you want to try again?\n[1] Yes\n[2] No\n");
+                Console.WriteLine("Incorrect log in details, do you want to try again?\n[1] Yes\n[2] No\n[3] I forgot my password\n[4] I forgot my username\n");
                 Console.Write("Please enter your selection: ");
                 string userInput = Console.ReadLine();
 
-                if (userInput == "1") continue;
-                if (userInput == "2") return 0;
-                else
+                switch (userInput)
                 {
+                    case "1": break; // User wants to try again
+                    case "2": return 0; // User wants to return to main menu
+
+                    case "3": // Forgot password
+                    ForgotPasswordMenu();
+                    break;
+
+                    case "4": // Forgot username
+                    ForgotUsernameMenu();
+                    break;
+
+                    default:
                     Console.WriteLine("Invalid option. Please only enter the number of the option you would like to pick.\nPress 'Enter' to continue.");
                     Console.ReadLine();
+                    break;
                 }
+
+                // if (userInput == "1") continue;
+                // if (userInput == "2") return 0;
+                // else
+                // {
+                //     Console.WriteLine("Invalid option. Please only enter the number of the option you would like to pick.\nPress 'Enter' to continue.");
+                //     Console.ReadLine();
+                // }
             }
         }
+
+        private static void ForgotPasswordMenu() 
+        {
+            Console.Clear();
+            Console.WriteLine("Password recovery\nPlease enter your username below. If the username is entered correctly, an e-mail will be send with a recovery code. Enter the recovery code in the next screen and you will be able to set a new password.\n");
+            Console.Write("Please enter your username here: ");
+            string username = Console.ReadLine();
+            var account = UserAccounts.GetCustomerAccount();
+        }
+
+        private static void ForgotUsernameMenu() { }
 
         private static int CostumerAccountCreationMenu()
         {
