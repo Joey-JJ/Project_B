@@ -40,6 +40,12 @@ public static class UserAccounts
         Customers.Remove(account);
     }
 
+    public static void ChangeCustomerPassword(Customer account, string newPassword)
+    {
+        account.Password = newPassword;
+        SaveAccountData();
+    }
+
     public static void DeleteEmployeeAccount(Employee account)
     {
         Employees.Remove(account);

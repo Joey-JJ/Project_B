@@ -1,5 +1,14 @@
 {
-  "Item1": [],
+  "Item1": [
+    {
+      "Reservations": [],
+      "Reviews": [],
+      "Username": "a",
+      "Password": "bbbbbb",
+      "FullName": "aa",
+      "LoggedIn": false
+    }
+  ],
   "Item2": [],
   "Item3": [
     {
