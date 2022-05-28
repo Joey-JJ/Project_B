@@ -157,11 +157,45 @@ namespace ProjectB
 
         private static void ForgotPasswordMenu() 
         {
-            Console.Clear();
-            Console.WriteLine("Password recovery\nPlease enter your username below. If the username is entered correctly, an e-mail will be send with a recovery code. Enter the recovery code in the next screen and you will be able to set a new password.\n");
-            Console.Write("Please enter your username here: ");
-            string username = Console.ReadLine();
-            var account = UserAccounts.GetCustomerAccount();
+            string userInput;
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("Password recovery\nPlease enter your username below. If the username is entered correctly, an e-mail will be send with a recovery code. Enter the recovery code in the next screen and you will be able to set a new password.\n");
+                Console.Write("Please enter your username here: ");
+                string username = Console.ReadLine();
+
+                var account = UserAccounts.GetCustomerAccount();
+                if (account == null) // Account not found
+                {
+                    Console.WriteLine("There is no account with that username. Would you like to try again?\n[1] Yes\n[2] No\n");
+                    Console.Write("Please enter your selection: ");
+                    userInput = Console.ReadLine();
+                    switch (user_input)
+                    {
+                        case "1": continue;
+                        case "2": return;
+                        default:
+                        Console.WriteLine("Invalid option. Please only enter the number of the option you would like to pick.\nPress 'Enter' to continue.");
+                        Console.ReadLine();
+                    }
+                }
+                else // Account found
+                {
+                    Console.Clear();
+                    Console.WriteLine("************ Fake e-mail ************");
+                    Console.WriteLine("Dear customer,\nYou stated you would like to recover your password. Enter the code below into the recovery page to be able to set a new password. If you did not request a new password, please contact the restaurant.")
+                    Console.WriteLine($"Your code: ");
+                    
+
+                    Console.WriteLine("\nPress 'enter' to continue.");
+                    Console.ReadLine();
+                }
+            }
+            
+
+
+            
         }
 
         private static void ForgotUsernameMenu() { }
