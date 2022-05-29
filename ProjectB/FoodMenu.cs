@@ -84,6 +84,31 @@ public static class FoodMenu
         { "Chateau Margaux", 8.00 },
         { "Bordeaux red", 8.00 }
     };
+
+    /*public static void PrintBill(int index)
+    {
+        var bill = Orders[index];
+        var table = index;
+        if (Orders.Count > 0)
+        {
+            foreach (KeyValuePair<string, int> AllOrders in bill)
+            {
+                Console.WriteLine($"\nTable {table} has a bill of:");
+                foreach (var key in bill.Keys)
+                {
+                    if (!bill[key].Equals(AllOrders[key]))
+                    {
+                        d3.Add(key, d2[key]);
+                    }
+                }
+                Console.WriteLine($"{AllOrders.Key} : {AllOrders.Value}");
+            }
+        }
+        else
+        {
+            Console.WriteLine("No orders have been placed yet");
+        }
+    }*/
     public static void ListOrders()
     {
         LoadOrders();
@@ -150,6 +175,11 @@ public static class FoodMenu
         Console.WriteLine("How many would you like?: ");
         int amount = Convert.ToInt32(Console.ReadLine());
         return amount;
+    }
+    public static void WhatTable(int tableNumber)
+    {
+        string table = "Table Number";
+        MakeOrder.Add(table, tableNumber);
     }
     public static void PrintAppetizers()
     {
