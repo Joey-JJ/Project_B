@@ -40,9 +40,9 @@ public static class UserAccounts
         return result;
     }
 
-    public static void AddCustomerAccount(string username, string password, string fullname)
+    public static void AddCustomerAccount(string username, string email, string password, string fullname)
     {
-        var account = new Customer(username, password, fullname);
+        var account = new Customer(username, email, password, fullname);
         UserAccounts.Customers.Add(account);
     }
 
@@ -88,6 +88,13 @@ public static class UserAccounts
     {
         foreach (var item in Customers) 
             if (item.Username == username) return item;
+        return null;
+    }
+
+    public static Customer GetCustomerByEmail(string email)
+    {
+        foreach (var item in Customers) 
+            if (item.Email == email) return item;
         return null;
     }
 
