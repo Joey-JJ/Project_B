@@ -684,6 +684,7 @@ namespace ProjectB
                     return 5;
 
                     case "4": // Place an order;
+                    FoodMenu.WhatTable();
                     return 9;
 
                     case "5": // List all orders --> make it print bill

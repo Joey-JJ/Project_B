@@ -151,6 +151,34 @@ public static class FoodMenu
         int amount = Convert.ToInt32(Console.ReadLine());
         return amount;
     }
+    public static void WhatTable()
+    {
+        string table = "Table Number";
+        bool loop = true;
+        while (loop == true)
+        {
+            Console.WriteLine("What is the tablenumber?");
+            var number = Console.ReadLine();
+            int tableNumber;
+            bool isTable = int.TryParse(number, out tableNumber);
+            if (isTable)
+            {
+                if (tableNumber >= 1 && tableNumber <= 18)
+                {
+                    MakeOrder.Add(table, tableNumber);
+                    loop = false;
+                }
+                else
+                {
+                    Console.WriteLine("Please enter a valid table number");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Please enter a valid table number");
+            }
+        }
+    }
     public static void PrintAppetizers()
     {
         int index = 0;
