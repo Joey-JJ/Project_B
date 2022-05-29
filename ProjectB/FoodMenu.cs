@@ -87,67 +87,79 @@ public static class FoodMenu
 
     public static void PrintBill(int index)
     {
-        Console.WriteLine($"\nTable bill:");
-        var bill = Orders[index];
-        var table = index;
-        double totalAmount = 0.00;
-        foreach (KeyValuePair<string, int> Orders in bill)
+        foreach (Dictionary<string, int> value in Orders)
         {
-            foreach (var number in bill)
+            int found;
+            if (value.TryGetValue("Table Number", out found) && found == index)
             {
-                foreach (var key in bill.Keys)
+                Console.WriteLine($"\nTable bill:");
+                var bill = Orders[index];
+                var table = index;
+                double totalAmount = 0.00;
+                foreach (KeyValuePair<string, int> Orders in bill)
                 {
-                    foreach (var amount in Appetizers)
+                    foreach (var number in bill)
                     {
-                        if (bill[key].Equals(Appetizers))
+                        foreach (var key in bill.Keys)
                         {
-                            totalAmount += number.Value * amount.Value;
-                        }
-                        else
-                        {
-                            break;
+                            foreach (var amount in Appetizers)
+                            {
+                                if (bill[key].Equals(Appetizers))
+                                {
+                                    totalAmount += number.Value * amount.Value;
+                                }
+                                else
+                                {
+                                    break;
+                                }
+                            }
+                            foreach (var amount in MainCourses)
+                            {
+                                if (bill[key].Equals(MainCourses))
+                                {
+                                    totalAmount += number.Value * amount.Value;
+                                }
+                            }
+                            foreach (var amount in VeganMainCourses)
+                            {
+                                if (bill[key].Equals(VeganMainCourses))
+                                {
+                                    totalAmount += number.Value * amount.Value;
+                                }
+                            }
+                            foreach (var amount in Desserts)
+                            {
+                                if (bill[key].Equals(Desserts))
+                                {
+                                    totalAmount += number.Value * amount.Value;
+                                }
+                            }
+                            foreach (var amount in VeganDesserts)
+                            {
+                                if (bill[key].Equals(VeganDesserts))
+                                {
+                                    totalAmount += number.Value * amount.Value;
+                                }
+                            }
+                            foreach (var amount in Drinks)
+                            {
+                                if (bill[key].Equals(Drinks))
+                                {
+                                    totalAmount += number.Value * amount.Value;
+                                }
+                            }
+
                         }
                     }
-                    foreach (var amount in MainCourses)
-                    {
-                        if (bill[key].Equals(MainCourses))
-                        {
-                            totalAmount += number.Value * amount.Value;
-                        }
-                    }
-                    foreach (var amount in VeganMainCourses)
-                    {
-                        if (bill[key].Equals(VeganMainCourses))
-                        {
-                            totalAmount += number.Value * amount.Value;
-                        }
-                    }
-                    foreach (var amount in Desserts)
-                    {
-                        if (bill[key].Equals(Desserts))
-                        {
-                            totalAmount += number.Value * amount.Value;
-                        }
-                    }
-                    foreach (var amount in VeganDesserts)
-                    {
-                        if (bill[key].Equals(VeganDesserts))
-                        {
-                            totalAmount += number.Value * amount.Value;
-                        }
-                    }
-                    foreach (var amount in Drinks)
-                    {
-                        if (bill[key].Equals(Drinks))
-                        {
-                            totalAmount += number.Value * amount.Value;
-                        }
-                    }
-                    
+                    Console.WriteLine($"{Orders.Key} : {Orders.Value}");
                 }
             }
-            Console.WriteLine($"{Orders.Key} : {Orders.Value}");
+            else
+            {
+                Console.WriteLine("This table does not have any orders");
+            }
         }
+        
         
     }
     public static void ListOrders()
