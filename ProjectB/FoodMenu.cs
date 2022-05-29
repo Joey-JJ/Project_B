@@ -151,6 +151,11 @@ public static class FoodMenu
         int amount = Convert.ToInt32(Console.ReadLine());
         return amount;
     }
+    public static void WhatTable(int tableNumber)
+    {
+        string table = "Table Number";
+        MakeOrder.Add(table, tableNumber);
+    }
     public static void PrintAppetizers()
     {
         int index = 0;

@@ -684,6 +684,10 @@ namespace ProjectB
                     return 5;
 
                     case "4": // Place an order;
+                    Console.WriteLine("What is the tablenumber?");
+                    var table = Console.ReadLine();
+                    var tableNumber = Convert.ToInt32(table);
+                    FoodMenu.WhatTable(tableNumber);
                     return 9;
 
                     case "5": // List all orders --> make it print bill
