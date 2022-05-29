@@ -31,10 +31,12 @@ public abstract class BaseUser
 
 public class Customer : BaseUser
 {
+    public string Email { get; set; }
     public List<Reservation> Reservations { get; set; }
     public List<Review> Reviews { get; set; }
-    public Customer(string Username, string Password, string FullName) : base(Username, Password, FullName) 
+    public Customer(string Username, string Email, string Password, string FullName) : base(Username, Password, FullName) 
     {
+        this.Email = Email;
         this.Reservations = new();
         this.Reviews = new();
     }

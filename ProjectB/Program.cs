@@ -193,7 +193,7 @@ namespace ProjectB
                 {
                     Console.Clear();
                     Console.WriteLine("************ Fake e-mail ************\n");
-                    Console.WriteLine("Dear customer,\nYou stated you would like to recover your password. Enter the code below into the recovery page to be able to set a new password.");
+                    Console.WriteLine($"Dear {account.FullName},\nYou stated you would like to recover your password. Enter the code below into the recovery page to be able to set a new password.");
                     Console.WriteLine("If you did not request a new password, please contact the restaurant.");
                     var random_code = getCode(15);
                     Console.WriteLine($"\nYour code: {random_code}\nMake sure to copy it before you continue.");
@@ -235,7 +235,32 @@ namespace ProjectB
             }
         }
 
-        private static void ForgotUsernameMenu() { }
+        private static void ForgotUsernameMenu() 
+        {
+            Console.Clear();
+            Console.WriteLine("Username recovery\nEnter your e-mail address below and your username will be e-mailed to you.\n");
+            Console.Write("Please enter your e-mail address here: ");
+            string email = Console.ReadLine();
+            var account = UserAccounts.GetCustomerByEmail(email);
+            if (account != null)
+            {
+                Console.Clear();
+                Console.WriteLine("************ Fake e-mail ************\n");
+                Console.WriteLine($"Dear {account.FullName},\nYou requested your account username. Your username is: {account.Username}");
+                Console.WriteLine("We hope you will be able to log in without any further problems.");
+                Console.WriteLine("\n***********************************");
+                Console.WriteLine("\nPress 'enter' to continue.");
+                Console.ReadLine();
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine("We currently don't have an account registered with that e-mail address.");
+                Console.WriteLine("\nPress 'enter' to continue.");
+                Console.ReadLine();
+            }
+
+        }
 
         private static int CostumerAccountCreationMenu()
         {
@@ -246,6 +271,8 @@ namespace ProjectB
 
                 Console.Write("Enter your full name: ");
                 var fullname = Console.ReadLine();
+                Console.Write("Enter your e-mail address: ");
+                var email = Console.ReadLine();
                 Console.Write("Enter your preferred username: ");
                 var username = Console.ReadLine();
                 Console.Write("Enter your password: ");
@@ -270,7 +297,7 @@ namespace ProjectB
                 else
                 {
                     password = UserAccounts.EncryptOrDecryptPassword(password, false);
-                    UserAccounts.AddCustomerAccount(username, password, fullname);
+                    UserAccounts.AddCustomerAccount(username, email, password, fullname);
                     UserAccounts.SaveAccountData();
                     Console.WriteLine("Account created, routing you to the log in screen.\nPress 'Enter' to go to the log in screen.");
                     Console.ReadLine();
