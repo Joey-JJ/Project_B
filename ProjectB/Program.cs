@@ -561,10 +561,10 @@ namespace ProjectB
                     case "5": // List all orders --> make it print bill
                     Console.Clear();
                     FoodMenu.ListOrders();
-                    /*Console.WriteLine("Which table would you like the bill of?");
+                    Console.WriteLine("Which table would you like the bill of?");
                     var whatTable = Console.ReadLine();
                     var index = Convert.ToInt32(whatTable);
-                    FoodMenu.PrintBill(index);*/
+                    FoodMenu.PrintBill(index);
                     Console.WriteLine("\nPress 'Enter' to continue.");
                     Console.ReadLine();
                     return 5;

@@ -85,44 +85,83 @@ public static class FoodMenu
         { "Bordeaux red", 8.00 }
     };
 
-    /*public static void PrintBill(int index)
+    public static void PrintBill(int index)
     {
+        Console.WriteLine($"\nTable bill:");
         var bill = Orders[index];
         var table = index;
-        if (Orders.Count > 0)
+        double totalAmount = 0.00;
+        foreach (KeyValuePair<string, int> Orders in bill)
         {
-            foreach (KeyValuePair<string, int> AllOrders in bill)
+            foreach (var number in bill)
             {
-                Console.WriteLine($"\nTable {table} has a bill of:");
                 foreach (var key in bill.Keys)
                 {
-                    if (!bill[key].Equals(AllOrders[key]))
+                    foreach (var amount in Appetizers)
                     {
-                        d3.Add(key, d2[key]);
+                        if (bill[key].Equals(Appetizers))
+                        {
+                            totalAmount += number.Value * amount.Value;
+                        }
+                        else
+                        {
+                            break;
+                        }
                     }
+                    foreach (var amount in MainCourses)
+                    {
+                        if (bill[key].Equals(MainCourses))
+                        {
+                            totalAmount += number.Value * amount.Value;
+                        }
+                    }
+                    foreach (var amount in VeganMainCourses)
+                    {
+                        if (bill[key].Equals(VeganMainCourses))
+                        {
+                            totalAmount += number.Value * amount.Value;
+                        }
+                    }
+                    foreach (var amount in Desserts)
+                    {
+                        if (bill[key].Equals(Desserts))
+                        {
+                            totalAmount += number.Value * amount.Value;
+                        }
+                    }
+                    foreach (var amount in VeganDesserts)
+                    {
+                        if (bill[key].Equals(VeganDesserts))
+                        {
+                            totalAmount += number.Value * amount.Value;
+                        }
+                    }
+                    foreach (var amount in Drinks)
+                    {
+                        if (bill[key].Equals(Drinks))
+                        {
+                            totalAmount += number.Value * amount.Value;
+                        }
+                    }
+                    
                 }
-                Console.WriteLine($"{AllOrders.Key} : {AllOrders.Value}");
             }
+            Console.WriteLine($"{Orders.Key} : {Orders.Value}");
         }
-        else
-        {
-            Console.WriteLine("No orders have been placed yet");
-        }
-    }*/
+        
+    }
     public static void ListOrders()
     {
         LoadOrders();
-        int table = 1;
         if (Orders.Count > 0)
         {
             foreach (Dictionary<string, int> AllOrders in Orders)
             {
-                Console.WriteLine($"\nTable {table} has ordered:");
-                foreach (KeyValuePair<string, int> item in AllOrders)
+                Console.WriteLine($"\nTable {AllOrders["Table Number"]} has ordered:");
+                foreach (KeyValuePair<string, int> item in AllOrders.Skip(1))
                 {
                     Console.WriteLine($"{item.Key} : {item.Value}");
                 }
-                table++;
             }
         }
         else
@@ -188,7 +227,6 @@ public static class FoodMenu
             bool isTable = int.TryParse(number, out tableNumber);
             if (isTable)
             {
-               /* int number = Convert.ToInt32(tableNumber);*/
                 if (tableNumber >= 1 && tableNumber <= 18)
                 {
                     MakeOrder.Add(table, tableNumber);
@@ -204,7 +242,6 @@ public static class FoodMenu
                 Console.WriteLine("Please enter a valid table number");
             }
         }
-        
     }
     public static void PrintAppetizers()
     {
