@@ -1,10 +1,27 @@
 {
-  "Item1": [],
+  "Item1": [
+    {
+      "Reservations": [],
+      "Reviews": [],
+      "Username": "a",
+      "Password": "ufxx",
+      "FullName": "aa",
+      "LoggedIn": false
+    },
+    {
+      "Reservations": [],
+      "Reviews": [],
+      "Username": "henkie69",
+      "Password": "mfqqt",
+      "FullName": "henk de jong",
+      "LoggedIn": false
+    }
+  ],
   "Item2": [],
   "Item3": [
     {
       "Username": "admin",
-      "Password": "a",
+      "Password": "ufxx",
       "FullName": "admin",
       "LoggedIn": false
     }

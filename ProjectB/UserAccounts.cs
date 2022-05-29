@@ -26,6 +26,20 @@ public static class UserAccounts
         Admins = accounts.Item3;
     }
 
+    public static string EncryptOrDecryptPassword(string password, bool isEncrypted)
+    {
+        var result = "";
+        var key = 5; // DO NOT CHANGE, LOG IN WILL BREAK (default value = 15)
+        for (int i = 0; i < password.Length; i++)
+        {   
+            if (!isEncrypted) 
+                result += (char)((int)(password[i] + key)); // Encrypting
+            else 
+                result += (char)((int)(password[i] - key)); // Decrypting
+        }
+        return result;
+    }
+
     public static void AddCustomerAccount(string username, string password, string fullname)
     {
         var account = new Customer(username, password, fullname);
@@ -38,6 +52,12 @@ public static class UserAccounts
             ReservationService.RemoveReservation(i, account);
             
         Customers.Remove(account);
+    }
+
+    public static void ChangeCustomerPassword(Customer account, string newPassword)
+    {
+        account.Password = newPassword;
+        SaveAccountData();
     }
 
     public static void DeleteEmployeeAccount(Employee account)

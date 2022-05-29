@@ -113,7 +113,7 @@ namespace ProjectB
                 Console.Write("Please enter your username: ");
                 var username = Console.ReadLine();
                 Console.Write("Please enter your password: ");
-                var password = Console.ReadLine();
+                var password = UserAccounts.EncryptOrDecryptPassword(Console.ReadLine(), false);
 
                 var account = UserAccounts.GetCustomer(username);
                 if (account != null && account.Password == password) 
@@ -122,19 +122,120 @@ namespace ProjectB
                     return 4;
                 } 
                 
-                Console.WriteLine("Incorrect log in details, do you want to try again?\n[1] Yes\n[2] No\n");
+                Console.WriteLine("Incorrect log in details, do you want to try again?\n[1] Yes\n[2] No\n[3] I forgot my password\n[4] I forgot my username\n");
                 Console.Write("Please enter your selection: ");
                 string userInput = Console.ReadLine();
 
-                if (userInput == "1") continue;
-                if (userInput == "2") return 0;
-                else
+                switch (userInput)
                 {
+                    case "1": break; // User wants to try again
+                    case "2": return 0; // User wants to return to main menu
+
+                    case "3": // Forgot password
+                    return ForgotPasswordMenu();
+
+                    case "4": // Forgot username
+                    ForgotUsernameMenu();
+                    break;
+
+                    default:
                     Console.WriteLine("Invalid option. Please only enter the number of the option you would like to pick.\nPress 'Enter' to continue.");
                     Console.ReadLine();
+                    break;
                 }
             }
         }
+
+        private static int ForgotPasswordMenu() 
+        {
+            // Function to generate random e-mail code
+            Func<int, string> getCode = length => {
+            var rnd = new Random();
+            var result = "";
+            for (var i = 0; i < length; i++)
+            {
+                var num = rnd.Next(0, 10);
+                var chance = rnd.Next(0, 10);
+                if (chance < 5)
+                    result += (char)(rnd.Next(65, 91));
+                else 
+                    result += num;
+            }
+            return result;
+            };
+
+            string userInput;
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("Password recovery\nPlease enter your username below. If the username is entered correctly, an e-mail will be send with a recovery code.");
+                Console.WriteLine("Enter the recovery code in the next screen and you will be able to set a new password.\n");
+                Console.Write("Please enter your username here: ");
+                string username = Console.ReadLine();
+
+                var account = UserAccounts.GetCustomer(username);
+                if (account == null) // Account not found
+                {
+                    Console.WriteLine("There is no account with that username. Would you like to try again?\n[1] Yes\n[2] No\n");
+                    Console.Write("Please enter your selection: ");
+                    userInput = Console.ReadLine();
+                    switch (userInput)
+                    {
+                        case "1": continue;
+                        case "2": return 0;
+                        default:
+                        Console.WriteLine("Invalid option. Please only enter the number of the option you would like to pick.\nPress 'Enter' to continue.");
+                        Console.ReadLine();
+                        break;
+                    }
+                }
+                else // Account found
+                {
+                    Console.Clear();
+                    Console.WriteLine("************ Fake e-mail ************\n");
+                    Console.WriteLine("Dear customer,\nYou stated you would like to recover your password. Enter the code below into the recovery page to be able to set a new password.");
+                    Console.WriteLine("If you did not request a new password, please contact the restaurant.");
+                    var random_code = getCode(15);
+                    Console.WriteLine($"\nYour code: {random_code}\nMake sure to copy it before you continue.");
+                    Console.WriteLine("\n***********************************");
+                    Console.WriteLine("\nPress 'enter' to continue.");
+                    Console.ReadLine();
+                    
+                    Console.Clear();
+                    Console.Write("Please enter your recovery code: ");
+                    var code_entered = Console.ReadLine();
+
+                    if (code_entered == random_code) // User entered correct random code
+                    {
+                        while (true)
+                        {
+                            Console.Write("Please enter your new password: ");
+                            var newPassword = Console.ReadLine();
+                            if (newPassword.Length < 5)
+                            {
+                                Console.WriteLine("Please enter a longer password.");
+                                continue;
+                            }
+                            newPassword = UserAccounts.EncryptOrDecryptPassword(newPassword, false);
+                            UserAccounts.ChangeCustomerPassword(account, newPassword);
+                            Console.WriteLine("New password changed! You can now log in again.");
+                            Console.WriteLine("Press 'enter' to continue.");
+                            Console.ReadLine();
+                            return 1;
+                        }
+                    }
+                    else // User entered an incorrect code
+                    {
+                        Console.WriteLine("Code incorrect. Please try again.");
+                        Console.WriteLine("Press 'enter' to continue.");
+                        Console.ReadLine();
+                        return 0;
+                    }
+                }
+            }
+        }
+
+        private static void ForgotUsernameMenu() { }
 
         private static int CostumerAccountCreationMenu()
         {
@@ -168,6 +269,7 @@ namespace ProjectB
                 } 
                 else
                 {
+                    password = UserAccounts.EncryptOrDecryptPassword(password, false);
                     UserAccounts.AddCustomerAccount(username, password, fullname);
                     UserAccounts.SaveAccountData();
                     Console.WriteLine("Account created, routing you to the log in screen.\nPress 'Enter' to go to the log in screen.");
@@ -186,6 +288,7 @@ namespace ProjectB
                         var username = Console.ReadLine();
                         Console.Write("Enter your password: ");
                         var password = Console.ReadLine();
+                        password = UserAccounts.EncryptOrDecryptPassword(password, false);
                         return Tuple.Create(username, password);
                 };
 
@@ -736,6 +839,7 @@ namespace ProjectB
                 var username = Console.ReadLine();
                 Console.Write("Enter your password: ");
                 var password = Console.ReadLine();
+                password = UserAccounts.EncryptOrDecryptPassword(password, false);
 
                 bool exists = UserAccounts.CheckIfEmployeeExists(fullname, username);
                 if (exists)
@@ -837,6 +941,7 @@ namespace ProjectB
                 var username = Console.ReadLine();
                 Console.Write("Enter the password: ");
                 var password = Console.ReadLine();
+                password = UserAccounts.EncryptOrDecryptPassword(password, false);
 
                 bool exists = UserAccounts.CheckIfAdminExists(fullname, username);
                 if (exists)
