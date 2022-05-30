@@ -560,12 +560,12 @@ namespace ProjectB
 
                     case "5": // List all orders --> make it print bill
                     Console.Clear();
-                    Console.WriteLine("Please use index numbers when selecting a table");
+                    Console.WriteLine("Please use order numbers when selecting a table and not the table numbers!");
                     FoodMenu.ListOrders();
                     Console.WriteLine("\nWhich table would you like the bill of?");
                     var whatTable = Console.ReadLine();
-                    var index = Convert.ToInt32(whatTable);
-                    FoodMenu.PrintBill(index);
+                    var index = Convert.ToInt32(whatTable); //fix geen letters en index out of range
+                    FoodMenu.PrintBill(index-1);
                     Console.WriteLine("\nPress 'Enter' to continue.");
                     Console.ReadLine();
                     return 5;

@@ -68,7 +68,7 @@ public static class FoodMenu
         { "Vegan Icecream scoop (chocolate, vanilla, banana, strawberry, lemon and chocolate sauce)", 8.00 },
         { "Vegan Brownie", 8.00 },
         { "Vegan Vanille Cake", 8.00 },
-        { "Vegan Aplle Pie", 8.00 }
+        { "Vegan Apple Pie", 8.00 }
     };
 
     public static Dictionary<string, double> Drinks = new()
@@ -148,7 +148,6 @@ public static class FoodMenu
                 }
             }
             Console.WriteLine($"{Orders.Key} : {Orders.Value}");
-            
         }
         Console.WriteLine($"\nTable bill: {totalAmount}");
     }
@@ -157,10 +156,10 @@ public static class FoodMenu
         LoadOrders();
         if (Orders.Count > 0)
         {
-            int index = 0;
+            int index = 1;
             foreach (Dictionary<string, int> AllOrders in Orders)
             {
-                Console.WriteLine($"\nIndex {index}\nTable {AllOrders["Table Number"]} has ordered:");
+                Console.WriteLine($"\nOrder number: {index}\nTable {AllOrders["Table Number"]} has ordered:");
                 foreach (KeyValuePair<string, int> item in AllOrders.Skip(1))
                 {
                     Console.WriteLine($"{item.Key} : {item.Value}");
