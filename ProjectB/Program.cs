@@ -412,7 +412,7 @@ namespace ProjectB
 
                     case "2":  // Listing account reservations
                     userAccount.ListReservations();
-                    Console.WriteLine("\nPress 'Enter' to continue.");
+                    Console.WriteLine("\nPress 'Enter' to go back.");
                     Console.ReadLine();
                     break;
 
