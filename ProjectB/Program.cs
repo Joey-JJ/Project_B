@@ -585,6 +585,7 @@ namespace ProjectB
                 
             }
         }
+
         private static int AddOrderMenu()
         {
             Console.Clear();
@@ -655,6 +656,7 @@ namespace ProjectB
                 }
             }
         }
+
         private static int EmployeeArea()
         {
             var userAccount = UserAccounts.GetLoggedInEmployee();
@@ -663,7 +665,7 @@ namespace ProjectB
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine($"Logged in as {2}");
+                Console.WriteLine($"Logged in as {userAccount.FullName}");
                 Console.WriteLine("What would you like to do?\n[1] See the reservations\n[2] Cancel a reservation\n[3] Make a reservation\n[4] Place an order\n[5] Print the bill for a table\n[6] Log out and go back to the main menu");
                 Console.Write("Please enter your selection: ");
                 var input = Console.ReadLine();

@@ -1,8 +1,8 @@
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
-      "C:\\Users\\alana\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\alana\\.nuget\\packages"
+      "C:\\Users\\Joey\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\Joey\\.nuget\\packages"
     ]
   }
 }
