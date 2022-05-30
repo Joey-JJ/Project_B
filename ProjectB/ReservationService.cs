@@ -75,41 +75,52 @@ class ReservationService
             switch (date_number)
             {
                 case "1":
-                    foundDate = true;
-                    result = dates[0 + (week * 7)];
-                    break;
+                foundDate = true;
+                result = dates[0 + (week * 7)];
+                break;
+
                 case "2":
-                    foundDate = true;
-                    result = dates[1 + (week * 7)];
-                    break;
+                foundDate = true;
+                result = dates[1 + (week * 7)];
+                break;
+
                 case "3":
-                    foundDate = true;
-                    result = dates[2 + (week * 7)];
-                    break;
+                foundDate = true;
+                result = dates[2 + (week * 7)];
+                break;
+
                 case "4":
-                    foundDate = true;
-                    result = dates[3 + (week * 7)];
-                    break;
+                foundDate = true;
+                result = dates[3 + (week * 7)];
+                break;
+
                 case "5":
-                    foundDate = true;
-                    result = dates[4 + (week * 7)];
-                    break;
+                foundDate = true;
+                result = dates[4 + (week * 7)];
+                break;
+
                 case "6":
-                    foundDate = true;
-                    result = dates[5 + (week * 7)];
-                    break;
+                foundDate = true;
+                result = dates[5 + (week * 7)];
+                break;
+
                 case "7":
-                    foundDate = true;
-                    result = dates[6 + (week * 7)];
-                    break;
+                foundDate = true;
+                result = dates[6 + (week * 7)];
+                break;
+
                 case "8":
-                    week++;
-                    break;
+                week++;
+                break;
+
                 case "9":
-                    if (week != 0) week--;
-                    break;
+                if (week != 0) week--;
+                break;
+
                 default:
-                    break;
+                Console.WriteLine("Invalid input, please try again. Press 'Enter' to continue.");
+                Console.ReadLine();
+                break;
             }
         }
         return result;
@@ -136,49 +147,64 @@ class ReservationService
             switch (input)
             {
                 case "1":
-                    timeFound = true;
-                    res = times[0];
-                    break;
+                timeFound = true;
+                res = times[0];
+                break;
+
                 case "2":
-                    timeFound = true;
-                    res = times[1];
-                    break;
+                timeFound = true;
+                res = times[1];
+                break;
+
                 case "3":
-                    timeFound = true;
-                    res = times[2];
-                    break;
+                timeFound = true;
+                res = times[2];
+                break;
+
                 case "4":
-                    timeFound = true;
-                    res = times[3];
-                    break;
+                timeFound = true;
+                res = times[3];
+                break;
+
                 case "5":
-                    timeFound = true;
-                    res = times[4];
-                    break;
+                timeFound = true;
+                res = times[4];
+                break;
+
                 case "6":
-                    timeFound = true;
-                    res = times[5];
-                    break;
+                timeFound = true;
+                res = times[5];
+                break;
+
                 case "7":
-                    timeFound = true;
-                    res = times[6];
-                    break;
+                timeFound = true;
+                res = times[6];
+                break;
+
                 case "8":
-                    timeFound = true;
-                    res = times[7];
-                    break;
+                timeFound = true;
+                res = times[7];
+                break;
+
                 case "9":
-                    timeFound = true;
-                    res = times[8];
-                    break;
+                timeFound = true;
+                res = times[8];
+                break;
+
                 case "10":
-                    timeFound = true;
-                    res = times[9];
-                    break;
+                timeFound = true;
+                res = times[9];
+                break;
+
                 case "11":
-                    timeFound = true;
-                    res = times[10];
-                    break;
+                timeFound = true;
+                res = times[10];
+                break;
+                
+                default:
+                Console.WriteLine("Invalid input, please try again. Press 'Enter' to continue.");
+                Console.ReadLine();
+                break;
             }
         }
         Console.WriteLine(res);
