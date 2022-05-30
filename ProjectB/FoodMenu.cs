@@ -84,96 +84,88 @@ public static class FoodMenu
         { "Chateau Margaux", 8.00 },
         { "Bordeaux red", 8.00 }
     };
-
     public static void PrintBill(int index)
     {
+        double totalAmount = 0.00;
         foreach (Dictionary<string, int> value in Orders)
         {
-            int found;
-            if (value.TryGetValue("Table Number", out found) && found == index)
+            Console.Clear();
+            var bill = Orders[index];
+            var table = index;
+            Console.WriteLine($"\nTable bill: {totalAmount}");
+            foreach (KeyValuePair<string, int> Orders in bill)
             {
-                Console.WriteLine($"\nTable bill:");
-                var bill = Orders[index];
-                var table = index;
-                double totalAmount = 0.00;
-                foreach (KeyValuePair<string, int> Orders in bill)
+                foreach (var number in bill)
                 {
-                    foreach (var number in bill)
+                    foreach (var key in bill.Keys)
                     {
-                        foreach (var key in bill.Keys)
+                        foreach (var amount in Appetizers)
                         {
-                            foreach (var amount in Appetizers)
+                            if (bill[key].Equals(Appetizers))
                             {
-                                if (bill[key].Equals(Appetizers))
-                                {
-                                    totalAmount += number.Value * amount.Value;
-                                }
-                                else
-                                {
-                                    break;
-                                }
+                                totalAmount += number.Value * amount.Value;
                             }
-                            foreach (var amount in MainCourses)
+                            else
                             {
-                                if (bill[key].Equals(MainCourses))
-                                {
-                                    totalAmount += number.Value * amount.Value;
-                                }
+                                break;
                             }
-                            foreach (var amount in VeganMainCourses)
-                            {
-                                if (bill[key].Equals(VeganMainCourses))
-                                {
-                                    totalAmount += number.Value * amount.Value;
-                                }
-                            }
-                            foreach (var amount in Desserts)
-                            {
-                                if (bill[key].Equals(Desserts))
-                                {
-                                    totalAmount += number.Value * amount.Value;
-                                }
-                            }
-                            foreach (var amount in VeganDesserts)
-                            {
-                                if (bill[key].Equals(VeganDesserts))
-                                {
-                                    totalAmount += number.Value * amount.Value;
-                                }
-                            }
-                            foreach (var amount in Drinks)
-                            {
-                                if (bill[key].Equals(Drinks))
-                                {
-                                    totalAmount += number.Value * amount.Value;
-                                }
-                            }
-
                         }
+                        foreach (var amount in MainCourses)
+                        {
+                            if (bill[key].Equals(MainCourses))
+                            {
+                                totalAmount += number.Value * amount.Value;
+                            }
+                        }
+                        foreach (var amount in VeganMainCourses)
+                        {
+                            if (bill[key].Equals(VeganMainCourses))
+                            {
+                                totalAmount += number.Value * amount.Value;
+                            }
+                        }
+                        foreach (var amount in Desserts)
+                        {
+                            if (bill[key].Equals(Desserts))
+                            {
+                                totalAmount += number.Value * amount.Value;
+                            }
+                        }
+                        foreach (var amount in VeganDesserts)
+                        {
+                            if (bill[key].Equals(VeganDesserts))
+                            {
+                                totalAmount += number.Value * amount.Value;
+                            }
+                        }
+                        foreach (var amount in Drinks)
+                        {
+                            if (bill[key].Equals(Drinks))
+                            {
+                                totalAmount += number.Value * amount.Value;
+                            }
+                        }
+
                     }
-                    Console.WriteLine($"{Orders.Key} : {Orders.Value}");
                 }
-            }
-            else
-            {
-                Console.WriteLine("This table does not have any orders");
-            }
-        }
-        
-        
+                Console.WriteLine($"{Orders.Key} : {Orders.Value}");
+            } 
+        }  
     }
     public static void ListOrders()
     {
         LoadOrders();
         if (Orders.Count > 0)
         {
+            int index = 0;
             foreach (Dictionary<string, int> AllOrders in Orders)
             {
-                Console.WriteLine($"\nTable {AllOrders["Table Number"]} has ordered:");
+                Console.WriteLine($"\nIndex {index}\nTable {AllOrders["Table Number"]} has ordered:");
                 foreach (KeyValuePair<string, int> item in AllOrders.Skip(1))
                 {
                     Console.WriteLine($"{item.Key} : {item.Value}");
                 }
+                index++;
             }
         }
         else
