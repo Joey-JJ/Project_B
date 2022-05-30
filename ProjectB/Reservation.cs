@@ -57,7 +57,7 @@ public class Reservation
     {
         for (int i = this.Day.Tables.Count - 1; i >= 0; i--)
         {
-            if ((this.PersonCount <= this.Day.Tables[i].NumberOfSeats ) && (!this.Day.Tables[i].Taken))
+            if ((this.PersonCount <= this.Day.Tables[i].NumberOfSeats && this.PersonCount > 0) && (!this.Day.Tables[i].Taken))
             {
                 this.Day.Tables[i].Taken = true;
                 return this.Day.Tables[i].TableNumber;

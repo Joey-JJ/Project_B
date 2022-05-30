@@ -190,7 +190,6 @@ class ReservationService
         var newRes = new Reservation(acc.FullName, acc.Username, dateTime, personCount);
         try { acc.Reservations.Add(newRes); }
         catch (System.NullReferenceException) { Console.WriteLine($"{newRes}"); }
-        Console.WriteLine("Added Reservation");
     }
 
     public static void RemoveReservation(int index, Customer user) 

@@ -455,9 +455,14 @@ namespace ProjectB
             {
                 try
                 {
-                    Console.Write("How many people will be coming? ");
+                    Console.Write("How many people will be coming? (max. 8 people): ");
                     persons = Convert.ToInt32(Console.ReadLine());
-                    break;
+                    if (persons > 0 && persons <= 8)
+                        break;
+                    else
+                    {
+                        Console.WriteLine("Please enter a valid number, try again.");
+                    }
                 }
                 catch (System.Exception)
                 {
@@ -469,6 +474,7 @@ namespace ProjectB
             ReservationService.SaveReservations();
             UserAccounts.SaveAccountData();
 
+            Console.WriteLine("Reservation added.");
             Console.WriteLine("\nPress 'Enter' to go back");
             Console.ReadLine();
         }
