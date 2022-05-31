@@ -84,6 +84,34 @@ public static class FoodMenu
         { "Chateau Margaux", 8.00 },
         { "Bordeaux red", 8.00 }
     };
+    public static int CheckIndex()
+    {
+        while (true)
+        {
+            var index = Console.ReadLine();
+            int indexNumber;
+            bool isCorrect = int.TryParse(index, out indexNumber);
+            if (isCorrect)
+            {
+                if (indexNumber >= 1 && indexNumber <= Orders.Count)
+                {
+                    return indexNumber;
+                }
+                else
+                {
+                    Console.WriteLine("\nPlease enter a valid number");
+                    Console.WriteLine("Which table would you like the bill of?\n");
+                    Console.Write("Please enter your selection: ");
+                }
+            }
+            else
+            {
+                Console.WriteLine("\nPlease enter a valid number");
+                Console.WriteLine("Which table would you like the bill of?\n");
+                Console.Write("Please enter your selection: ");
+            }
+        }
+    }
     public static void PrintBill(int index)
     {
         Console.Clear();
@@ -205,17 +233,41 @@ public static class FoodMenu
             Console.WriteLine($"{item.Key} = {item.Value}");
         }
     }
+    
     public static int OrderDetails()
     {
         Console.WriteLine("What dish would you like to order?: ");
         int order = Convert.ToInt32(Console.ReadLine());
         return order;
     }
-
+    public static int CheckAmount()
+    {
+        while (true)
+        {
+            var input = Console.ReadLine();
+            int inputNumber;
+            bool isCorrect = int.TryParse(input, out inputNumber);
+            if (isCorrect)
+            {
+                if (inputNumber >= 1)
+                {
+                    return inputNumber;
+                }
+                else
+                {
+                    Console.WriteLine("Please enter a valid number");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Please enter a valid number");
+            }
+        }
+    }
     public static int AmountDetails()
     {
         Console.WriteLine("How many would you like?: ");
-        int amount = Convert.ToInt32(Console.ReadLine());
+        int amount = CheckAmount();
         return amount;
     }
     public static void WhatTable()
