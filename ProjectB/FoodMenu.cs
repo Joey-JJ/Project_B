@@ -36,7 +36,7 @@ public static class FoodMenu
     };
 
     public static Dictionary<string, double> MainCourses = new()
-    { 
+    {
         { "Entrecote Bordelaise", 25.00 },
         { "Coq au Vin", 25.00 },
         { "Oesters", 30.00 },
@@ -68,7 +68,7 @@ public static class FoodMenu
         { "Vegan Icecream scoop (chocolate, vanilla, banana, strawberry, lemon and chocolate sauce)", 8.00 },
         { "Vegan Brownie", 8.00 },
         { "Vegan Vanille Cake", 8.00 },
-        { "Vegan Aplle Pie", 8.00 }
+        { "Vegan Apple Pie", 8.00 }
     };
 
     public static Dictionary<string, double> Drinks = new()
@@ -84,20 +84,115 @@ public static class FoodMenu
         { "Chateau Margaux", 8.00 },
         { "Bordeaux red", 8.00 }
     };
+    public static int CheckIndex()
+    {
+        while (true)
+        {
+            var index = Console.ReadLine();
+            int indexNumber;
+            bool isCorrect = int.TryParse(index, out indexNumber);
+            if (isCorrect)
+            {
+                if (indexNumber >= 1 && indexNumber <= Orders.Count)
+                {
+                    return indexNumber;
+                }
+                else
+                {
+                    Console.WriteLine("\nPlease enter a valid number");
+                    Console.WriteLine("Which table would you like the bill of?\n");
+                    Console.Write("Please enter your selection: ");
+                }
+            }
+            else
+            {
+                Console.WriteLine("\nPlease enter a valid number");
+                Console.WriteLine("Which table would you like the bill of?\n");
+                Console.Write("Please enter your selection: ");
+            }
+        }
+    }
+    public static void PrintBill(int index)
+    {
+        Console.Clear();
+        double totalAmount = 0.00;
+        var bill = Orders[index];
+        bool keepGoing = true;
+        var table = bill["Table Number"];
+        int i = 1;
+        Console.WriteLine($"Table {table} has ordered:\n");
+        foreach (KeyValuePair<string, int> Orders in bill.Skip(1))
+        {
+            while (keepGoing == true && i < bill.Count)
+            {
+                var item = bill.ElementAt(i);
+                var itemKey = item.Key;
+                var itemValue = item.Value;
+                if (Appetizers.ContainsKey(itemKey))
+                {
+                    var product = bill[itemKey];
+                    var price = Appetizers[itemKey];
+                    totalAmount += product * price;
+                    i++;
+                }
+                else if (MainCourses.ContainsKey(itemKey))
+                {
+                    var product = bill[itemKey];
+                    var price = MainCourses[itemKey];
+                    totalAmount += product * price;
+                    i++;
+                }
+                else if (VeganMainCourses.ContainsKey(itemKey))
+                {
+                    var product = bill[itemKey];
+                    var price = VeganMainCourses[itemKey];
+                    totalAmount += product * price;
+                    i++;
+                }
+                else if (Desserts.ContainsKey(itemKey))
+                {
+                    var product = bill[itemKey];
+                    var price = Desserts[itemKey];
+                    totalAmount += product * price;
+                    i++;
+                }
+                else if (VeganDesserts.ContainsKey(itemKey))
+                {
+                    var product = bill[itemKey];
+                    var price = VeganDesserts[itemKey];
+                    totalAmount += product * price;
+                    i++;
+                }
+                else if (Drinks.ContainsKey(itemKey))
+                {
+                    var product = bill[itemKey];
+                    var price = Drinks[itemKey];
+                    totalAmount += product * price;
+                    i++;
+                }
+                else
+                {
+                    keepGoing = false;
+                }
+            }
+            Console.WriteLine($"{Orders.Key} : {Orders.Value}");
+        }
+        Console.WriteLine($"\nTable bill: {totalAmount}");
+    }
     public static void ListOrders()
     {
         LoadOrders();
-        int table = 1;
         if (Orders.Count > 0)
         {
+            int index = 1;
             foreach (Dictionary<string, int> AllOrders in Orders)
             {
-                Console.WriteLine($"\nTable {table} has ordered:");
-                foreach (KeyValuePair<string, int> item in AllOrders)
+                Console.WriteLine($"\nOrder number: {index}\nTable {AllOrders["Table Number"]} has ordered:");
+                foreach (KeyValuePair<string, int> item in AllOrders.Skip(1))
                 {
                     Console.WriteLine($"{item.Key} : {item.Value}");
                 }
-                table++;
+                index++;
             }
         }
         else
@@ -138,17 +233,53 @@ public static class FoodMenu
             Console.WriteLine($"{item.Key} = {item.Value}");
         }
     }
+
     public static int OrderDetails()
     {
-        Console.WriteLine("What dish would you like to order?: ");
-        int order = Convert.ToInt32(Console.ReadLine());
-        return order;
+        while (true)
+        {
+            Console.Write("What dish would you like to order?: ");
+            var order = Console.ReadLine();
+            int orderNumber;
+            bool isCorrect = int.TryParse(order, out orderNumber);
+            if (isCorrect)
+            {
+                return orderNumber;
+            }
+            else
+            {
+                Console.WriteLine("\nPlease enter a valid number");
+            }
+        }
     }
-
+    public static int CheckAmount()
+    {
+        while (true)
+        {
+            var input = Console.ReadLine();
+            int inputNumber;
+            bool isCorrect = int.TryParse(input, out inputNumber);
+            if (isCorrect)
+            {
+                if (inputNumber >= 1)
+                {
+                    return inputNumber;
+                }
+                else
+                {
+                    Console.WriteLine("Please enter a valid number");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Please enter a valid number");
+            }
+        }
+    }
     public static int AmountDetails()
     {
         Console.WriteLine("How many would you like?: ");
-        int amount = Convert.ToInt32(Console.ReadLine());
+        int amount = CheckAmount();
         return amount;
     }
     public static void WhatTable()
