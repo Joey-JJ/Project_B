@@ -1,4 +1,7 @@
 .vs/.
 .vscode/.
-ProjectB/bin/.
-ProjectB/obj/.
+[Dd]ebug/
+[Rr]elease/
+x64/
+[Bb]in/
+[Oo]bj/
