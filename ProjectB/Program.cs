@@ -564,7 +564,7 @@ namespace ProjectB
                     FoodMenu.ListOrders();
                     Console.WriteLine("\nWhich table would you like the bill of?\n");
                     Console.Write("Please enter your selection: ");
-                    var index = FoodMenu.CheckIndex(); //fix geen letters en index out of range
+                    var index = FoodMenu.CheckIndex();
                     FoodMenu.PrintBill(index-1);
                     Console.WriteLine("\nPress 'Enter' to continue.");
                     Console.ReadLine();
@@ -654,14 +654,20 @@ namespace ProjectB
                     break;
 
                     case "4": // Place an order;
+                    FoodMenu.WhatTable();
                     return 9;
 
                     case "5": // List all orders --> make it print bill
                     Console.Clear();
+                    Console.WriteLine("Please use order numbers when selecting a table and not the table numbers!");
                     FoodMenu.ListOrders();
+                    Console.WriteLine("\nWhich table would you like the bill of?\n");
+                    Console.Write("Please enter your selection: ");
+                    var index = FoodMenu.CheckIndex();
+                    FoodMenu.PrintBill(index - 1);
                     Console.WriteLine("\nPress 'Enter' to continue.");
                     Console.ReadLine();
-                    break;
+                    return 5;
 
                     case "6": // List all customer accounts
                     Console.Clear();

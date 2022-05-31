@@ -236,9 +236,21 @@ public static class FoodMenu
     
     public static int OrderDetails()
     {
-        Console.WriteLine("What dish would you like to order?: ");
-        int order = Convert.ToInt32(Console.ReadLine());
-        return order;
+        while (true)
+        {
+            Console.Write("What dish would you like to order?: ");
+            var order = Console.ReadLine();
+            int orderNumber;
+            bool isCorrect = int.TryParse(order, out orderNumber);
+            if (isCorrect)
+            {
+                return orderNumber;
+            }
+            else
+            {
+                Console.WriteLine("\nPlease enter a valid number");
+            }
+        }
     }
     public static int CheckAmount()
     {
