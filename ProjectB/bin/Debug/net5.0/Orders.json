@@ -1,30 +1,17 @@
 [
   {
-    "French Onionsoup": 2,
-    "Piperade": 2,
-    "Coq au Vin": 1,
+    "Table Number": 1,
+    "Piperade": 4,
+    "Confit de Canard": 1,
     "Oesters": 2,
-    "Homard aux Aromates": 1,
-    "Lemon Cake": 3,
-    "Chocolate Souffle": 1,
-    "Coca Cola": 2,
-    "Chateau Margaux": 1,
-    "Bordeaux red": 1
-  },
-  {
-    "Oeuf en Cocotte": 2,
-    "Homard aux Aromates": 1,
-    "Ratatouille": 1,
-    "Vegan Vanille Cake": 1,
-    "Oasis": 1,
-    "Fristi": 1
-  },
-  {
-    "Oeuf en Cocotte": 2,
-    "Coq au Vin": 1,
-    "Oesters": 1,
-    "Lemon Cake": 1,
     "Crepes (with: banana, strawberry, blueberry / whipped cream)": 1,
-    "Mineral Water": 2
+    "Chocolate Souffle": 1
+  },
+  {
+    "Table Number": 4,
+    "French Onionsoup": 1,
+    "Oesters": 1,
+    "Chocolate Souffle": 2,
+    "Bordeaux red": 25
   }
 ]
