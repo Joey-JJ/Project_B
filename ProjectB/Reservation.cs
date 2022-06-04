@@ -36,7 +36,6 @@ public class Reservation
                 ReservationService.Reservations.Add(this.StartTime.Date, new List<Reservation>() { this });
             }
         }
-        else Console.WriteLine("No tables available, please choose another date");
     }
 
     public RestaurantDay AssignRestaurantDay()

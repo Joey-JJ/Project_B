@@ -214,7 +214,7 @@
       "Username": "test",
       "Password": "yjxy",
       "FullName": "test",
-      "LoggedIn": true
+      "LoggedIn": false
     }
   ],
   "Item2": [
@@ -228,6 +228,12 @@
   "Item3": [
     {
       "Username": "admin",
+      "Password": "ufxx",
+      "FullName": "admin",
+      "LoggedIn": false
+    },
+    {
+      "Username": "admin2",
       "Password": "ufxx",
       "FullName": "admin",
       "LoggedIn": false
