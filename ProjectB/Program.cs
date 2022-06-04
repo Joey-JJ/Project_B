@@ -78,8 +78,8 @@ namespace ProjectB
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("Welcome!\n");
-                Console.WriteLine("You will need to log in to proceed. Select an option from the menu below:\n[1] Log in as a customer\n[2] See our menu\n[3] See our reviews\n[4] Create a customer account\n[5] Log in as an employee\n[6] Quit the application\n");
+                Console.WriteLine("Welcome to Paps Patat!");
+                Console.WriteLine("You will need to log in to be able to make any reservations or write a review.\nSelect an option from the menu below:\n[1] Log in as a customer\n[2] See our menu\n[3] See our reviews\n[4] Create a customer account\n[5] Log in as an employee\n[6] Quit the application\n");
                 Console.Write("Please enter your selection: ");
                 var user_input = Console.ReadLine();
                 switch (user_input)
