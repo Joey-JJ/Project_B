@@ -24,10 +24,9 @@ public class Reservation
         this.Endtime = this.StartTime.AddHours(2.0);
         this.Day = this.AssignRestaurantDay();
         int? table = this.AssignTableNumber();
-        if (table != null) this.TableNumber = table;
-        else Console.WriteLine("No tables available, please choose another date");
         if (this.TableNumber != null) 
         {
+            this.TableNumber = table;
             try 
             { 
                 ReservationService.Reservations[this.StartTime.Date].Add(this);
@@ -37,6 +36,7 @@ public class Reservation
                 ReservationService.Reservations.Add(this.StartTime.Date, new List<Reservation>() { this });
             }
         }
+        else Console.WriteLine("No tables available, please choose another date");
     }
 
     public RestaurantDay AssignRestaurantDay()

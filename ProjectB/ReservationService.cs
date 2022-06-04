@@ -20,16 +20,7 @@ class ReservationService
     {
         string jsonString = File.ReadAllText(FileName);
         Reservations = JsonSerializer.Deserialize<Dictionary<DateTime, List<Reservation>>>(jsonString);
-        foreach (var date in Reservations)
-        {
-            foreach (var res in date.Value)
-            {
-                foreach (var user in UserAccounts.Customers)
-                {
-                    if (res.Username == user.Username) user.Reservations.Add(res);
-                }
-            }
-        }
+
     }
 
     public static void ListReservations()

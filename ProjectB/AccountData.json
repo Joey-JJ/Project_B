@@ -1,14 +1,117 @@
 {
   "Item1": [
     {
-      "Email": "henk",
+      "Email": "test",
       "Reservations": [
         {
-          "Name": "aa",
-          "Username": "a",
-          "StartTime": "2022-05-30T17:00:00",
-          "Endtime": "2022-05-30T19:00:00",
-          "PersonCount": 30,
+          "Name": "test",
+          "Username": "test",
+          "StartTime": "2022-06-04T17:00:00",
+          "Endtime": "2022-06-04T19:00:00",
+          "PersonCount": 1,
+          "TableNumber": 18,
+          "Day": {
+            "Tables": [
+              {
+                "TableNumber": 1,
+                "NumberOfSeats": 8,
+                "Taken": false
+              },
+              {
+                "TableNumber": 2,
+                "NumberOfSeats": 8,
+                "Taken": false
+              },
+              {
+                "TableNumber": 3,
+                "NumberOfSeats": 6,
+                "Taken": false
+              },
+              {
+                "TableNumber": 4,
+                "NumberOfSeats": 6,
+                "Taken": false
+              },
+              {
+                "TableNumber": 5,
+                "NumberOfSeats": 6,
+                "Taken": false
+              },
+              {
+                "TableNumber": 6,
+                "NumberOfSeats": 6,
+                "Taken": false
+              },
+              {
+                "TableNumber": 7,
+                "NumberOfSeats": 4,
+                "Taken": false
+              },
+              {
+                "TableNumber": 8,
+                "NumberOfSeats": 4,
+                "Taken": false
+              },
+              {
+                "TableNumber": 9,
+                "NumberOfSeats": 4,
+                "Taken": false
+              },
+              {
+                "TableNumber": 10,
+                "NumberOfSeats": 4,
+                "Taken": false
+              },
+              {
+                "TableNumber": 11,
+                "NumberOfSeats": 3,
+                "Taken": false
+              },
+              {
+                "TableNumber": 12,
+                "NumberOfSeats": 3,
+                "Taken": false
+              },
+              {
+                "TableNumber": 13,
+                "NumberOfSeats": 2,
+                "Taken": false
+              },
+              {
+                "TableNumber": 14,
+                "NumberOfSeats": 2,
+                "Taken": false
+              },
+              {
+                "TableNumber": 15,
+                "NumberOfSeats": 2,
+                "Taken": false
+              },
+              {
+                "TableNumber": 16,
+                "NumberOfSeats": 2,
+                "Taken": false
+              },
+              {
+                "TableNumber": 17,
+                "NumberOfSeats": 2,
+                "Taken": false
+              },
+              {
+                "TableNumber": 18,
+                "NumberOfSeats": 2,
+                "Taken": true
+              }
+            ],
+            "Date": "2022-06-04T00:00:00"
+          }
+        },
+        {
+          "Name": "test",
+          "Username": "test",
+          "StartTime": "2022-06-05T17:30:00",
+          "Endtime": "2022-06-05T19:30:00",
+          "PersonCount": 2,
           "TableNumber": null,
           "Day": {
             "Tables": [
@@ -100,233 +203,18 @@
               {
                 "TableNumber": 18,
                 "NumberOfSeats": 2,
-                "Taken": false
-              }
-            ],
-            "Date": "2022-05-30T00:00:00"
-          }
-        },
-        {
-          "Name": "aa",
-          "Username": "a",
-          "StartTime": "2022-05-30T17:00:00",
-          "Endtime": "2022-05-30T19:00:00",
-          "PersonCount": 4,
-          "TableNumber": 10,
-          "Day": {
-            "Tables": [
-              {
-                "TableNumber": 1,
-                "NumberOfSeats": 8,
-                "Taken": false
-              },
-              {
-                "TableNumber": 2,
-                "NumberOfSeats": 8,
-                "Taken": false
-              },
-              {
-                "TableNumber": 3,
-                "NumberOfSeats": 6,
-                "Taken": false
-              },
-              {
-                "TableNumber": 4,
-                "NumberOfSeats": 6,
-                "Taken": false
-              },
-              {
-                "TableNumber": 5,
-                "NumberOfSeats": 6,
-                "Taken": false
-              },
-              {
-                "TableNumber": 6,
-                "NumberOfSeats": 6,
-                "Taken": false
-              },
-              {
-                "TableNumber": 7,
-                "NumberOfSeats": 4,
-                "Taken": false
-              },
-              {
-                "TableNumber": 8,
-                "NumberOfSeats": 4,
-                "Taken": false
-              },
-              {
-                "TableNumber": 9,
-                "NumberOfSeats": 4,
-                "Taken": false
-              },
-              {
-                "TableNumber": 10,
-                "NumberOfSeats": 4,
                 "Taken": true
-              },
-              {
-                "TableNumber": 11,
-                "NumberOfSeats": 3,
-                "Taken": false
-              },
-              {
-                "TableNumber": 12,
-                "NumberOfSeats": 3,
-                "Taken": false
-              },
-              {
-                "TableNumber": 13,
-                "NumberOfSeats": 2,
-                "Taken": false
-              },
-              {
-                "TableNumber": 14,
-                "NumberOfSeats": 2,
-                "Taken": false
-              },
-              {
-                "TableNumber": 15,
-                "NumberOfSeats": 2,
-                "Taken": false
-              },
-              {
-                "TableNumber": 16,
-                "NumberOfSeats": 2,
-                "Taken": false
-              },
-              {
-                "TableNumber": 17,
-                "NumberOfSeats": 2,
-                "Taken": false
-              },
-              {
-                "TableNumber": 18,
-                "NumberOfSeats": 2,
-                "Taken": false
               }
             ],
-            "Date": "2022-05-30T00:00:00"
-          }
-        },
-        {
-          "Name": "aa",
-          "Username": "a",
-          "StartTime": "2022-05-30T17:00:00",
-          "Endtime": "2022-05-30T19:00:00",
-          "PersonCount": 4,
-          "TableNumber": 10,
-          "Day": {
-            "Tables": [
-              {
-                "TableNumber": 1,
-                "NumberOfSeats": 8,
-                "Taken": false
-              },
-              {
-                "TableNumber": 2,
-                "NumberOfSeats": 8,
-                "Taken": false
-              },
-              {
-                "TableNumber": 3,
-                "NumberOfSeats": 6,
-                "Taken": false
-              },
-              {
-                "TableNumber": 4,
-                "NumberOfSeats": 6,
-                "Taken": false
-              },
-              {
-                "TableNumber": 5,
-                "NumberOfSeats": 6,
-                "Taken": false
-              },
-              {
-                "TableNumber": 6,
-                "NumberOfSeats": 6,
-                "Taken": false
-              },
-              {
-                "TableNumber": 7,
-                "NumberOfSeats": 4,
-                "Taken": false
-              },
-              {
-                "TableNumber": 8,
-                "NumberOfSeats": 4,
-                "Taken": false
-              },
-              {
-                "TableNumber": 9,
-                "NumberOfSeats": 4,
-                "Taken": false
-              },
-              {
-                "TableNumber": 10,
-                "NumberOfSeats": 4,
-                "Taken": true
-              },
-              {
-                "TableNumber": 11,
-                "NumberOfSeats": 3,
-                "Taken": false
-              },
-              {
-                "TableNumber": 12,
-                "NumberOfSeats": 3,
-                "Taken": false
-              },
-              {
-                "TableNumber": 13,
-                "NumberOfSeats": 2,
-                "Taken": false
-              },
-              {
-                "TableNumber": 14,
-                "NumberOfSeats": 2,
-                "Taken": false
-              },
-              {
-                "TableNumber": 15,
-                "NumberOfSeats": 2,
-                "Taken": false
-              },
-              {
-                "TableNumber": 16,
-                "NumberOfSeats": 2,
-                "Taken": false
-              },
-              {
-                "TableNumber": 17,
-                "NumberOfSeats": 2,
-                "Taken": false
-              },
-              {
-                "TableNumber": 18,
-                "NumberOfSeats": 2,
-                "Taken": false
-              }
-            ],
-            "Date": "2022-05-30T00:00:00"
+            "Date": "2022-06-05T00:00:00"
           }
         }
       ],
       "Reviews": [],
-      "Username": "a",
-      "Password": "ufxx",
-      "FullName": "aa",
-      "LoggedIn": false
-    },
-    {
-      "Email": "henk",
-      "Reservations": [],
-      "Reviews": [],
-      "Username": "henkie69",
-      "Password": "mfqqt",
-      "FullName": "henk de jong",
-      "LoggedIn": false
+      "Username": "test",
+      "Password": "yjxy",
+      "FullName": "test",
+      "LoggedIn": true
     }
   ],
   "Item2": [

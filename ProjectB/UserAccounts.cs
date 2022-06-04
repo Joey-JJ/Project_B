@@ -29,7 +29,7 @@ public static class UserAccounts
     public static string EncryptOrDecryptPassword(string password, bool isEncrypted)
     {
         var result = "";
-        var key = 5; // DO NOT CHANGE, LOG IN WILL BREAK (default value = 15)
+        var key = 5; // DO NOT CHANGE, LOG IN WILL BREAK 
         for (int i = 0; i < password.Length; i++)
         {   
             if (!isEncrypted) 
