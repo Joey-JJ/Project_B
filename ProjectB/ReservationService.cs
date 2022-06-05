@@ -205,15 +205,6 @@ class ReservationService
     {
         var newRes = new Reservation(acc.FullName, acc.Username, dateTime, personCount);
         acc.Reservations.Add(newRes);
-        try
-        {
-            ReservationService.Reservations[dateTime.Date].Add(newRes);
-        }
-        catch (KeyNotFoundException)
-        {
-            ReservationService.Reservations.Add(dateTime.Date, new List<Reservation>());
-            ReservationService.Reservations[dateTime.Date].Add(newRes);
-        }
     }
 
     public static void RemoveReservation(int index, Customer user) 
