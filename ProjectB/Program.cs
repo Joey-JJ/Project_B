@@ -268,15 +268,74 @@ namespace ProjectB
             {
                 Console.Clear();
                 Console.WriteLine("Customer Account Creation\n");
+                string fullname;
+                string email;
+                string username;
+                string password;
 
-                Console.Write("Enter your full name: ");
-                var fullname = Console.ReadLine();
-                Console.Write("Enter your e-mail address: ");
-                var email = Console.ReadLine();
-                Console.Write("Enter your preferred username: ");
-                var username = Console.ReadLine();
-                Console.Write("Enter your password: ");
-                var password = Console.ReadLine();
+                while (true) // Getting fullname
+                {
+                    Console.Clear();
+                    Console.WriteLine("Customer Account Creation\n");
+                    Console.Write("Enter your full name: ");
+                    fullname = Console.ReadLine();
+                    if (fullname.Length > 3) break;
+                    else
+                    {
+                        Console.WriteLine("Your name is too short, please try again.");
+                        Console.WriteLine("Press 'enter' to continue.");
+                        Console.ReadLine();
+                        continue;
+                    }
+                }
+                
+                while (true) // Getting e-mail address
+                {
+                    Console.Clear();
+                    Console.WriteLine("Customer Account Creation\n");
+                    Console.Write("Enter your e-mail address: ");
+                    email = Console.ReadLine();
+                    if (email.Length > 3) break;
+                    else
+                    {
+                        Console.WriteLine("Your e-mail address is too short, please try again.");
+                        Console.WriteLine("Press 'enter' to continue.");
+                        Console.ReadLine();
+                        continue;
+                    }
+                }
+
+                while (true) // Getting username
+                {
+                    Console.Clear();
+                    Console.WriteLine("Customer Account Creation\n");
+                    Console.Write("Enter your preferred username: ");
+                    username = Console.ReadLine();
+                    if (username.Length > 3) break;
+                    else
+                    {
+                        Console.WriteLine("Your username is too short, please try again.");
+                        Console.WriteLine("Press 'enter' to continue.");
+                        Console.ReadLine();
+                        continue;
+                    }
+                }
+
+                while (true) // Getting password
+                {
+                    Console.Clear();
+                    Console.WriteLine("Customer Account Creation\n");
+                    Console.Write("Enter your password: ");
+                    password = Console.ReadLine();
+                    if (password.Length > 5) break;
+                    else
+                    {
+                        Console.WriteLine("Your password is too short, please enter a password with a minimal length of 5 characters.");
+                        Console.WriteLine("Press 'enter' to continue.");
+                        Console.ReadLine();
+                        continue;
+                    }
+                }
 
                 bool exists = UserAccounts.CheckIfCustomerExists(fullname, username);
                 if (exists)
@@ -863,7 +922,7 @@ namespace ProjectB
         {
             Console.Clear();
             var account = GetCustomerAccount();            
-            if (account == null) return;
+            if (account == null) return; // In case something goes wrong
 
             UserAccounts.DeleteCustomerAccount(account);
             UserAccounts.SaveAccountData();
@@ -944,7 +1003,7 @@ namespace ProjectB
             Console.Clear();
             var account = GetEmployeeAccount();            
             if (account == null) return; // In case something goes wrong
-
+            if (account == UserAccounts.GetLoggedInEmployee())
             UserAccounts.DeleteEmployeeAccount(account);
 
             Console.WriteLine("Account deleted, changes are saved. Press 'Enter' to continue.");
@@ -1028,7 +1087,13 @@ namespace ProjectB
             Console.Clear();
             var account = GetAdminAccount();            
             if (account == null) return; // In case something goes wrong
-
+            if (account == UserAccounts.GetLoggedInAdmin())
+            {
+                Console.WriteLine("You can't delete the account that is currently logged in.");
+                Console.WriteLine("Press 'enter' to continue.");
+                Console.ReadLine();
+                return;
+            }
             UserAccounts.DeleteAdminAccount(account);
 
             Console.WriteLine("Account deleted, changes are saved. Press 'Enter' to continue.");

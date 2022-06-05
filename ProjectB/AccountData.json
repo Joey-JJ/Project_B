@@ -111,7 +111,16 @@
       "Username": "test",
       "Password": "yjxy",
       "FullName": "test",
-      "LoggedIn": true
+      "LoggedIn": false
+    },
+    {
+      "Email": "kees@gmail.com",
+      "Reservations": [],
+      "Reviews": [],
+      "Username": "testaccount",
+      "Password": "yjxyjxy",
+      "FullName": "henk de jong",
+      "LoggedIn": false
     }
   ],
   "Item2": [

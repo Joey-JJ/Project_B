@@ -24,8 +24,6 @@ public class Reservation
         this.Endtime = this.StartTime.AddHours(2.0);
         this.Day = this.AssignRestaurantDay();
         int? table = this.AssignTableNumber();
-        Console.WriteLine($"day : {Day} table : {table}");
-        Console.ReadLine();
         if (table != null) 
         {
             this.TableNumber = table;
