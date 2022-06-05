@@ -15,7 +15,7 @@ namespace ProjectB
 
             // Log out all accounts in case system was closed improperly
             UserAccounts.LogOutAllAccounts();
-            
+
             // Page handling
             int PageNumber = 0;
             while (PageNumber != -1)

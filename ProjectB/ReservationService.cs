@@ -20,7 +20,6 @@ class ReservationService
     {
         string jsonString = File.ReadAllText(FileName);
         Reservations = JsonSerializer.Deserialize<Dictionary<DateTime, List<Reservation>>>(jsonString);
-
     }
 
     public static void ListReservations()
@@ -205,8 +204,16 @@ class ReservationService
     public static void AddReservation(DateTime dateTime, int personCount, Customer acc)
     {
         var newRes = new Reservation(acc.FullName, acc.Username, dateTime, personCount);
-        try { acc.Reservations.Add(newRes); }
-        catch (System.NullReferenceException) { Console.WriteLine($"{newRes}"); }
+        acc.Reservations.Add(newRes);
+        try
+        {
+            ReservationService.Reservations[dateTime.Date].Add(newRes);
+        }
+        catch (KeyNotFoundException)
+        {
+            ReservationService.Reservations.Add(dateTime.Date, new List<Reservation>());
+            ReservationService.Reservations[dateTime.Date].Add(newRes);
+        }
     }
 
     public static void RemoveReservation(int index, Customer user) 
