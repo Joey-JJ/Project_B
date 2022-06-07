@@ -870,7 +870,7 @@ namespace ProjectB
                     FoodMenu.PrintBill(index - 1);
                     Console.WriteLine("\nPress 'Enter' to continue.");
                     Console.ReadLine();
-                    return 5;
+                    return 6;
 
                     case "6": // List all customer accounts
                     Console.Clear();
