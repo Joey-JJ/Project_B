@@ -112,20 +112,11 @@
       "Password": "yjxy",
       "FullName": "test",
       "LoggedIn": false
-    },
-    {
-      "Email": "kees@gmail.com",
-      "Reservations": [],
-      "Reviews": [],
-      "Username": "testaccount",
-      "Password": "yjxyjxy",
-      "FullName": "henk de jong",
-      "LoggedIn": false
     }
   ],
   "Item2": [
     {
-      "Username": "em",
+      "Username": "employee",
       "Password": "ufxx",
       "FullName": "em",
       "LoggedIn": false
@@ -134,12 +125,6 @@
   "Item3": [
     {
       "Username": "admin",
-      "Password": "ufxx",
-      "FullName": "admin",
-      "LoggedIn": false
-    },
-    {
-      "Username": "admin2",
       "Password": "ufxx",
       "FullName": "admin",
       "LoggedIn": false
