@@ -1,0 +1,133 @@
+{
+  "Item1": [
+    {
+      "Email": "test",
+      "Reservations": [
+        {
+          "Name": "test",
+          "Username": "test",
+          "StartTime": "2022-06-08T17:30:00",
+          "Endtime": "2022-06-08T19:30:00",
+          "PersonCount": 5,
+          "TableNumber": 6,
+          "Day": {
+            "Tables": [
+              {
+                "TableNumber": 1,
+                "NumberOfSeats": 8,
+                "Taken": false
+              },
+              {
+                "TableNumber": 2,
+                "NumberOfSeats": 8,
+                "Taken": false
+              },
+              {
+                "TableNumber": 3,
+                "NumberOfSeats": 6,
+                "Taken": false
+              },
+              {
+                "TableNumber": 4,
+                "NumberOfSeats": 6,
+                "Taken": false
+              },
+              {
+                "TableNumber": 5,
+                "NumberOfSeats": 6,
+                "Taken": false
+              },
+              {
+                "TableNumber": 6,
+                "NumberOfSeats": 6,
+                "Taken": true
+              },
+              {
+                "TableNumber": 7,
+                "NumberOfSeats": 4,
+                "Taken": false
+              },
+              {
+                "TableNumber": 8,
+                "NumberOfSeats": 4,
+                "Taken": false
+              },
+              {
+                "TableNumber": 9,
+                "NumberOfSeats": 4,
+                "Taken": false
+              },
+              {
+                "TableNumber": 10,
+                "NumberOfSeats": 4,
+                "Taken": false
+              },
+              {
+                "TableNumber": 11,
+                "NumberOfSeats": 3,
+                "Taken": false
+              },
+              {
+                "TableNumber": 12,
+                "NumberOfSeats": 3,
+                "Taken": false
+              },
+              {
+                "TableNumber": 13,
+                "NumberOfSeats": 2,
+                "Taken": false
+              },
+              {
+                "TableNumber": 14,
+                "NumberOfSeats": 2,
+                "Taken": false
+              },
+              {
+                "TableNumber": 15,
+                "NumberOfSeats": 2,
+                "Taken": false
+              },
+              {
+                "TableNumber": 16,
+                "NumberOfSeats": 2,
+                "Taken": false
+              },
+              {
+                "TableNumber": 17,
+                "NumberOfSeats": 2,
+                "Taken": false
+              },
+              {
+                "TableNumber": 18,
+                "NumberOfSeats": 2,
+                "Taken": false
+              }
+            ],
+            "Date": "2022-06-08T00:00:00"
+          }
+        }
+      ],
+      "Reviews": [],
+      "Username": "test",
+      "Password": "yjxy",
+      "FullName": "test",
+      "LoggedIn": false
+    }
+  ],
+  "Item2": [
+    {
+      "Username": "employee",
+      "Password": "ufxx",
+      "FullName": "em",
+      "LoggedIn": false
+    }
+  ],
+  "Item3": [
+    {
+      "Username": "admin",
+      "Password": "ufxx",
+      "FullName": "admin",
+      "LoggedIn": false
+    }
+  ]
+}
