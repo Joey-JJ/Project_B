@@ -600,7 +600,7 @@ namespace ProjectB
                 }
                 try
                 {
-                    Console.Write("Please enter your rating (1-5): ");
+                    Console.Write("Please enter your rating (please only choose whole numbers between 1 and 5): ");
                     reviewRating = Convert.ToInt32(Console.ReadLine());
                     if (reviewRating > 5) reviewRating = 5;
                     else if (reviewRating < 1) reviewRating = 1;
